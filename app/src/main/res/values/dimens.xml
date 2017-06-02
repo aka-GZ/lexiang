@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="buttons_corner_radius">10dp</dimen>
+    <dimen name="titlebar_height">48dp</dimen>
+    <dimen name="function_item_height">45dp</dimen>
+    <dimen name="setting_item_height">49dp</dimen>
+    <dimen name="dialog_btn_height">44dp</dimen>
+    <dimen name="fixed_height">56dp</dimen>
+    <dimen name="fixed_height_top_padding_inactive">0dp
+    </dimen><!-- 8(Top Padding) - 12/2(extra padding due to badges) = 2 -->
+    <dimen name="fixed_height_top_padding_active">0dp
+    </dimen><!-- 6(Top Padding) - 12/2(extra padding due to badges) = 0 -->
+    <dimen name="fixed_height_bottom_padding">6dp</dimen>
+
+    <dimen name="fixed_label_active">14sp</dimen>
+    <dimen name="fixed_label_inactive">14sp</dimen>
+    <item name="fixed_label_active_to_inactive_ratio" format="float" type="dimen">1</item>
+
+    <dimen name="fixed_icon_grid">24dp</dimen>
+    <dimen name="fixed_icon_badge_grid_height">36dp
+    </dimen><!-- this adds 6 dp extra to top and bottom icon -->
+    <dimen name="fixed_icon_badge_grid_width">48dp
+    </dimen><!-- this adds 6 dp extra to top and bottom icon -->
+
+
+
+    <dimen name="bottom_navigation_elevation">8dp</dimen>
+    <dimen name="bottom_navigation_height">56dp</dimen>
+    <dimen name="bottom_navigation_padded_height">64dp</dimen>
+    <dimen name="bottom_navigation_top_margin_correction">-8dp</dimen><!-- 64 - 56 = 8 -->
+
+    <dimen name="badge_text_size">12sp</dimen><!-- 10 -->
+    <dimen name="badge_corner_radius">13dp</dimen><!-- 15 -->
+    <dimen name="badge_width_padding">4dp</dimen><!-- 4 -->
+    <dimen name="badge_height_padding">1dp</dimen><!-- 1 -->
+    <dimen name="badge_top_margin">2dp</dimen><!-- 2 -->
+
+
+</resources>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+
+    android:layout_height="match_parent"
+    tools:context="com.wq.project01.MainActivity">
+
+
+    <com.wq.common.widget.TitleBar
+        android:layout_width="match_parent"
+        android:id="@+id/titleBar"
+        android:background="@color/title_color"
+        app:title="创建模板"
+        app:leftAsFinish="true"
+        app:leftIcon="@drawable/back_h"
+        android:layout_height="45dp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:text="模板标题"
+            android:textSize="16sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="15dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="搞笑段子"
+            android:id="@+id/tv_title"
+            android:textSize="16sp"
+            android:background="#E9E7E8"
+            android:layout_marginRight="30dp"
+            />
+    </LinearLayout>
+    <View
+        style="@style/limit_line"/>
+    <EditText
+        android:id="@+id/edit_content"
+        android:layout_width="match_parent"
+        android:gravity="left"
+        android:layout_margin="15dp"
+        android:layout_height="wrap_content"
+        android:hint="这一刻的想法"
+        android:textSize="16sp"
+        android:minLines="3"
+        android:background="@null"
+
+
+        />
+    <com.sunrun.sunrunframwork.weight.MultiImageUploadView
+        android:layout_width="match_parent"
+        android:id="@+id/imgUpload"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content"/>
+    <View
+        style="@style/limit_gap"/>
+    <com.sunrun.sunrunframwork.view.ItemView
+        android:layout_width="match_parent"
+        android:id="@+id/item_gongkai"
+        app:leftTVText="是否公开"
+        app:RightImgShow="false"
+        android:layout_height="45dp">
+        <com.sunrun.sunrunframwork.weight.switchbtn.SlideSwitch
+            android:layout_width="40dp"
+            android:id="@+id/cb_gongkai"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            app:themeColor="@color/title_color"
+            android:minHeight="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_height="20dp" />
+        </com.sunrun.sunrunframwork.view.ItemView>
+    <View
+        style="@style/limit_line"/>
+    <com.sunrun.sunrunframwork.view.ItemView
+        android:layout_width="match_parent"
+        android:id="@+id/item_remind"
+        app:leftTVText="提醒谁看"
+
+        android:layout_height="45dp"/>
+    <View
+        style="@style/limit_line"/>
+</LinearLayout>
