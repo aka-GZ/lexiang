@@ -1,29 +1,9 @@
 package com.wq.common.quest;
 
-import com.google.gson.reflect.TypeToken;
 import com.sunrun.sunrunframwork.http.NAction;
 import com.sunrun.sunrunframwork.http.NetRequestHandler;
 
-import java.io.File;
 import java.util.List;
-
-import cn.cnsunrun.commonui.common.model.LoginInfo;
-import cn.cnsunrun.shangshengxinghuo.index.model.BannerInfo;
-import cn.cnsunrun.shangshengxinghuo.index.model.CityInfo;
-import cn.cnsunrun.shangshengxinghuo.index.model.HomeShopListInfo;
-import cn.cnsunrun.shangshengxinghuo.index.model.HotSearchInfo;
-import cn.cnsunrun.shangshengxinghuo.index.model.ShopTypeInfo;
-import cn.cnsunrun.shangshengxinghuo.merchant.model.DropFilterInfo;
-import cn.cnsunrun.shangshengxinghuo.merchant.model.PromoteRecordInfo;
-import cn.cnsunrun.shangshengxinghuo.merchant.model.ShopDetailsInfo;
-import cn.cnsunrun.shangshengxinghuo.merchant.model.ShopListInfo;
-import cn.cnsunrun.shangshengxinghuo.user.mode.MemberUpgradeInfo;
-import cn.cnsunrun.shangshengxinghuo.user.mode.MemberUpgradeListInfo;
-import cn.cnsunrun.shangshengxinghuo.user.mode.MessageDetails;
-import cn.cnsunrun.shangshengxinghuo.user.mode.MessageInfo;
-import cn.cnsunrun.shangshengxinghuo.user.mode.UserInfo;
-
-import static cn.cnsunrun.commonui.common.quest.Config.UAction;
 
 /**
  * 接口请求调用帮助类
@@ -217,10 +197,10 @@ public class BaseQuestStart extends BaseQuestConfig {
 
         netRequestHandler.requestAsynPost(new NAction()
                 .setUrl(BaseQuestConfig.GET_SHOP_TEMPLATE_LIST_URL)
-                .put("firstRow", firstRow)
-                .put("listRows", listRows)
-                .put("searchText", searchText)
-                .put("class_id", class_id)
+//                .put("firstRow", firstRow)
+//                .put("listRows", listRows)
+//                .put("searchText", searchText)
+//                .put("class_id", class_id)
                 .setRequestCode(BaseQuestConfig.QUEST_GET_SHOP_TEMPLATE_LIST_CODE));
     }
 
