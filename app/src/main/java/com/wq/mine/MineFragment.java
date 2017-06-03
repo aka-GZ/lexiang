@@ -13,6 +13,7 @@ import com.wq.common.util.IntentUtil;
 import com.wq.common.widget.TitleBar;
 import com.wq.project01.R;
 import com.wq.template.TeamTemplateListActivity;
+import com.wq.template.UseHistoryListActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,7 +54,6 @@ public class MineFragment extends LBaseFragment {
     TextView itemUseHistory;
     @BindView(R.id.activity_main)
     LinearLayout activityMain;
-    Unbinder unbinder;
 
     @Override
     public int getLayoutRes() {
@@ -67,11 +67,6 @@ public class MineFragment extends LBaseFragment {
     }
 
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
 
     @OnClick({R.id.lay_attention, R.id.lay_fens, R.id.item_mine_template, R.id.item_team_template, R.id.item_use_history})
     public void onViewClicked(View view) {
@@ -86,7 +81,10 @@ public class MineFragment extends LBaseFragment {
                 IntentUtil.startActivity(that, TeamTemplateListActivity.class);
                 break;
             case R.id.item_use_history:
+                IntentUtil.startActivity(that, UseHistoryListActivity.class);
                 break;
         }
     }
+
+
 }

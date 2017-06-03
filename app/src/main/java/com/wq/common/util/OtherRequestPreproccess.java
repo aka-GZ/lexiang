@@ -11,6 +11,7 @@ import com.sunrun.sunrunframwork.http.RequestPreproccess;
 public class OtherRequestPreproccess implements RequestPreproccess {
     @Override
     public NAction proccess(NAction nAction) {
+
         nAction.params.setUseJsonStreamer(true);
         return nAction;
     }

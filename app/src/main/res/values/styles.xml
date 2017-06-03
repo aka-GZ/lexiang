@@ -4,8 +4,19 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:fitsSystemWindows">false</item>
+    </style>
+    <style name="TranslucentTheme" parent="AppTheme">
+        <item name="android:fitsSystemWindows">false</item>
     </style>
 
+    <style name="submitBtn">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">49dp</item>
+        <item name="android:background">@drawable/submit_button_selector</item>
+        <item name="android:textColor">#FFF</item>
+        <item name="android:textSize">17sp</item>
+    </style>
 </resources>

@@ -21,6 +21,9 @@
         <activity android:name="com.wq.template.TeamTemplateListActivity"
             android:screenOrientation="portrait"
             />
+        <activity android:name="com.wq.template.UseHistoryListActivity"
+            android:screenOrientation="portrait"
+            />
 
     </application>
 

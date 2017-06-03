@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+    <View
+        style="@style/limit_gap"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -76,6 +77,5 @@
         </LinearLayout>
 
     </LinearLayout>
-    <View
-        style="@style/limit_gap"/>
+
 </LinearLayout>

@@ -13,8 +13,8 @@
     <com.wq.common.widget.TitleBar
         android:layout_width="match_parent"
         android:id="@+id/titleBar"
-        android:background="@color/title_color"
         app:title="创建模板"
+        app:backgroundColor="@color/title_color"
         app:leftAsFinish="true"
         app:leftIcon="@drawable/back_h"
         android:layout_height="45dp"

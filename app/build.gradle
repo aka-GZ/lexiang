@@ -39,6 +39,7 @@ dependencies {
     compile 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
     compile 'com.github.976112643.sunrunframwork:sunrunframwork:1.0.3'
     compile 'com.jakewharton:butterknife:8.6.0'
+    compile 'cn.aigestudio.wheelpicker:WheelPicker:1.1.2'
     compile 'com.ashokvarma.android:bottom-navigation-bar:1.4.1'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
