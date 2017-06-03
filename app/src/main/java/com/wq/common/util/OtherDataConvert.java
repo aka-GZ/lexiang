@@ -32,7 +32,7 @@ public class OtherDataConvert extends BaseBeanConvert {
         JSONObject jobj = JsonDeal.createJsonObj(json);
         BaseBean bean = new BaseBean();
         JSONObject metaObj=jobj.optJSONObject("meta");
-        bean.status = metaObj.optInt("metaObj");
+        bean.status = metaObj.optInt("code");
         bean.msg = metaObj.optString("message");
         Object obj = jobj.opt("body");
         bean.post_time = jobj.optString("post_time");
@@ -47,7 +47,7 @@ public class OtherDataConvert extends BaseBeanConvert {
         JSONObject jobj = JsonDeal.createJsonObj(json);
         BaseBean bean = new BaseBean();
         JSONObject metaObj=jobj.optJSONObject("meta");
-        bean.status = metaObj.optInt("metaObj");
+        bean.status = metaObj.optInt("code");
         bean.msg = metaObj.optString("message");
         Object obj = jobj.opt("body");
         bean.post_time = jobj.optString("post_time");
@@ -62,7 +62,7 @@ public class OtherDataConvert extends BaseBeanConvert {
         JSONObject jobj = JsonDeal.createJsonObj(json);
         BaseBean bean = new BaseBean();
         JSONObject metaObj=jobj.optJSONObject("meta");
-        bean.status = metaObj.optInt("metaObj");
+        bean.status = metaObj.optInt("code");
         bean.msg = metaObj.optString("message");
         Object obj = jobj.has("body")?jobj.opt("body"):json;
         bean.post_time = jobj.optString("post_time");

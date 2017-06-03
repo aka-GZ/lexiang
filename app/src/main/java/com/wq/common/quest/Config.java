@@ -28,7 +28,7 @@ public class Config extends BaseConfig {
     }
 
     public static NAction  UAction(){
-        return new NAction().put("member_id",getLoginInfo().getId());
+        return new NAction().put("token",getLoginInfo().getToken());
     }
 
 }
