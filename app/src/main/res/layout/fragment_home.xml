@@ -11,6 +11,7 @@
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/tv_content"
         android:text="Hello World!" />
 
     <com.sunrun.sunrunframwork.view.title.BaseTitleLayoutView
