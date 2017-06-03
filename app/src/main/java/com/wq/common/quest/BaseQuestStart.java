@@ -2,6 +2,7 @@ package com.wq.common.quest;
 
 import com.sunrun.sunrunframwork.http.NAction;
 import com.sunrun.sunrunframwork.http.NetRequestHandler;
+import com.wq.common.model.LoginInfo;
 
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class BaseQuestStart extends BaseQuestConfig {
                 .setUrl(BaseQuestConfig.LOGIN_URL)
                 .put("phone_no", phone_no)
                 .put("password", password)
+                .setTypeToken(LoginInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_LOGIN_CODE));
     }
 	
