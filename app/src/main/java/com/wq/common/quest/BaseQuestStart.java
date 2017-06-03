@@ -1,8 +1,10 @@
 package com.wq.common.quest;
 
+import com.google.gson.reflect.TypeToken;
 import com.sunrun.sunrunframwork.http.NAction;
 import com.sunrun.sunrunframwork.http.NetRequestHandler;
 import com.wq.common.model.LoginInfo;
+import com.wq.common.model.TeamTemplateListObj;
 
 import java.util.List;
 
@@ -305,6 +307,7 @@ public class BaseQuestStart extends BaseQuestConfig {
                 .put("group_id", group_id)
                 .put("firstRow", firstRow)
                 .put("listRows", listRows)
+                .setTypeToken(new TypeToken<List<TeamTemplateListObj>>(){})//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_GET_TEAM_TEMPLATE_LIST_CODE));
     }
 	
