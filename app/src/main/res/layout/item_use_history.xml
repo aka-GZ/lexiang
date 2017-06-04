@@ -3,22 +3,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <View
-        style="@style/limit_gap"/>
-    <TextView
-        android:id="@+id/tv_date"
-        android:layout_width="wrap_content"
+        style="@style/limit_line"/>
+    <LinearLayout
+        android:id="@+id/lay_lab"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="爸妈育儿误区"
-        android:textColor="@color/text4" />
+        android:orientation="vertical">
+
+        <View style="@style/limit_gap" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="2017-10-10"
+            android:textColor="@color/text4" />
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-        android:paddingTop="15dp"
+        android:orientation="horizontal"
         android:paddingBottom="5dp"
-        android:orientation="horizontal">
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -48,24 +60,25 @@
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="爸妈育儿误区"
                 android:textColor="@color/text2"
-                android:textSize="16sp"
-                android:text="爸妈育儿误区" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tv_descript"
-                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/text2"
-                android:textSize="12sp"
+                android:layout_marginTop="10dp"
                 android:maxLines="3"
-                android:text="内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容" />
+                android:text="内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"
+                android:textColor="@color/text2"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:orientation="vertical">
 

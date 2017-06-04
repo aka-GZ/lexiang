@@ -71,10 +71,11 @@ public class UseHistoryListActivity extends LPageActivity {
 
     @Override
     public BaseAdapter getAdapter(List list) {
-        return new ViewHolderAdapter(that, list, R.layout.item_team_template) {
+        return new ViewHolderAdapter(that, list, R.layout.item_use_history) {
 
             @Override
-            public void fillView(ViewHodler viewHodler, Object o, int i) {
+            public void fillView(ViewHodler hodler, Object o, int i) {
+                hodler.setVisibility(R.id.lay_lab,i%3==0);
 
             }
         };

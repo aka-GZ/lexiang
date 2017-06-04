@@ -5,5 +5,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="title_color">#FF8002</color>
     <color name="yellow_color">#E79E57</color>
-
+    <color name="color_bg_title">#2073ec</color>
 </resources>

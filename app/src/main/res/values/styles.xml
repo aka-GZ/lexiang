@@ -11,7 +11,13 @@
     <style name="TranslucentTheme" parent="AppTheme">
         <item name="android:fitsSystemWindows">false</item>
     </style>
-
+    <style name="BackTitleBarStyle" parent="DefTitleBarStyle">
+        <item name="leftAsFinish">true</item>
+        <item name="leftIcon">@drawable/back_h</item>
+    </style>
+    <style name="DefTitleBarStyle">
+        <item name="backgroundColor">@color/title_color</item>
+    </style>
     <style name="submitBtn">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">49dp</item>

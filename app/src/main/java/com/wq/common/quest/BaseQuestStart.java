@@ -415,7 +415,7 @@ public class BaseQuestStart extends BaseQuestConfig {
  * @param email 用户邮箱地址 (可选)
  * @return code code 200 成功 3001 phone_no参数未传入 3002 password参数未传入  3003 账号已存在 3004写入用户数据失败 3005 手机号码不合法
  */
-    public static void register(NetRequestHandler netRequestHandler,String phone_no,String password) {
+    public static void register(NetRequestHandler netRequestHandler,Object phone_no,Object password,Object captcha) {
 
         netRequestHandler.requestAsynPost(new NAction()
                 .setUrl(BaseQuestConfig.REGISTER_URL)
@@ -582,7 +582,7 @@ public class BaseQuestStart extends BaseQuestConfig {
  * @param new_password 修改后的新密码 md5
  * @return code 200->成功 3001->原密码错误 3002->更新数据失败
  */
-    public static void updateUserPassword(NetRequestHandler netRequestHandler,String password,String new_password) {
+    public static void updateUserPassword(NetRequestHandler netRequestHandler,Object password,Object new_password,Object editConfimPwd) {
 
         netRequestHandler.requestAsynPost(new NAction()
                 .setUrl(BaseQuestConfig.UPDATE_PASSWORD_URL)

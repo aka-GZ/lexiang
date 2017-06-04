@@ -3,27 +3,50 @@
     package="com.wq.project01">
 
     <application
+        android:name="com.wq.common.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name="com.wq.common.App"
         android:theme="@style/AppTheme">
-        <activity android:name="com.wq.main.NavigatorActivity">
+
+        <activity android:name="com.wq.login.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.wq.template.AddTemplateActivity"
+        <activity
+            android:name="com.wq.main.NavigatorActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.wq.template.AddTemplateActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.wq.template.TeamTemplateListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.wq.template.UseHistoryListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.wq.login.LoginActivity"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            />
-        <activity android:name="com.wq.template.TeamTemplateListActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.wq.login.RegisterActivity"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            />
-        <activity android:name="com.wq.template.UseHistoryListActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.wq.login.FonudPwdActivity"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            />
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.wq.login.ModifyPwdActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
 
     </application>
 

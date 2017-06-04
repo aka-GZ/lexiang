@@ -71,4 +71,8 @@ public class LoginInfo {
                 ", token='" + token + '\'' +
                 '}';
     }
+
+    public boolean isValid() {
+        return token!=null;
+    }
 }
