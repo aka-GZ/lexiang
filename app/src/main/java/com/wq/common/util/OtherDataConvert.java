@@ -8,6 +8,8 @@ import com.sunrun.sunrunframwork.http.utils.JsonDeal;
 
 import org.json.JSONObject;
 
+import static com.wq.common.model.Const.CODE_OK;
+
 /**
  * 自定义数据解析
  * Created by WQ on 2017/5/26.
@@ -36,7 +38,7 @@ public class OtherDataConvert extends BaseBeanConvert {
         bean.msg = metaObj.optString("message");
         Object obj = jobj.opt("body");
         bean.post_time = jobj.optString("post_time");
-        if(bean.status == 200) {
+        if(bean.status == CODE_OK) {
             bean.data = JsonDeal.json2Object(String.valueOf(obj), clazz);
         }
 
@@ -51,7 +53,7 @@ public class OtherDataConvert extends BaseBeanConvert {
         bean.msg = metaObj.optString("message");
         Object obj = jobj.opt("body");
         bean.post_time = jobj.optString("post_time");
-        if(bean.status == 1) {
+        if(bean.status == CODE_OK) {
             bean.data = JsonDeal.json2Object(String.valueOf(obj), typeToken);
         }
 

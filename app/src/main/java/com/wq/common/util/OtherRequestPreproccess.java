@@ -16,11 +16,11 @@ public class OtherRequestPreproccess implements RequestPreproccess {
     public NAction proccess(NAction nAction) {
 
         nAction.params.setUseJsonStreamer(true);
-        if(!hasToken && Config.getLoginInfo().getToken()!=null) {
+        //if(!hasToken && Config.getLoginInfo().getToken()!=null) {
             //添加请求头
             hasToken=true;
             NetUtils.getAsynHttpClient().addHeader("token",Config.getLoginInfo().getToken());
-        }
+       // }
         return nAction;
     }
 

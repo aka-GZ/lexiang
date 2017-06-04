@@ -69,7 +69,7 @@ public class TeamTemplateListActivity extends LPageActivity {
 //        setDataToView(list,refreshLayout.getRefreshableView());
         page = i;
         //firstRow 开始记录数   , listRows 每页显示数量
-        String firstRow = (page - 1)+"";
+        String firstRow = "0";//默认第0组
         String listRows = "10";
         BaseQuestStart.getGroupList(this , firstRow , listRows);
 
@@ -84,10 +84,10 @@ public class TeamTemplateListActivity extends LPageActivity {
                 if (bean.status == 200) {
                     List<GroupListObj> list = bean.Data();//获取数据内容
 
-                    if (list != null|| !list.isEmpty() || list.get(0) != null) {
+                    if (list != null && !list.isEmpty() && list.get(0) != null) {
                         //group_id 团队ID  ,  firstRow 开始记录数   , listRows 每页显示数量   //预留扩散多个团队，目前一个用户只有一个团队
                         String group_id = list.get(0).getGroup_id();
-                        String firstRow = (page - 1) + "";
+                        String firstRow = page + "";
                         String listRows = "10";
                         BaseQuestStart.getTeamTemplateList(this, group_id, firstRow, listRows);
                     }else{

@@ -21,6 +21,7 @@
         android:layout_width="match_parent"
         android:id="@+id/refresh_layout"
         android:divider="@null"
+        app:ptrMode="both"
         android:scrollbars="none"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"/>
 </LinearLayout>

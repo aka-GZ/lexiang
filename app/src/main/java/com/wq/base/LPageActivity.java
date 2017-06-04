@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.sunrun.sunrunframwork.uibase.PagingActivity;
+import com.sunrun.sunrunframwork.utils.PagingHelp;
 import com.wq.project01.R;
 
 import butterknife.ButterKnife;
@@ -24,6 +25,28 @@ import butterknife.Unbinder;
  */
 
 public abstract class LPageActivity<T> extends PagingActivity<T> {
+
+    public LPageActivity() {
+        pagingHelp=new PagingHelp(this){
+            {
+                curPage=0;
+                pageSize=10;
+            }
+
+            @Override
+            public boolean isFirst() {
+//                return super.isFirst();
+                return this.curPage == 0 || this.mData == null;
+            }
+
+            @Override
+            public void reshPage() {
+//                super.reshPage();
+                this.curPage = 0;
+                this.loadData(this.curPage);
+            }
+        };
+    }
 
     Unbinder unbinder;
     protected boolean ifTitleBarIsWhiteThenIWillSetBlackStatusBarOnNotCompatDevice() {

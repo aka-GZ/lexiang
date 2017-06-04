@@ -49,7 +49,7 @@ public class HomeFragment extends LBaseFragment {
             case QUEST_LOGIN_CODE:
                 //log 设置 tag为NetServer 可以查看请求情况
                 tvContent.setText(bean.toString());
-                if (bean.status == 200) {
+                if (bean.status == 200 ) {
                     LoginInfo info=bean.Data();//获取数据内容
                     Config.putLoginInfo(info);
                 }

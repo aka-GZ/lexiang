@@ -1,5 +1,7 @@
 package com.wq.common.model;
 
+import java.util.List;
+
 /**
  * Created by cnsunrun on 2017/5/26.
  */
@@ -18,13 +20,14 @@ public class TeamTemplateListObj {
      * @return founder_forwarding_times 模板创建人转发次数
      */
 
+
     private String template_id;
     private String template_name;
     private Object class_id;
     private String template_cover_img_url;
     private String template_add_time;
-    private String forwarded;
-    private String not_forward;
+    private List<TeamTemplateForwarded> forwarded;
+    private List<TeamTemplateNotForwarded> not_forward;
     private String forward_expiration_date;
     private String uid;
     private String founder_forwarding_times;
@@ -77,19 +80,19 @@ public class TeamTemplateListObj {
         this.uid = uid;
     }
 
-    public String getForwarded() {
+    public List<TeamTemplateForwarded> getForwarded() {
         return forwarded;
     }
 
-    public void setForwarded(String forwarded) {
+    public void setForwarded(List<TeamTemplateForwarded> forwarded) {
         this.forwarded = forwarded;
     }
 
-    public String getNot_forward() {
+    public List<TeamTemplateNotForwarded> getNot_forward() {
         return not_forward;
     }
 
-    public void setNot_forward(String not_forward) {
+    public void setNot_forward(List<TeamTemplateNotForwarded> not_forward) {
         this.not_forward = not_forward;
     }
 
