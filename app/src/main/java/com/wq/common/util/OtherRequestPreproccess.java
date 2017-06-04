@@ -11,7 +11,7 @@ import com.wq.common.quest.Config;
  */
 
 public class OtherRequestPreproccess implements RequestPreproccess {
-    boolean hasToken=false;
+  static   boolean hasToken=false;
     @Override
     public NAction proccess(NAction nAction) {
 
@@ -22,5 +22,13 @@ public class OtherRequestPreproccess implements RequestPreproccess {
             NetUtils.getAsynHttpClient().addHeader("token",Config.getLoginInfo().getToken());
         }
         return nAction;
+    }
+
+    /**
+     * 清除token缓存
+     */
+    public static void clearToken(){
+        hasToken=false;
+        NetUtils.getAsynHttpClient().addHeader("token",null);
     }
 }
