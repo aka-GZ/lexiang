@@ -11,10 +11,12 @@ import com.sunrun.sunrunframwork.adapter.ViewHodler;
 import com.sunrun.sunrunframwork.adapter.ViewHolderAdapter;
 import com.sunrun.sunrunframwork.bean.BaseBean;
 import com.sunrun.sunrunframwork.uibase.PagingActivity;
+import com.sunrun.sunrunframwork.uiutils.ToastUtils;
 import com.sunrun.sunrunframwork.uiutils.UIUtils;
 import com.sunrun.sunrunframwork.weight.pulltorefresh.PullToRefreshListView;
 import com.wq.base.LPageActivity;
 import com.wq.common.boxing.GlideMediaLoader;
+import com.wq.common.model.GroupListObj;
 import com.wq.common.model.LoginInfo;
 import com.wq.common.model.TeamTemplateListObj;
 import com.wq.common.quest.BaseQuestConfig;
@@ -22,6 +24,7 @@ import com.wq.common.quest.BaseQuestStart;
 import com.wq.common.widget.TitleBar;
 import com.wq.project01.R;
 
+import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -58,27 +61,45 @@ public class TeamTemplateListActivity extends LPageActivity {
             }
         });
     }
-
+ private int page = 1;
     @Override
     public void loadData(int i) {
-        ArrayList list=new ArrayList();
-        list.addAll(Arrays.asList(new String[10]));
-        setDataToView(list,refreshLayout.getRefreshableView());
-        //group_id 团队ID  ,  firstRow 开始记录数   , listRows 每页显示数量
-        String group_id = "1";
-        String firstRow = i+"";
+//        ArrayList list=new ArrayList();
+//        list.addAll(Arrays.asList(new String[10]));
+//        setDataToView(list,refreshLayout.getRefreshableView());
+        page = i;
+        //firstRow 开始记录数   , listRows 每页显示数量
+        String firstRow = (page - 1)+"";
         String listRows = "10";
-        BaseQuestStart.getTeamTemplateList(this,group_id,firstRow,listRows);
+        BaseQuestStart.getGroupList(this , firstRow , listRows);
+
+
     }
 
 
     public void nofityUpdate(int requestCode, BaseBean bean) {
         switch (requestCode) {
+            case BaseQuestConfig.QUEST_GET_GROUP_LIST_CODE:
+                //log 设置 tag为NetServer 可以查看请求情况
+                if (bean.status == 200) {
+                    List<GroupListObj> list = bean.Data();//获取数据内容
+
+                    if (list != null|| !list.isEmpty() || list.get(0) != null) {
+                        //group_id 团队ID  ,  firstRow 开始记录数   , listRows 每页显示数量   //预留扩散多个团队，目前一个用户只有一个团队
+                        String group_id = list.get(0).getGroup_id();
+                        String firstRow = (page - 1) + "";
+                        String listRows = "10";
+                        BaseQuestStart.getTeamTemplateList(this, group_id, firstRow, listRows);
+                    }else{
+                        ToastUtils.shortToast("暂无团队信息");
+                    }
+                }
+                break;
             case BaseQuestConfig.QUEST_GET_TEAM_TEMPLATE_LIST_CODE:
                 //log 设置 tag为NetServer 可以查看请求情况
                 if (bean.status == 200) {
-                    List<TeamTemplateListObj> info=bean.Data();//获取数据内容
-                    setDataToView(info,refreshLayout.getRefreshableView());
+                    List<TeamTemplateListObj> list = bean.Data();//获取数据内容
+                    setDataToView(list,refreshLayout.getRefreshableView());
                 }
                 break;
         }

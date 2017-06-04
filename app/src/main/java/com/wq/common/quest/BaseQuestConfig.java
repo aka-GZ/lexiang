@@ -96,8 +96,8 @@ public class BaseQuestConfig implements NetQuestConfig {
     public static final int QUEST_DEL_GROUP_CODE = 0X020;
 	
     //删除我创建的团队
-   // public static String DEL_GROUP_URL = HTTP_API + "/api.php/Cube/delGroup";
-   // public static final int QUEST_DEL_GROUP_CODE = 0X021;
+    public static String SIGNOUT_TEAM_URL = HTTP_API + "/api.php/Cube/signOutTeam";
+    public static final int QUEST_SIGNOUT_TEAM_CODE = 0X021;
 	
     //加入九宫格团队 
     public static String JOIN_TEAM_URL = HTTP_API + "/api.php/Cube/joinTeam";

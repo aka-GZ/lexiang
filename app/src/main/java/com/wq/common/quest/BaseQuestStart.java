@@ -3,6 +3,7 @@ package com.wq.common.quest;
 import com.google.gson.reflect.TypeToken;
 import com.sunrun.sunrunframwork.http.NAction;
 import com.sunrun.sunrunframwork.http.NetRequestHandler;
+import com.wq.common.model.GroupListObj;
 import com.wq.common.model.LoginInfo;
 import com.wq.common.model.TeamTemplateListObj;
 
@@ -56,6 +57,7 @@ public class BaseQuestStart extends BaseQuestConfig {
                 .put("img_list", img_list)
                 .put("remind_id_list", remind_id_list)
                 .put("is_open", is_open)
+               // .setTypeToken(LoginInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_ADD_TEMPLATE_CODE));
     }
 
@@ -74,6 +76,7 @@ public class BaseQuestStart extends BaseQuestConfig {
                 .setUrl(BaseQuestConfig.DEL_TEMPLATE_URL)
                 .put("uid", uid)
                 .put("template_list", template_list)
+                // .setTypeToken(LoginInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_DEL_TEMPLATE_CODE));
     }
 
@@ -103,6 +106,7 @@ public class BaseQuestStart extends BaseQuestConfig {
                 .put("template_cover_img", template_cover_img)
                 .put("img_list", img_list)
                 .put("remind_id_list", remind_id_list)
+                // .setTypeToken(LoginInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_UPDATE_TEMPLATE_CODE));
     }
 
@@ -128,6 +132,7 @@ public class BaseQuestStart extends BaseQuestConfig {
         netRequestHandler.requestAsynPost(new NAction()
                 .setUrl(BaseQuestConfig.GET_TEMPLATE_DATA_URL)
                 .put("template_id", template_id)
+                // .setTypeToken(LoginInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_GET_TEMPLATE_DATA_CODE));
     }
 
@@ -157,6 +162,7 @@ public class BaseQuestStart extends BaseQuestConfig {
                 .put("listRows", listRows)
                 .put("searchText", searchText)
                 .put("class_id", class_id)
+                // .setTypeToken(LoginInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_GET_TEMPLATE_LIST_CODE));
     }
 
@@ -172,6 +178,7 @@ public class BaseQuestStart extends BaseQuestConfig {
         netRequestHandler.requestAsynPost(new NAction()
                 .setUrl(BaseQuestConfig.GET_CLASS_TEMPLATE_URL)
                 .put("uid", uid)
+                // .setTypeToken(LoginInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_GET_CLASS_TEMPLATE_CODE));
     }
 
@@ -197,14 +204,15 @@ public class BaseQuestStart extends BaseQuestConfig {
  * @return forwarding_times->模板转发次数
  * @return class_id->模板分类ID -1未分配
  */
-    public static void getShopTemplateList(NetRequestHandler netRequestHandler,String uid) {
+    public static void getShopTemplateList(NetRequestHandler netRequestHandler,String firstRow,String listRows,String searchText,String class_id) {
 
         netRequestHandler.requestAsynPost(new NAction()
                 .setUrl(BaseQuestConfig.GET_SHOP_TEMPLATE_LIST_URL)
-//                .put("firstRow", firstRow)
-//                .put("listRows", listRows)
-//                .put("searchText", searchText)
-//                .put("class_id", class_id)
+                .put("firstRow", firstRow)
+                .put("listRows", listRows)
+                .put("searchText", searchText)
+                .put("class_id", class_id)
+                // .setTypeToken(LoginInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_GET_SHOP_TEMPLATE_LIST_CODE));
     }
 
@@ -222,6 +230,7 @@ public class BaseQuestStart extends BaseQuestConfig {
 
         netRequestHandler.requestAsynPost(new NAction()
                 .setUrl(BaseQuestConfig.GET_FORWARD_TEMPLATE_REMIND_URL)
+                // .setTypeToken(LoginInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_GET_FORWARD_TEMPLATE_REMIND_CODE));
     }
 	
@@ -241,6 +250,7 @@ public class BaseQuestStart extends BaseQuestConfig {
                 .setUrl(BaseQuestConfig.SET_RECORD_READ_URL)
                 .put("uid", uid)
                 .put("remind_id", remind_id)
+                // .setTypeToken(LoginInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_SET_RECORD_READ_CODE));
     }
 		
@@ -259,6 +269,7 @@ public class BaseQuestStart extends BaseQuestConfig {
         netRequestHandler.requestAsynPost(new NAction()
                 .setUrl(BaseQuestConfig.ADD_TEAM_URL)
                 .put("group_name", group_name)
+                // .setTypeToken(LoginInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_ADD_TEAM_CODE));
     }
 		
@@ -281,6 +292,7 @@ public class BaseQuestStart extends BaseQuestConfig {
                 .put("group_id", group_id)
                 .put("firstRow", firstRow)
                 .put("listRows", listRows)
+                // .setTypeToken(LoginInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_GET_TEAM_MEMBER_LIST_CODE));
     }
 	
@@ -298,7 +310,11 @@ public class BaseQuestStart extends BaseQuestConfig {
  * @return class_id 模板分类ID
  * @return template_cover_img_url 模板封面图片路径
  * @return template_add_time 模板添加时间
+ * @return forwarded 已转发团队成员list
+ * @return not_forward 未转发团队成员list
+ * @return forward_expiration_date 模板转发截止时间
  * @return uid 模板所属用户uid
+ * @return founder_forwarding_times 模板创建人转发次数
  */
     public static void getTeamTemplateList(NetRequestHandler netRequestHandler,String group_id,String firstRow,String listRows) {
 
@@ -338,6 +354,7 @@ public class BaseQuestStart extends BaseQuestConfig {
                 .setUrl(BaseQuestConfig.GET_TEAM_TEMPLATE_VIEW_URL)
                 .put("group_id", group_id)
                 .put("template_id", template_id)
+                // .setTypeToken(LoginInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_GET_TEAM_TEMPLATE_VIEW_CODE));
     }
 	
@@ -359,6 +376,7 @@ public class BaseQuestStart extends BaseQuestConfig {
                 .setUrl(BaseQuestConfig.GET_GROUP_LIST_URL)
                 .put("firstRow", firstRow)
                 .put("listRows", listRows)
+                .setTypeToken(new TypeToken<List<GroupListObj>>(){})//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_GET_GROUP_LIST_CODE));
     }
 	
@@ -380,6 +398,7 @@ public class BaseQuestStart extends BaseQuestConfig {
                 .setUrl(BaseQuestConfig.DEL_TEAM_MEMBER_URL)
                 .put("group_id", group_id)
                 .put("remove_uid_list", remove_uid_list)
+                // .setTypeToken(LoginInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_DEL_TEAM_MEMBER_CODE));
     }
 	
@@ -402,6 +421,7 @@ public class BaseQuestStart extends BaseQuestConfig {
                 .setUrl(BaseQuestConfig.REGISTER_URL)
                 .put("phone_no", phone_no)
                 .put("password", password)
+                // .setTypeToken(LoginInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_REGISTER_CODE));
     }
 	
@@ -426,27 +446,29 @@ public class BaseQuestStart extends BaseQuestConfig {
 
         netRequestHandler.requestAsynPost(new NAction()
                 .setUrl(BaseQuestConfig.GET_RECHARGE_OPTION_URL)
+                // .setTypeToken(LoginInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_GET_RECHARGE_OPTION_CODE));
     }
-	
-	
-/**
 
- * 团队成员退出当前所在团队
- * API参数传入方式: POST
- * 传入JSON格式: {"group_id":"3"}
- * 返回JSON格式: {"meta":{"code":200,"message":"success"}}
- * @param uid 用户uid
- * @param group_id 要退出所在团队ID
- * @return code 200->成功 3001->当前账号未在此团队中 3002->团队创建人无法退出团队 3003->删除失败
- */
-    public static void delGroup(NetRequestHandler netRequestHandler,String uid,String group_id) {
+
+    /**
+
+     * 团队成员退出当前所在团队
+     * API参数传入方式: POST
+     * 传入JSON格式: {"group_id":"3"}
+     * 返回JSON格式: {"meta":{"code":200,"message":"success"}}
+     * @param uid 用户uid
+     * @param group_id 要退出所在团队ID
+     * @return code 200->成功 3001->当前账号未在此团队中 3002->团队创建人无法退出团队 3003->删除失败
+     */
+    public static void SignOutTeam(NetRequestHandler netRequestHandler,String uid,String group_id) {
 
         netRequestHandler.requestAsynPost(new NAction()
-                .setUrl(BaseQuestConfig.DEL_GROUP_URL)
+                .setUrl(BaseQuestConfig.SIGNOUT_TEAM_URL)
                 .put("uid", uid)
                 .put("group_id", group_id)
-                .setRequestCode(BaseQuestConfig.QUEST_DEL_GROUP_CODE));
+                // .setTypeToken(LoginInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
+                .setRequestCode(BaseQuestConfig.QUEST_SIGNOUT_TEAM_CODE));
     }
 	
 /** 
@@ -459,13 +481,13 @@ public class BaseQuestStart extends BaseQuestConfig {
  * @param group_id 要删除的团队ID
  * @return code 200->成功  3001->非团队创建人无法删除团队 3002->删除失败
  */
-  //  public static void delGroup(NetRequestHandler netRequestHandler,String group_id) {
-//
-  //      netRequestHandler.requestAsynPost(new NAction()
-  //              .setUrl(BaseQuestConfig.DEL_GROUP_URL)
-  //              .put("group_id", group_id)
-   //             .setRequestCode(BaseQuestConfig.QUEST_DEL_GROUP_CODE));
-   // }
+    public static void delGroup(NetRequestHandler netRequestHandler,String group_id) {
+
+        netRequestHandler.requestAsynPost(new NAction()
+                .setUrl(BaseQuestConfig.DEL_GROUP_URL)
+                .put("group_id", group_id)
+                .setRequestCode(BaseQuestConfig.QUEST_DEL_GROUP_CODE));
+    }
 	
 	
 /** 
