@@ -1,7 +1,9 @@
 package com.wq.common.util;
 
 import com.sunrun.sunrunframwork.http.NAction;
+import com.sunrun.sunrunframwork.http.NetUtils;
 import com.sunrun.sunrunframwork.http.RequestPreproccess;
+import com.wq.common.quest.Config;
 
 /**
  * 接口请求参数提交前的一些预处理工作
@@ -9,10 +11,16 @@ import com.sunrun.sunrunframwork.http.RequestPreproccess;
  */
 
 public class OtherRequestPreproccess implements RequestPreproccess {
+    boolean hasToken=false;
     @Override
     public NAction proccess(NAction nAction) {
 
         nAction.params.setUseJsonStreamer(true);
+        if(!hasToken && Config.getLoginInfo().getToken()!=null) {
+            //添加请求头
+            hasToken=true;
+            NetUtils.getAsynHttpClient().addHeader("token",Config.getLoginInfo().getToken());
+        }
         return nAction;
     }
 }

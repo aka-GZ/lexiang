@@ -11,6 +11,7 @@ import com.sunrun.sunrunframwork.bean.BaseBean;
 import com.wq.base.LBaseFragment;
 import com.wq.common.model.LoginInfo;
 import com.wq.common.quest.BaseQuestStart;
+import com.wq.common.quest.Config;
 import com.wq.common.util.IntentUtil;
 import com.wq.project01.R;
 import com.wq.template.AddTemplateActivity;
@@ -50,6 +51,7 @@ public class HomeFragment extends LBaseFragment {
                 tvContent.setText(bean.toString());
                 if (bean.status == 200) {
                     LoginInfo info=bean.Data();//获取数据内容
+                    Config.putLoginInfo(info);
                 }
                 break;
         }
