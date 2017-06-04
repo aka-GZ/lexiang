@@ -5,10 +5,14 @@ import com.sunrun.sunrunframwork.bean.BaseBean;
 import com.sunrun.sunrunframwork.http.BaseBeanConvert;
 import com.sunrun.sunrunframwork.http.NAction;
 import com.sunrun.sunrunframwork.http.utils.JsonDeal;
+import com.sunrun.sunrunframwork.uiutils.UIUtils;
+import com.wq.common.App;
 
 import org.json.JSONObject;
 
+import static com.wq.common.model.Const.CODE_BUSY;
 import static com.wq.common.model.Const.CODE_OK;
+import static com.wq.common.model.Const.CODE_OUT_LOGIN;
 
 /**
  * 自定义数据解析
@@ -26,7 +30,12 @@ public class OtherDataConvert extends BaseBeanConvert {
         } else {
             bean = createBean(json);
         }
-
+        if(bean.status==CODE_OUT_LOGIN){
+            UIUtils.shortM("登录已失效！");
+            LoginUtil.exitLogin(App.getInstance());
+        }else if (bean.status==CODE_BUSY){
+            UIUtils.shortM("请求太频繁，请稍后重试！");
+        }
         bean.tag = action.getTag();
         return bean;
     }
