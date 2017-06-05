@@ -6,4 +6,6 @@
     <color name="title_color">#FF8002</color>
     <color name="yellow_color">#E79E57</color>
     <color name="color_bg_title">#2073ec</color>
+    <color name="search_bg_color">#AAFFFFFF</color>
+
 </resources>

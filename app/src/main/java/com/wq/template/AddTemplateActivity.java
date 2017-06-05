@@ -35,7 +35,7 @@ import butterknife.OnClick;
 
 public class AddTemplateActivity extends LBaseActivity {
     @BindView(R.id.titleBar)
-    TitleBar                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 titleBar;
+    TitleBar titleBar;
     @BindView(R.id.tv_title)
     TextView tvTitle;
     @BindView(R.id.edit_content)
@@ -51,6 +51,7 @@ public class AddTemplateActivity extends LBaseActivity {
     @BindView(R.id.activity_main)
     LinearLayout activityMain;
     int IMG_REQUEST_CODE = 0x010;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

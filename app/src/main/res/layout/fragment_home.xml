@@ -1,25 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.wq.project01.MainActivity">
 
-    <TextView
-        android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_content"
-        android:text="Hello World!" />
-
-    <com.sunrun.sunrunframwork.view.title.BaseTitleLayoutView
-        android:layout_width="match_parent"
+    <com.wq.common.widget.TitleBar
         android:id="@+id/titleBar"
-        app:TitlesColor="@color/white"
-        android:background="@color/colorPrimary"
-        app:TitlesText="首页"
+        style="@style/DefTitleBarStyle"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
-        />
-</RelativeLayout>
+        app:title="乐享APP--素材市场"
+        app:bottomDividerHeight="0dp"
+        app:titleColor="@color/white" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/title_color"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/shap_search_bg"
+                    android:drawableLeft="@drawable/ic_sousuo"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="模板关键字    "
+                    android:textColor="@color/white" />
+
+                <com.sunrun.sunrunframwork.weight.GridViewForScroll
+                    android:id="@+id/typeGrid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:verticalSpacing="15dp"
+                    android:numColumns="4" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="热门模板"
+                        android:drawableLeft="@drawable/ic_lab_block"
+                        android:textColor="@color/text2"
+                        android:textSize="16sp"
+                        />
+
+                    <TextView
+                        android:id="@+id/hot_more"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableRight="@drawable/icon_left"
+                        android:text="更多"
+                        android:textColor="@color/text4"
+                        />
+                </LinearLayout>
+
+                <com.sunrun.sunrunframwork.weight.GridViewForScroll
+                    android:id="@+id/hotGridView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:numColumns="3" />
+
+                <View style="@style/limit_gap" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="推荐模板"
+                            android:drawableLeft="@drawable/ic_lab_block"
+                            android:textColor="@color/text2"
+                            android:textSize="16sp"
+                            />
+
+                        <TextView
+                            android:id="@+id/recommend_mre"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableRight="@drawable/icon_left"
+                            android:text="更多"
+                            android:textColor="@color/text4" />
+                    </LinearLayout>
+
+                    <com.sunrun.sunrunframwork.weight.GridViewForScroll
+                        android:id="@+id/recommendGridView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:numColumns="3" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

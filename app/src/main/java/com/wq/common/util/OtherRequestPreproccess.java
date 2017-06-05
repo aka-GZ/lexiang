@@ -14,7 +14,7 @@ public class OtherRequestPreproccess implements RequestPreproccess {
   static   boolean hasToken=false;
     @Override
     public NAction proccess(NAction nAction) {
-
+        nAction.put("","");
         nAction.params.setUseJsonStreamer(true);
         //if(!hasToken && Config.getLoginInfo().getToken()!=null) {
             //添加请求头

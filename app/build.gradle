@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -18,6 +19,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
     }
 }
 
@@ -42,5 +46,27 @@ dependencies {
     compile 'cn.aigestudio.wheelpicker:WheelPicker:1.1.2'
     compile 'com.ashokvarma.android:bottom-navigation-bar:1.4.1'
     compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.jetbrains.anko:anko-sdk25:$anko_version"
+    compile "org.jetbrains.anko:anko-sdk25-coroutines:$anko_version"
+    compile "org.jetbrains.anko:anko-appcompat-v7:$anko_version"
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
 }
+buildscript {
+    ext.kotlin_version = '1.1.2-3'
+    ext.anko_version = '0.10.0-beta-2'
+    //1.1.2-4
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
+    }
+}
+//compileKotlin {
+//    kotlinOptions {
+//        languageVersion = "1.1"
+//        apiVersion = "1.1"
+//    }
+//}
