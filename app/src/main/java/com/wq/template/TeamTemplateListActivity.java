@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import com.sunrun.sunrunframwork.adapter.ViewHodler;
 import com.sunrun.sunrunframwork.adapter.ViewHolderAdapter;
 import com.sunrun.sunrunframwork.bean.BaseBean;
+import com.sunrun.sunrunframwork.http.utils.DateUtil;
 import com.sunrun.sunrunframwork.uibase.PagingActivity;
 import com.sunrun.sunrunframwork.uiutils.ToastUtils;
 import com.sunrun.sunrunframwork.uiutils.UIUtils;
@@ -114,9 +115,13 @@ public class TeamTemplateListActivity extends LPageActivity {
             public void fillView(ViewHodler viewHodler, TeamTemplateListObj o, int i) {
                 GlideMediaLoader.load(mContext,viewHodler.getView(R.id.img_icon),o.getTemplate_cover_img_url());
                 viewHodler.setText(R.id.tv_titlle,o.getTemplate_name());
-                viewHodler.setText(R.id.tv_time,o.getTemplate_add_time());
+                viewHodler.setText(R.id.tv_time, DateUtil.getTimeText(o.getForward_expiration_date()));
+                int Forwarded  = o.getForwarded().size();
+                int Not_Forward  = o.getNot_forward().size();
+                int totle = Forwarded + Not_Forward;
+                viewHodler.setText(R.id.tv_team_number, Forwarded + "/" + Not_Forward);
 
-
+                viewHodler.setText(R.id.tv_people,o.getFounder_forwarding_times());
             }
         };
     }

@@ -37,7 +37,7 @@ public class AddTemplateActivity extends LBaseActivity {
     @BindView(R.id.titleBar)
     TitleBar titleBar;
     @BindView(R.id.tv_title)
-    TextView tvTitle;
+    EditText tvTitle;
     @BindView(R.id.edit_content)
     EditText editContent;
     @BindView(R.id.imgUpload)
@@ -56,6 +56,8 @@ public class AddTemplateActivity extends LBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_template);
+
+
 //        imgUpload.
         multiImage.setNumCol(3);//设置列数
 //        multiImage.setImgMargin(DisplayUtil.dp2px(this, 10));
@@ -100,6 +102,10 @@ public class AddTemplateActivity extends LBaseActivity {
             case R.id.item_gongkai:
                 break;
             case R.id.item_remind:
+
+
+                break;
+            case R.id.titleBar:
                 break;
         }
     }

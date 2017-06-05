@@ -16,6 +16,8 @@
         app:title="创建模板"
         app:backgroundColor="@color/title_color"
         app:leftAsFinish="true"
+        app:rightText="保存"
+        app:rightVisible="visible"
         app:leftIcon="@drawable/back_h"
         android:layout_height="45dp"
         />
@@ -33,11 +35,11 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="15dp"
             />
-        <TextView
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:gravity="center"
-            android:text="搞笑段子"
+            android:hint="请输入模板标题"
             android:id="@+id/tv_title"
             android:textSize="16sp"
             android:background="#E9E7E8"
