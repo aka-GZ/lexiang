@@ -22,8 +22,5 @@ public class LoginUtil {
 //        BaoBaoShuApp.getInstance().closeActivitys(MainActivity.class);
         IntentUtil.startLogin( context, isOrtherLogin);
         ACache.get(context).clear();
-        if (context != null) {
-            ((Activity) context).finish();
-        }
     }
 }
