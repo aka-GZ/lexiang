@@ -7,6 +7,7 @@ import com.wq.common.model.ClassTemplateBean;
 import com.wq.common.model.GroupListObj;
 import com.wq.common.model.HomeTemplateBean;
 import com.wq.common.model.LoginInfo;
+import com.wq.common.model.ShopHotTemplateBean;
 import com.wq.common.model.TeamTemplateListObj;
 
 import java.util.List;
@@ -567,6 +568,40 @@ public class BaseQuestStart extends BaseQuestConfig {
                 .put("class_id", class_id)
                  .setTypeToken(new TypeToken<List<HomeTemplateBean>>(){})//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_GETSHOPRECOMMENDTEMPLATELIST_CODE));
+    }
+
+
+
+    /**
+     * 获取九宫格市场热门模板列表
+     * API参数传入方式: POST
+     * 传入JSON格式: {"firstRow":"0","listRows":"20","searchText":"模板名称","class_id":"12"}
+     * 返回JSON格式: {"meta":{"code":200,"message":"success"},"body":[{"template_id":"3","template_name":"u6d4bu8bd5777","use_num":"0","template_add_time":"2017-05-26 05:38:51","template_cover_img_url":"http://localhost:81/Public/Uploads/Model/Cube/2017-05-26/7sjhu0tyhGYkFjnM.jpeg","forwarding_times":"0"},{"template_id":"4","template_name":"u6d4bu8bd5","use_num":"0","template_add_time":"2017-05-27 09:15:23","template_cover_img_url":"http://localhost:81/Public/Uploads/Model/Cube/2017-05-27/DCb7yuxnR0di42Ol.jpeg","forwarding_times":"0","class_id":"1"}]}
+     * API_URL_本地: http://localhost:81/api.php/Cube/getShopHotTemplateList
+     * API_URL_服务器: http://fx.lyfz.net/wxyx/api.php/Cube/getShopHotTemplateList
+     * @param firstRow->开始记录数
+     * @param listRows->每页显示数量
+     * @param searchText->模板名称 (可选传)
+     * @param class_id->模板分类id (可选传)
+     * @return code 200->成功
+     * @return template_id->模板ID
+     * @return template_name->模板名称
+     * @return use_num->模板使用次数
+     * @return template_add_time->模板添加时间
+     * @return template_cover_img_url->模板封面
+     * @return forwarding_times->模板转发次数
+     * @return class_id->模板分类ID -1未分配
+     */
+    public static void getShopHotTemplateList(NetRequestHandler netRequestHandler, String firstRow, String searchText, String class_id) {
+
+        netRequestHandler.requestAsynPost(new NAction()
+                .setUrl(BaseQuestConfig.GET_SHOP_HOT_TEMPLATE_LIST_URL)
+                .put("firstRow", firstRow)
+                .put("listRows", 10)
+                .put("searchText", searchText)
+                .put("class_id", class_id)
+                .setTypeToken(new TypeToken<List<ShopHotTemplateBean>>(){})//指定解析类型,该程序里面对应body 里面的json内容
+                .setRequestCode(BaseQuestConfig.QUEST_SHOP_HOT_TEMPLATE_LIST_CODE));
     }
 
 

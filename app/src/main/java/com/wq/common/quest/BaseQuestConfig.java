@@ -122,6 +122,11 @@ public class BaseQuestConfig implements NetQuestConfig {
     public static final int QUEST_GETSHOPRECOMMENDTEMPLATELIST_CODE = 0X026;
 
 
+    //获取九宫格市场热门模板列表
+    public static String GET_SHOP_HOT_TEMPLATE_LIST_URL = HTTP_API + "/api.php/Cube/getShopHotTemplateList";
+    public static final int QUEST_SHOP_HOT_TEMPLATE_LIST_CODE = 0X027;
+
+
 
 
 }

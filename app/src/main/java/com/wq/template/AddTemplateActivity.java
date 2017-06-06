@@ -2,6 +2,9 @@ package com.wq.template;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -23,6 +26,8 @@ import com.wq.common.widget.TitleBar;
 import com.wq.project01.R;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -85,14 +90,33 @@ public class AddTemplateActivity extends LBaseActivity {
     }
 
 
+    ArrayList<Bitmap> bitmaps = new ArrayList<Bitmap>();
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         ArrayList<BaseMedia> images = Boxing.getResult(data);
         if (images != null) {
             for (BaseMedia image : images) {
                 multiImage.addFile(new File(image.getPath()));
+
+                try {
+                    FileInputStream fis = new FileInputStream(image.getPath());
+                    Bitmap bitmap  = BitmapFactory.decodeStream(fis);
+                    bitmaps.add(bitmap);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
+
+            Bitmap bit1 = add3Bitmap(bitmaps.get(0),bitmaps.get(1),bitmaps.get(2));
+            Bitmap bit2 = add3Bitmap(bitmaps.get(3),bitmaps.get(4),bitmaps.get(5));
+            Bitmap bit3 = add3Bitmap(bitmaps.get(6),bitmaps.get(7),bitmaps.get(8));
+            Bitmap bit4 = addBitmap(bit1 ,bit2 ,bit3);
+
+
         }
+
+
+
         super.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -103,10 +127,49 @@ public class AddTemplateActivity extends LBaseActivity {
                 break;
             case R.id.item_remind:
 
+//                Intent intent = new Intent(this,RemindActivity.class);
+//                startActivity();
 
                 break;
             case R.id.titleBar:
                 break;
         }
+    }
+
+    /**
+     * 横向拼接
+     * <功能详细描述>
+     * @param first
+     * @param second
+     * @return
+     */
+    private Bitmap add3Bitmap(Bitmap first, Bitmap second, Bitmap three) {
+        int width = first.getWidth()/3;
+        int height = first.getWidth()/3;
+        Bitmap result = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(result);
+        canvas.drawBitmap(first, 0, 0, null);
+        canvas.drawBitmap(second, first.getWidth()/3, 0, null);
+        canvas.drawBitmap(three, (first.getWidth()+second.getWidth())/3, 0, null);
+        return result;
+    }
+
+
+    /**
+     * 纵向拼接
+     * <功能详细描述>
+     * @param first
+     * @param second
+     * @return
+     */
+    private Bitmap addBitmap(Bitmap first, Bitmap second, Bitmap three) {
+        int width = Math.max(first.getWidth(),second.getWidth());
+        int height = (first.getWidth() + second.getWidth() + three.getWidth())/3;;
+        Bitmap result = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(result);
+        canvas.drawBitmap(first, 0, 0, null);
+        canvas.drawBitmap(second, first.getWidth()/3, 0, null);
+        canvas.drawBitmap(three, (first.getWidth()+second.getWidth())/3, 0, null);
+        return result;
     }
 }
