@@ -600,7 +600,7 @@ public class BaseQuestStart extends BaseQuestConfig {
                 .put("listRows", 10)
                 .put("searchText", searchText)
                 .put("class_id", class_id)
-                .setTypeToken(new TypeToken<List<ShopHotTemplateBean>>(){})//指定解析类型,该程序里面对应body 里面的json内容
+                .setTypeToken(new TypeToken<List<HomeTemplateBean>>(){})//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_SHOP_HOT_TEMPLATE_LIST_CODE));
     }
 

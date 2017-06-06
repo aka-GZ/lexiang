@@ -49,6 +49,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:horizontalSpacing="10dp"
+                    android:layout_marginRight="10dp"
                     android:verticalSpacing="15dp"
                     android:numColumns="4" />
 
@@ -92,6 +95,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
+                    android:horizontalSpacing="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:numColumns="3" />
 
                 <View style="@style/limit_gap" />
@@ -133,6 +139,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:numColumns="3" />
                 </LinearLayout>
             </LinearLayout>

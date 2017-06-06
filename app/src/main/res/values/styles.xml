@@ -18,6 +18,10 @@
     <style name="DefTitleBarStyle">
         <item name="backgroundColor">@color/title_color</item>
     </style>
+    <style name="popAnim">
+        <item name="android:windowEnterAnimation">@anim/fade_in</item>
+        <item name="android:windowExitAnimation">@anim/fade_out</item>
+    </style>
     <style name="submitBtn">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">49dp</item>

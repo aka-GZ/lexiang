@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.wq.base.LBaseFragment;
 import com.wq.common.util.IntentUtil;
+import com.wq.common.util.popwindow.MenuWindow;
 import com.wq.common.widget.TitleBar;
 import com.wq.project01.R;
 import com.wq.template.TeamTemplateListActivity;
@@ -63,7 +64,12 @@ public class MineFragment extends LBaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        titleBar.setRightAction(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MenuWindow.showHomePopDialog(that,view);
+            }
+        });
     }
 
 

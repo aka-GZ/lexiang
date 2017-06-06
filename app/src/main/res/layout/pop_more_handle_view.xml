@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="right"
+    android:paddingTop="@dimen/status_height"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/img_home_pop_more_background"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical">
+
+        <com.sunrun.sunrunframwork.view.ItemView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            app:RightImgShow="false"
+            android:id="@+id/item_1"
+            app:leftTVText="邀请亲友"
+            app:SetLeftTextColor="@color/text3"
+            />
+
+        <View
+            style="@style/limit_line"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp" />
+
+        <com.sunrun.sunrunframwork.view.ItemView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            app:RightImgShow="false"
+            android:id="@+id/item_2"
+            app:leftTVText="宝宝虹膜码"
+            app:SetLeftTextColor="@color/text3"
+            />
+
+        <View
+            style="@style/limit_line"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp" />
+
+        <com.sunrun.sunrunframwork.view.ItemView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:id="@+id/item_3"
+            app:RightImgShow="false"
+            app:leftTVText="帮助反馈"
+            app:SetLeftTextColor="@color/text3"
+            />
+    </LinearLayout>
+
+</LinearLayout>
