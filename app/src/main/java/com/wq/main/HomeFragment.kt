@@ -28,9 +28,6 @@ class HomeFragment : LBaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //页面创建
-      //  view.setOnClickListener{ IntentUtil.startActivity(that, AddTemplateActivity::class.java) }
-//        BaseQuestStart.login(this, "15916035572", "25d55ad283aa400af464c76d713c07ad")
         BaseQuestStart.getClassTemplate(this)
         BaseQuestStart.getShopRecommendTemplateList(this,"0",null,null)
 //        BaseQuestStart.getShopR
@@ -69,7 +66,8 @@ class HomeFragment : LBaseFragment() {
             }
             QUEST_GETSHOPRECOMMENDTEMPLATELIST_CODE ->{
                 Logger.D("${bean.data}")
-                recommendGridView.adapter=object :ViewHolderAdapter<HomeTemplateBean>(that, bean.data as MutableList<HomeTemplateBean>,R.layout.item_hot_template){
+                val data=bean.Data<List<HomeTemplateBean>>();
+                recommendGridView.adapter=object :ViewHolderAdapter<HomeTemplateBean>(that, data ,R.layout.item_hot_template){
                     override fun fillView(holder: ViewHodler, mItem: HomeTemplateBean, position: Int) {
                             holder.setText(R.id.tv_titlle,mItem.template_name)
                             GlideMediaLoader.load(that,holder.getView(R.id.img_icon),mItem.template_cover_img_url)
