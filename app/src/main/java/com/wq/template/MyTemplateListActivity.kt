@@ -28,6 +28,7 @@ class MyTemplateListActivity : LPageActivity<MyTemplateBean>() {
         super.onCreate(arg0)
         setContentView(R.layout.activity_team_template_list)
         setPullListener(refresh_layout)
+        titleBar.setTitle("我的模板")
         refresh_layout.setOnItemClickListener { adapterView, view, i, l ->
             val dialogView = View.inflate(that, R.layout.dialog_send_info, null)
             val dialog = UIUtils.createDialog(that, dialogView)
@@ -38,6 +39,7 @@ class MyTemplateListActivity : LPageActivity<MyTemplateBean>() {
     override fun loadData(page: Int) {
         //firstRow 开始记录数   , listRows 每页显示数量
         BaseQuestStart.getTemplateList(this, page, null,null);
+        setDataToView(arrayListOf(MyTemplateBean(),MyTemplateBean()),refresh_layout.refreshableView)
     }
 
 
