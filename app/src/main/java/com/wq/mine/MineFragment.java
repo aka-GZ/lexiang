@@ -13,6 +13,7 @@ import com.wq.common.util.IntentUtil;
 import com.wq.common.util.popwindow.MenuWindow;
 import com.wq.common.widget.TitleBar;
 import com.wq.project01.R;
+import com.wq.template.MyTemplateListActivity;
 import com.wq.template.TeamTemplateListActivity;
 import com.wq.template.UseHistoryListActivity;
 
@@ -82,6 +83,7 @@ public class MineFragment extends LBaseFragment {
             case R.id.lay_fens:
                 break;
             case R.id.item_mine_template:
+                IntentUtil.startActivity(that,MyTemplateListActivity.class);
                 break;
             case R.id.item_team_template:
                 IntentUtil.startActivity(that, TeamTemplateListActivity.class);

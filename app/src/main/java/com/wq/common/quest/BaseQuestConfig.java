@@ -5,7 +5,7 @@ package com.wq.common.quest;
  * 接口参数帮助类00
  */
 public class BaseQuestConfig implements NetQuestConfig {
-	
+    public static final int PAGE_COUNT=10;
 	public static final String HTTP_API = "http://wxyx.hbgeek.com";
 	
 	

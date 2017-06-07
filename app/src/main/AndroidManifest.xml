@@ -47,6 +47,11 @@
             android:name="com.wq.login.ModifyPwdActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
+        <!--我的模板-->
+        <activity
+            android:name="com.wq.template.MyTemplateListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
 
     </application>
 
