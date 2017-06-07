@@ -2,9 +2,13 @@ package com.wq.template.adapters
 
 import android.content.Context
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ListAdapter
+import android.widget.ListView
 import com.sunrun.sunrunframwork.adapter.ViewHodler
 import com.sunrun.sunrunframwork.adapter.ViewHolderAdapter
 import com.sunrun.sunrunframwork.http.utils.DateUtil
+import com.sunrun.sunrunframwork.weight.pulltorefresh.PullToRefreshListView
 import com.wq.common.boxing.GlideMediaLoader
 import com.wq.common.model.MyTemplateBean
 import com.wq.project01.R
@@ -28,5 +32,14 @@ class MyTemplateAdapter(context: Context, data: List<MyTemplateBean>, layoutId: 
 
         }
 
+    }
+
+
+}
+fun <T> ListView.Adapter(data:List<T>?,layout:Int,fillView:( ViewHodler,  T,  Int)->Unit){
+    adapter=object:ViewHolderAdapter<T>(this.context,data,layout) {
+        override fun fillView(holder: ViewHodler, mItem: T, position: Int) {
+            fillView.invoke(holder,mItem,position);
+        }
     }
 }
