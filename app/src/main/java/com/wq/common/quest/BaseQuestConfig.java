@@ -5,7 +5,7 @@ package com.wq.common.quest;
  * 接口参数帮助类00
  */
 public class BaseQuestConfig implements NetQuestConfig {
-	
+    public static final int PAGE_COUNT=10;
 	public static final String HTTP_API = "http://wxyx.hbgeek.com";
 	
 	
@@ -120,6 +120,11 @@ public class BaseQuestConfig implements NetQuestConfig {
     //获取九宫格市场推荐模板列表
     public static String GET_GETSHOPRECOMMENDTEMPLATELIST_URL = HTTP_API + "/api.php/Cube/getShopRecommendTemplateList";
     public static final int QUEST_GETSHOPRECOMMENDTEMPLATELIST_CODE = 0X026;
+
+
+    //获取九宫格市场热门模板列表
+    public static String GET_SHOP_HOT_TEMPLATE_LIST_URL = HTTP_API + "/api.php/Cube/getShopHotTemplateList";
+    public static final int QUEST_SHOP_HOT_TEMPLATE_LIST_CODE = 0X027;
 
 
 
