@@ -10,6 +10,9 @@ import com.sunrun.sunrunframwork.view.sidebar.CharacterParser
 import com.sunrun.sunrunframwork.view.sidebar.PinyinComparator
 import com.sunrun.sunrunframwork.view.sidebar.SideBarUtils
 import com.sunrun.sunrunframwork.weight.pulltorefresh.PullToRefreshBase
+import com.wq.common.quest.BaseQuestConfig.QUEST_GET_TEAM_MEMBER_LIST_CODE
+import com.wq.common.quest.BaseQuestStart
+import com.wq.common.util.SESSION
 import com.wq.common.util.onTextChanged
 import com.wq.common.util.toString
 import com.wq.project01.R
@@ -19,6 +22,7 @@ import kotlinx.android.synthetic.main.ui_activity_select_friends.*
 import java.util.*
 
 /**
+ * 团队成员
  */
 
 class SelectPeopleActivity : BaseActivity() {
@@ -28,6 +32,7 @@ class SelectPeopleActivity : BaseActivity() {
     var pinyinComparator: PinyinComparator = PinyinComparator()
     var ids: String? = null
     var names: String? = null
+
     override fun onCreate(arg0: Bundle?) {
         super.onCreate(arg0)
         setContentView(R.layout.ui_activity_select_friends)
@@ -58,21 +63,13 @@ class SelectPeopleActivity : BaseActivity() {
         }
         refreshLayout.setAdapter(selectPeopleSortAdapter)
         selectPeopleSortAdapter.selectMode(MULTISELECT)
-        friends = ArrayList<PeopleEntity>()
-        friends.add(PeopleEntity("A姓名1"))
-        friends.add(PeopleEntity("B姓名1"))
-        friends.add(PeopleEntity("C姓名1"))
-        friends.add(PeopleEntity("D姓名1"))
-        friends.add(PeopleEntity("E姓名1"))
-        friends.add(PeopleEntity("姓名1"))
-        setData2List(friends)
-        //        BaseQuestStart.getFriendList(this, 1);
+        BaseQuestStart.getTeamMemberList(this,SESSION("group_id"),0)
     }
 
     private fun returnSelectedVal() {
         val friendList = friends
         val tmpList = friendList.filter { selectPeopleSortAdapter.isSelected(it) }
-        ids = tmpList.toString { it.fuid }
+        ids = tmpList.toString { it.uid }
         names = tmpList.toString { it.name }
         intent.putExtra("ids", ids)
         intent.putExtra("names", names)
@@ -81,16 +78,14 @@ class SelectPeopleActivity : BaseActivity() {
     }
 
 
-    override fun nofityUpdate(requestCode: Int, bean: BaseBean?) {
-        //        switch (requestCode) {
-        //            case QUEST_BABY_FRIEND_LIST_CODE:
-        //                if (bean.status == 1) {
-        //                    friends = bean.Data();
-        //                  setData2List(friends);
-        //
-        //                }
-        //                break;
-        //        }
+    override fun nofityUpdate(requestCode: Int, bean: BaseBean) {
+        when(requestCode){
+            QUEST_GET_TEAM_MEMBER_LIST_CODE->{
+              bean.Data<List<PeopleEntity>>()?.let {
+                  setData2List(it);
+              }
+            }
+        }
         super.nofityUpdate(requestCode, bean)
     }
 
@@ -110,7 +105,7 @@ class SelectPeopleActivity : BaseActivity() {
         ids?.let {
             val splitIds = it.split(',').toTypedArray()
             friends.indices
-                    .filter { (friends[it].fuid in splitIds) && !selectPeopleSortAdapter.isSelected(it) }
+                    .filter { (friends[it].uid in splitIds) && !selectPeopleSortAdapter.isSelected(it) }
                     .forEach { selectPeopleSortAdapter.selectPosition = it }
             selectPeopleSortAdapter.notifyDataSetChanged()
         }

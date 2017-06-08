@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.ashokvarma.bottomnavigation.BadgeItem;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.sunrun.sunrunframwork.bean.BaseBean;
 import com.wq.base.LBaseActivity;
 import com.wq.mine.MineFragment;
 import com.wq.project01.R;
@@ -17,6 +18,7 @@ import com.wq.project01.R;
  */
 public class NavigatorActivity extends LBaseActivity {
 
+    RequestDelegate requestDelegate=new RequestDelegate(this);
 
     @Override
     protected boolean isTranslucent() {
@@ -40,6 +42,7 @@ public class NavigatorActivity extends LBaseActivity {
         fragments[1] = new HomeFragment();
         fragments[2] = new MineFragment();
         switchPanel(fragments[0]);
+        requestDelegate.doRequest();//请求数据
     }
 
     private Fragment currentActiveFragment;
@@ -100,5 +103,11 @@ public class NavigatorActivity extends LBaseActivity {
             }
         });
 
+    }
+
+    @Override
+    public void nofityUpdate(int requestCode, BaseBean bean) {
+        requestDelegate.nofityUpdate(requestCode, bean);//处理请求结果
+        super.nofityUpdate(requestCode, bean);
     }
 }

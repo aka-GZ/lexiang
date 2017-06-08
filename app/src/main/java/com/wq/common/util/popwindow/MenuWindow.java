@@ -6,7 +6,10 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.PopupWindow;
 
+import com.wq.common.util.IntentUtil;
 import com.wq.project01.R;
+import com.wq.template.AddTemplateActivity;
+import com.wq.template.SelectPeopleActivity;
 
 /**
  * Created by weiquan on 2017/6/6.
@@ -36,12 +39,14 @@ public class MenuWindow {
             @Override
             public void onClick(View v) {
 //                StartIntent.startFMInviteAvtivity(context);
+                IntentUtil.startActivity(context, AddTemplateActivity.class);
                 popupWindow.dismiss();
             }
         });
         layoutView.findViewById(R.id.item_2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                IntentUtil.startActivity(context, SelectPeopleActivity.class);
 //                StartIntent.startRidesInfoActivity(context);
                 popupWindow.dismiss();
             }

@@ -18,7 +18,7 @@
             android:layout_height="40dp"
             app:RightImgShow="false"
             android:id="@+id/item_1"
-            app:leftTVText="邀请亲友"
+            app:leftTVText="创建模板"
             app:SetLeftTextColor="@color/text3"
             />
 
@@ -32,7 +32,7 @@
             android:layout_height="40dp"
             app:RightImgShow="false"
             android:id="@+id/item_2"
-            app:leftTVText="宝宝虹膜码"
+            app:leftTVText="团队成员"
             app:SetLeftTextColor="@color/text3"
             />
 

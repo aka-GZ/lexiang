@@ -118,7 +118,7 @@ public class SplashActivity extends LBaseActivity {
 //		if (viewPager.getAdapter() != null && viewPager.getCurrentItem() != viewPager.getAdapter().getCount() - 1) { return; }
 //		if (!isStart) {
 //			isStart = true;
-        if (!Config.getLoginInfo().isValid()) {
+        if (false &&!Config.getLoginInfo().isValid()) {
             IntentUtil.startLogin(that);
         } else {
             IntentUtil.startMainActivity(that);

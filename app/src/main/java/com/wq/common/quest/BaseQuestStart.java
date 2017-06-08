@@ -10,6 +10,7 @@ import com.wq.common.model.LoginInfo;
 import com.wq.common.model.MyTemplateBean;
 import com.wq.common.model.ShopHotTemplateBean;
 import com.wq.common.model.TeamTemplateListObj;
+import com.wq.template.mode.PeopleEntity;
 
 import java.util.List;
 
@@ -262,17 +263,16 @@ public class BaseQuestStart extends BaseQuestConfig {
      *
      * @param group_id 团队ID
      * @param firstRow 开始记录数
-     * @param listRows 每页显示数量
      * @return user_name 成员姓名
      */
-    public static void getTeamMemberList(NetRequestHandler netRequestHandler, String group_id, String firstRow, String listRows) {
+    public static void getTeamMemberList(NetRequestHandler netRequestHandler, String group_id, int firstRow) {
 
         netRequestHandler.requestAsynPost(new NAction()
                 .setUrl(BaseQuestConfig.GET_TEAM_MEMBER_LIST_URL)
                 .put("group_id", group_id)
                 .put("firstRow", firstRow)
-                .put("listRows", listRows)
-                // .setTypeToken(LoginInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
+                .put("listRows", PAGE_COUNT)
+                 .setTypeToken(new TypeToken<List<PeopleEntity>>(){})//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_GET_TEAM_MEMBER_LIST_CODE));
     }
 

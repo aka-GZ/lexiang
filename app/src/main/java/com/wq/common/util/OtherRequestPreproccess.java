@@ -19,7 +19,10 @@ public class OtherRequestPreproccess implements RequestPreproccess {
         //if(!hasToken && Config.getLoginInfo().getToken()!=null) {
             //添加请求头
             hasToken=true;
-            NetUtils.getAsynHttpClient().addHeader("token",Config.getLoginInfo().getToken());
+//            NetUtils.getAsynHttpClient().addHeader("token",Config.getLoginInfo().getToken());
+        NetUtils.getAsynHttpClient().addHeader("token","88568ef65dcb446aa084352742f3fe19");
+
+
        // }
         return nAction;
     }

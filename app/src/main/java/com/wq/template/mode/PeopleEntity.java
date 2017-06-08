@@ -10,29 +10,24 @@ import java.io.Serializable;
 
 public class PeopleEntity extends SortModel implements Serializable{
 
+
     /**
-     * fuid : 31
-     * remark : 前世今生
-     * nickname : 158****4647
-     * mobile : 15827144647
-     * name : 前世今生
+     * phone_no : 15916035572
+     * user_name : 张三
+     * uid : 43
      */
 
-    public String fuid;
-    public String remark;
-    public String nickname;
-    public String mobile;
-    public String avatar;
-    public String getIcon(){
-        return avatar;
-    }
+    public String phone_no;
+    public String user_name;
+    public String uid;
+
     @Override
     public String toString() {
-        return name;
+        return user_name;
     }
 
     public PeopleEntity(String nickname) {
-       this.name= this.nickname = nickname;
+       this.name= this.user_name = nickname;
     }
 
     public PeopleEntity() {

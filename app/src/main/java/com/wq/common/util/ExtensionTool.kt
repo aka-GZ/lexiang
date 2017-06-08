@@ -3,12 +3,36 @@ package com.wq.common.util
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.TextView
+import com.sunrun.sunrunframwork.http.utils.UIUpdateHandler
+import com.wq.main.RequestDelegate
 
 /**
+ * Kotlin 扩展方法汇总
  * Created by WQ on 2017/6/8.
  */
+
+fun RequestDelegate.session(key:String,value:Any){
+    this.that.session.put(key,value)
+}
+
+inline  fun <reified  T> UIUpdateHandler.SESSION(key:String,value:Any?=null):T?{
+    if(value==null){
+        return when(T::class){
+            Double::class->session.getDouble(key)as T
+            Int::class->session.getInt(key)as T
+            Float::class->session.getFloat(key)as T
+            Long::class->session.getLong(key)as T
+            String::class->session.getString(key)as T
+            else -> session.getObject(key,T::class.java)
+        }
+    }else {
+        this.session.put(key,value)
+    }
+    return  null;
+}
+
 /**
- *
+ *  简化文本框内容改变回掉
  */
 fun  TextView.onTextChanged(listener:( CharSequence,  Int,  Int, Int)->Unit):TextView{
     addTextChangedListener(object : TextWatcher {

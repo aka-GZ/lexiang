@@ -24,7 +24,7 @@ class SelectPeopleSortAdapter
         val tvName = holder.getView<TextView>(R.id.tv_name)
         val tvLetter = holder.getView<TextView>(R.id.catalog)
         val imageView = holder.getView<ImageView>(R.id.iv_img)
-        tvName.text = sortModel.getName()
+        tvName.text = sortModel.user_name
         holder.setImageResourse(R.id.iv_select, if (isSelected(position)) icon_select_selected else icon_select_unselected)
         //        NetImageUtil.LodeHeadImageView(sortModel.getIcon(),imageView);
         //根据position获取分类的首字母的Char ascii值
