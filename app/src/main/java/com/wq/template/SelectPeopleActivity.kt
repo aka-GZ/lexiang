@@ -28,7 +28,7 @@ import java.util.*
 
 class SelectPeopleActivity : BaseActivity() {
     var friends: ArrayList<PeopleEntity> = ArrayList()//成员列表集合
-    var selectPeopleSortAdapter = SelectPeopleSortAdapter(this, friends)//适配器
+    var selectPeopleSortAdapter = SelectPeopleSortAdapter(this, ArrayList())//适配器
     var characterParser = CharacterParser.getInstance()//字符串-拼音 解析器,
     var pinyinComparator: PinyinComparator = PinyinComparator()//拼音排序比较器
     var ids: List<String>? = null                           //已选id
@@ -53,7 +53,6 @@ class SelectPeopleActivity : BaseActivity() {
         titleBar.setRightAction {
             returnSelectedVal();
         }
-        findViewById(R.id.test).setOnClickListener { AddDialogFragment().show(supportFragmentManager, "add") }
         refreshLayout.mode = PullToRefreshBase.Mode.DISABLED
         //lvSelectFriends.setEmptyView(GetEmptyViewUtils.GetEmptyView(that,R.mipmap.img_nodata,"暂无联系人"));
         refreshLayout.setOnItemClickListener { parent, view, position, id ->
@@ -71,8 +70,8 @@ class SelectPeopleActivity : BaseActivity() {
     private fun returnSelectedVal() {
         val friendList = friends
                 .filter { selectPeopleSortAdapter.isSelected(it) }//过滤选中的数据
-        ids = friendList.list2list(friends) { it.uid }//转换为字符串集合
-        names = friendList.toString { it.name }
+        ids = friendList.list2list { it.uid }//转换为字符串集合
+        names = friendList.toString { it.user_name }
         SESSION("ids", ids)
         SESSION("names", names)
         setResult(RESULT_OK)
@@ -86,6 +85,15 @@ class SelectPeopleActivity : BaseActivity() {
                 bean.Data<List<PeopleEntity>>()?.let {
                     setData2List(it);
                 }
+                friends .add(PeopleEntity().apply {
+                    uid="1" ;
+                    user_name="哈哈"
+                })
+                friends.add(PeopleEntity().apply {
+                    uid="2" ;
+                    user_name="哈哈2"
+                })
+                setData2List(friends)
             }
         }
         super.nofityUpdate(requestCode, bean)
@@ -100,14 +108,13 @@ class SelectPeopleActivity : BaseActivity() {
 
         Collections.sort(friends, pinyinComparator)
         with(selectPeopleSortAdapter) {
-            data.clear()
-            data.addAll(friends)
+            data=friends
             notifyDataSetChanged()
         }
         ids?.let {
             val splitIds = ids;
             friends.indices
-                    .filter { (friends[it] == splitIds) && !selectPeopleSortAdapter.isSelected(it) }
+                    .filter { (splitIds!!.contains(friends[it].uid)) && !selectPeopleSortAdapter.isSelected(it) }
                     .forEach { selectPeopleSortAdapter.selectPosition = it }
             selectPeopleSortAdapter.notifyDataSetChanged()
         }

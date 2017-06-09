@@ -18,7 +18,8 @@ import com.wq.common.util.toString
 import com.wq.project01.R
 import com.wq.template.adapters.SelectPeopleSortAdapter
 import com.wq.template.mode.PeopleEntity
-import kotlinx.android.synthetic.main.ui_activity_select_friends.*
+import kotlinx.android.synthetic.main.ui_activity_manager_friends.*
+import org.jetbrains.anko.toast
 import java.util.*
 
 /**
@@ -35,7 +36,7 @@ class PeopleManagerActivity : BaseActivity() {
 
     override fun onCreate(arg0: Bundle?) {
         super.onCreate(arg0)
-        setContentView(R.layout.ui_activity_select_friends)
+        setContentView(R.layout.ui_activity_manager_friends)
         ButterKnife.bind(this)
         sidrbar.setTextView(tv_dialog)
         ids = intent.getStringExtra("ids")
@@ -51,7 +52,8 @@ class PeopleManagerActivity : BaseActivity() {
         titleBar.setRightAction {
             //                returnSelectedVal();
         }
-        findViewById(R.id.test).setOnClickListener { AddDialogFragment().show(supportFragmentManager, "add") }
+        btn_add.setOnClickListener { AddDialogFragment().show(supportFragmentManager, "add") }
+        btn_remove.setOnClickListener { toast("移除") }
         refreshLayout.mode = PullToRefreshBase.Mode.DISABLED
         //lvSelectFriends.setEmptyView(GetEmptyViewUtils.GetEmptyView(that,R.mipmap.img_nodata,"暂无联系人"));
         refreshLayout.setOnItemClickListener { parent, view, position, id ->

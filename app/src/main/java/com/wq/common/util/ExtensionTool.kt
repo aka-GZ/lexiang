@@ -63,8 +63,8 @@ fun  TextView.onTextChanged(listener:( CharSequence,  Int,  Int, Int)->Unit):Tex
     return tmpStr
 }
 
-fun <T,R> Iterable<T>.list2list(sourceList:List<T>,callback:(T)->R):List<R>{
+fun <T,R> Iterable<T>.list2list(callback:(T)->R):List<R>{
     var aimList= arrayListOf<R>()
-    sourceList.forEach { aimList.add(callback.invoke(it)) }
+    forEach { aimList.add(callback.invoke(it)) }
     return aimList;
 }

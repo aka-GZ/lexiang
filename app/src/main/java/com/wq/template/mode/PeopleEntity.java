@@ -32,4 +32,6 @@ public class PeopleEntity extends SortModel implements Serializable{
 
     public PeopleEntity() {
     }
+//    public PeopleEntity(build:(uid:String ,userName:String,phoneNo:String)->) {
+//    }
 }
