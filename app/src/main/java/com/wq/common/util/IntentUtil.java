@@ -63,6 +63,8 @@ public class IntentUtil extends BaseStartIntent {
      * 选择提醒谁看
      * @param context
      * @param requestCode
+     * 取值getSession().getBean("ids",new TypeToken<List<String>(){})
+     * getSession().getString("names");
      */
     public static void startSlectPeopleActivity(Activity context,int requestCode){
         Intent intent=new Intent(context, SelectPeopleActivity.class);
