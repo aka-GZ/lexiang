@@ -11,12 +11,11 @@ import com.wq.main.RequestDelegate
  * Created by WQ on 2017/6/8.
  */
 
-fun RequestDelegate.session(key:String,value:Any){
+fun RequestDelegate.SESSION(key:String,value:Any){
     this.that.session.put(key,value)
 }
 
-inline  fun <reified  T> UIUpdateHandler.SESSION(key:String,value:Any?=null):T?{
-    if(value==null){
+inline  fun <reified  T> UIUpdateHandler.SESSION(key:String):T?{
         return when(T::class){
             Double::class->session.getDouble(key)as T
             Int::class->session.getInt(key)as T
@@ -25,12 +24,11 @@ inline  fun <reified  T> UIUpdateHandler.SESSION(key:String,value:Any?=null):T?{
             String::class->session.getString(key)as T
             else -> session.getObject(key,T::class.java)
         }
-    }else {
-        this.session.put(key,value)
-    }
-    return  null;
 }
-
+ fun UIUpdateHandler.SESSION(key:String,value:Any?=null):UIUpdateHandler{
+        this.session.put(key,value)
+     return this
+}
 /**
  *  简化文本框内容改变回掉
  */
@@ -63,4 +61,10 @@ fun  TextView.onTextChanged(listener:( CharSequence,  Int,  Int, Int)->Unit):Tex
         tmpStr.substring(0,tmpStr.length-1)
     }
     return tmpStr
+}
+
+fun <T,R> Iterable<T>.list2list(sourceList:List<T>,callback:(T)->R):List<R>{
+    var aimList= arrayListOf<R>()
+    sourceList.forEach { aimList.add(callback.invoke(it)) }
+    return aimList;
 }

@@ -57,6 +57,12 @@
             android:name="com.wq.template.SelectPeopleActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
+        <!--团队成员-->
+        <activity
+            android:name="com.wq.template.PeopleManagerActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
 
     </application>
 

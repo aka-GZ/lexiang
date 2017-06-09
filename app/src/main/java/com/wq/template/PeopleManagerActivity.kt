@@ -13,7 +13,6 @@ import com.sunrun.sunrunframwork.weight.pulltorefresh.PullToRefreshBase
 import com.wq.common.quest.BaseQuestConfig.QUEST_GET_TEAM_MEMBER_LIST_CODE
 import com.wq.common.quest.BaseQuestStart
 import com.wq.common.util.SESSION
-import com.wq.common.util.list2list
 import com.wq.common.util.onTextChanged
 import com.wq.common.util.toString
 import com.wq.project01.R
@@ -23,15 +22,15 @@ import kotlinx.android.synthetic.main.ui_activity_select_friends.*
 import java.util.*
 
 /**
- * 团队成员.选择提醒谁看
+ * 团队成员
  */
 
-class SelectPeopleActivity : BaseActivity() {
-    var friends: ArrayList<PeopleEntity> = ArrayList()//成员列表集合
-    var selectPeopleSortAdapter = SelectPeopleSortAdapter(this, friends)//适配器
-    var characterParser = CharacterParser.getInstance()//字符串-拼音 解析器,
-    var pinyinComparator: PinyinComparator = PinyinComparator()//拼音排序比较器
-    var ids: List<String>? = null                           //已选id
+class PeopleManagerActivity : BaseActivity() {
+    var friends: ArrayList<PeopleEntity> = ArrayList()
+    var selectPeopleSortAdapter = SelectPeopleSortAdapter(this, friends)
+    var characterParser = CharacterParser.getInstance()
+    var pinyinComparator: PinyinComparator = PinyinComparator()
+    var ids: String? = null
     var names: String? = null
 
     override fun onCreate(arg0: Bundle?) {
@@ -39,9 +38,8 @@ class SelectPeopleActivity : BaseActivity() {
         setContentView(R.layout.ui_activity_select_friends)
         ButterKnife.bind(this)
         sidrbar.setTextView(tv_dialog)
-        //获取已选ids和名字
-        ids = SESSION("ids")
-        names = SESSION("names")
+        ids = intent.getStringExtra("ids")
+        names = intent.getStringExtra("names")
         //设置右侧触摸监听
         sidrbar.setOnTouchingLetterChangedListener { s ->
             //该字母首次出现的位置
@@ -51,7 +49,7 @@ class SelectPeopleActivity : BaseActivity() {
             }
         }
         titleBar.setRightAction {
-            returnSelectedVal();
+            //                returnSelectedVal();
         }
         findViewById(R.id.test).setOnClickListener { AddDialogFragment().show(supportFragmentManager, "add") }
         refreshLayout.mode = PullToRefreshBase.Mode.DISABLED
@@ -65,27 +63,27 @@ class SelectPeopleActivity : BaseActivity() {
         }
         refreshLayout.setAdapter(selectPeopleSortAdapter)
         selectPeopleSortAdapter.selectMode(MULTISELECT)
-        BaseQuestStart.getTeamMemberList(this, SESSION("group_id"), 0)
+        BaseQuestStart.getTeamMemberList(this,SESSION("group_id"),0)
     }
 
     private fun returnSelectedVal() {
         val friendList = friends
-                .filter { selectPeopleSortAdapter.isSelected(it) }//过滤选中的数据
-        ids = friendList.list2list(friends) { it.uid }//转换为字符串集合
-        names = friendList.toString { it.name }
-        SESSION("ids", ids)
-        SESSION("names", names)
-        setResult(RESULT_OK)
+        val tmpList = friendList.filter { selectPeopleSortAdapter.isSelected(it) }
+        ids = tmpList.toString { it.uid }
+        names = tmpList.toString { it.name }
+        intent.putExtra("ids", ids)
+        intent.putExtra("names", names)
+        setResult(RESULT_OK, intent)
         finish()
     }
 
 
     override fun nofityUpdate(requestCode: Int, bean: BaseBean) {
-        when (requestCode) {
-            QUEST_GET_TEAM_MEMBER_LIST_CODE -> {
-                bean.Data<List<PeopleEntity>>()?.let {
-                    setData2List(it);
-                }
+        when(requestCode){
+            QUEST_GET_TEAM_MEMBER_LIST_CODE->{
+              bean.Data<List<PeopleEntity>>()?.let {
+                  setData2List(it);
+              }
             }
         }
         super.nofityUpdate(requestCode, bean)
@@ -105,9 +103,9 @@ class SelectPeopleActivity : BaseActivity() {
             notifyDataSetChanged()
         }
         ids?.let {
-            val splitIds = ids;
+            val splitIds = it.split(',').toTypedArray()
             friends.indices
-                    .filter { (friends[it] == splitIds) && !selectPeopleSortAdapter.isSelected(it) }
+                    .filter { (friends[it].uid in splitIds) && !selectPeopleSortAdapter.isSelected(it) }
                     .forEach { selectPeopleSortAdapter.selectPosition = it }
             selectPeopleSortAdapter.notifyDataSetChanged()
         }

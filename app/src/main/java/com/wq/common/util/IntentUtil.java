@@ -10,6 +10,7 @@ import com.wq.login.FonudPwdActivity;
 import com.wq.login.LoginActivity;
 import com.wq.login.RegisterActivity;
 import com.wq.main.NavigatorActivity;
+import com.wq.template.SelectPeopleActivity;
 
 /**
  * Created by weiquan on 2017/6/2.
@@ -55,5 +56,16 @@ public class IntentUtil extends BaseStartIntent {
     public static void startMainActivity(BaseActivity that) {
         Intent intent=new Intent(that, NavigatorActivity.class);
         that.startActivity(intent);
+    }
+
+    /**
+     *
+     * 选择提醒谁看
+     * @param context
+     * @param requestCode
+     */
+    public static void startSlectPeopleActivity(Activity context,int requestCode){
+        Intent intent=new Intent(context, SelectPeopleActivity.class);
+        context.startActivityForResult(intent,requestCode);
     }
 }
