@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="sunrunframwork-1.0.3">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.976112643.sunrunframwork/sunrunframwork/1.0.3/jars/libs/android-async-http-1.4.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.976112643.sunrunframwork/sunrunframwork/1.0.3/jars/libs/libammsdk.jar!/" />
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.976112643.sunrunframwork/sunrunframwork/1.0.3/res" />
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.976112643.sunrunframwork/sunrunframwork/1.0.3/jars/libs/alipaySdk-20160516.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.976112643.sunrunframwork/sunrunframwork/1.0.3/jars/classes.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.976112643.sunrunframwork/sunrunframwork/1.0.3/jars/libs/org.apache.http.legacy.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

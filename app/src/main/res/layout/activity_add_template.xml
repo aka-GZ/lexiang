@@ -35,16 +35,17 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="15dp"
             />
+
         <EditText
+            android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:gravity="center"
-            android:hint="请输入模板标题"
-            android:id="@+id/tv_title"
-            android:textSize="16sp"
-            android:background="#E9E7E8"
             android:layout_marginRight="30dp"
-            />
+            android:background="#E9E7E8"
+            android:gravity="center|left"
+            android:hint="请输入模板标题"
+            android:paddingLeft="15dp"
+            android:textSize="16sp" />
     </LinearLayout>
     <View
         style="@style/limit_line"/>
@@ -87,12 +88,14 @@
         </com.sunrun.sunrunframwork.view.ItemView>
     <View
         style="@style/limit_line"/>
-    <com.sunrun.sunrunframwork.view.ItemView
-        android:layout_width="match_parent"
-        android:id="@+id/item_remind"
-        app:leftTVText="提醒谁看"
 
-        android:layout_height="45dp"/>
+    <com.sunrun.sunrunframwork.view.ItemView
+        android:id="@+id/item_remind"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+
+        app:leftTVText="提醒谁看" />
+
     <View
         style="@style/limit_line"/>
 </LinearLayout>
