@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.sunrun.sunrunframwork.uibase.BaseFragment;
+import com.wq.common.quest.NetServerEx;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -25,6 +26,7 @@ public abstract class LBaseFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        mNServer=new NetServerEx(that,this);
         int layoutRes = getLayoutRes();
         if (layoutRes > 0) {
             return inflater.inflate(layoutRes, container, false);

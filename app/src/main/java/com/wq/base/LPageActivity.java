@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.sunrun.sunrunframwork.uibase.PagingActivity;
 import com.sunrun.sunrunframwork.utils.PagingHelp;
+import com.wq.common.quest.NetServerEx;
 import com.wq.project01.R;
 
 import butterknife.ButterKnife;
@@ -48,6 +49,7 @@ public abstract class LPageActivity<T> extends PagingActivity<T> {
         };
     }
 
+
     Unbinder unbinder;
     protected boolean ifTitleBarIsWhiteThenIWillSetBlackStatusBarOnNotCompatDevice() {
         return isStatusContentDark();
@@ -71,6 +73,7 @@ public abstract class LPageActivity<T> extends PagingActivity<T> {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mNServer=new NetServerEx(this,this);
         super.onCreate(savedInstanceState);
         if (isTranslucent()) {
             StatusBarUtil.transparencyBar(this);

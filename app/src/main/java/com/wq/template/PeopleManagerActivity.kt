@@ -6,6 +6,9 @@ import butterknife.ButterKnife
 import com.sunrun.sunrunframwork.adapter.SelectableAdapter.MULTISELECT
 import com.sunrun.sunrunframwork.bean.BaseBean
 import com.sunrun.sunrunframwork.uibase.BaseActivity
+import com.sunrun.sunrunframwork.utils.formVerify.VerifyUtil
+import com.sunrun.sunrunframwork.utils.formVerify.VerifyUtil.verify
+import com.sunrun.sunrunframwork.utils.formVerify.VerifyerSet
 import com.sunrun.sunrunframwork.view.sidebar.CharacterParser
 import com.sunrun.sunrunframwork.view.sidebar.PinyinComparator
 import com.sunrun.sunrunframwork.view.sidebar.SideBarUtils
@@ -53,7 +56,16 @@ class PeopleManagerActivity : BaseActivity() {
             //                returnSelectedVal();
         }
         btn_add.setOnClickListener { AddDialogFragment().show(supportFragmentManager, "add") }
-        btn_remove.setOnClickListener { toast("移除") }
+        btn_remove.setOnClickListener {
+            try {
+                verify(edit_search, VerifyerSet.EmptyVerifyer("请输入搜索内容"));
+                toast("移除")
+            } catch (e: Exception) {
+                toast(e.localizedMessage)
+            }
+
+
+        }
         refreshLayout.mode = PullToRefreshBase.Mode.DISABLED
         //lvSelectFriends.setEmptyView(GetEmptyViewUtils.GetEmptyView(that,R.mipmap.img_nodata,"暂无联系人"));
         refreshLayout.setOnItemClickListener { parent, view, position, id ->
@@ -65,7 +77,7 @@ class PeopleManagerActivity : BaseActivity() {
         }
         refreshLayout.setAdapter(selectPeopleSortAdapter)
         selectPeopleSortAdapter.selectMode(MULTISELECT)
-        BaseQuestStart.getTeamMemberList(this,SESSION("group_id"),0)
+        BaseQuestStart.getTeamMemberList(this, SESSION("group_id"), 0)
     }
 
     private fun returnSelectedVal() {
@@ -81,11 +93,11 @@ class PeopleManagerActivity : BaseActivity() {
 
 
     override fun nofityUpdate(requestCode: Int, bean: BaseBean) {
-        when(requestCode){
-            QUEST_GET_TEAM_MEMBER_LIST_CODE->{
-              bean.Data<List<PeopleEntity>>()?.let {
-                  setData2List(it);
-              }
+        when (requestCode) {
+            QUEST_GET_TEAM_MEMBER_LIST_CODE -> {
+                bean.Data<List<PeopleEntity>>()?.let {
+                    setData2List(it);
+                }
             }
         }
         super.nofityUpdate(requestCode, bean)

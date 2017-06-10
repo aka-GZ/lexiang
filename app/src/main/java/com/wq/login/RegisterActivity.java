@@ -38,6 +38,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.sunrun.sunrunframwork.utils.EmptyDeal.size;
+import static com.wq.common.model.Const.CODE_OK;
 import static com.wq.common.quest.BaseQuestConfig.QUEST_REGISTER_CODE;
 
 
@@ -165,13 +166,13 @@ public class RegisterActivity extends LBaseActivity implements TextWatcher, Logi
         switch (requestCode) {
             case QUEST_REGISTER_CODE:
 
-                if (bean.status == 1) {
+                if (bean.status == CODE_OK) {
                     Intent intent = new Intent();
                     intent.putExtra(ACCOUNT, account.getText().toString());
                     intent.putExtra(PWD, pwd.getText().toString());
                     Config.putConfigInfo(this, ACCOUNT, account.getText().toString());
                     Config.putConfigInfo(this, PWD, pwd.getText().toString());
-                    Config.putLoginInfo((LoginInfo) bean.Data());
+//                    Config.putLoginInfo((LoginInfo) bean.Data());
                     setResult(RESULT_OK, intent);
                     finish();
                     UIUtils.shortM(bean.msg);
@@ -234,10 +235,10 @@ public class RegisterActivity extends LBaseActivity implements TextWatcher, Logi
 //			return;
 //		}
 
-        if (EmptyDeal.isEmpy(captcha)) {
-            UIUtils.shortM("验证码不能为空");
-            return;
-        }
+//        if (EmptyDeal.isEmpy(captcha)) {
+//            UIUtils.shortM("验证码不能为空");
+//            return;
+//        }
         if (EmptyDeal.isEmpy(pwd)) {
             UIUtils.shortM("密码不能为空");
             return;
@@ -253,7 +254,7 @@ public class RegisterActivity extends LBaseActivity implements TextWatcher, Logi
 //		}
         UIUtils.showLoadDialog(that, "注册中..");
         // 注册
-        BaseQuestStart.register(this, account, pwd, captcha);
+        BaseQuestStart.register(this, account, pwd.getText().toString(), captcha);
 
         if (type == 0) {
             //ApiHelp.register(this, account, pwd, captcha,code_id);
@@ -265,11 +266,11 @@ public class RegisterActivity extends LBaseActivity implements TextWatcher, Logi
     boolean isVaild() {
         boolean flag = false;
         register.setEnabled(flag = Utils.isMobileNO(account.getText().toString()) && !EmptyDeal.isEmpy(pwd.getText().toString())
-                &&
-                !EmptyDeal.isEmpy(captcha)
+//                &&
+//                !EmptyDeal.isEmpy(captcha)
                 &&
                 !EmptyDeal.isEmpy(pwd) && !EmptyDeal.isEmpy(pwd2)
-                && readAgreement.isChecked()
+//                && readAgreement.isChecked()
         );
         return flag;
     }

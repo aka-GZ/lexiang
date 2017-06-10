@@ -9,6 +9,7 @@ import android.widget.PopupWindow;
 import com.wq.common.util.IntentUtil;
 import com.wq.project01.R;
 import com.wq.template.AddTemplateActivity;
+import com.wq.template.PeopleManagerActivity;
 import com.wq.template.SelectPeopleActivity;
 
 /**
@@ -55,6 +56,7 @@ public class MenuWindow {
             @Override
             public void onClick(View v) {
 //                StartIntent.startHelpAndBackActivity(context);
+                IntentUtil.startActivity(context,PeopleManagerActivity.class);
                 popupWindow.dismiss();
             }
         });

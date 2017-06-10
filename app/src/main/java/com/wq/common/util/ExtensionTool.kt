@@ -22,6 +22,7 @@ inline  fun <reified  T> UIUpdateHandler.SESSION(key:String):T?{
             Float::class->session.getFloat(key)as T
             Long::class->session.getLong(key)as T
             String::class->session.getString(key)as T
+            Boolean::class->session.getBoolean(key) as T
             else -> session.getObject(key,T::class.java)
         }
 }

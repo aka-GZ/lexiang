@@ -23,6 +23,7 @@ import com.sunrun.sunrunframwork.http.utils.UIUpdateHandler;
 import com.sunrun.sunrunframwork.uiutils.UIUtils;
 import com.sunrun.sunrunframwork.utils.StatisticsUtil;
 import com.sunrun.sunrunframwork.utils.log.Logger;
+import com.wq.common.quest.NetServerEx;
 import com.wq.project01.R;
 
 import butterknife.ButterKnife;
@@ -45,6 +46,7 @@ public abstract class UIBindDialogFragment extends DialogFragment implements
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        mNServer=new NetServerEx(that,this);
         View view = inflater.inflate(getLayoutId(), container, false);
         unbinder=ButterKnife.bind(this, view);
         return view;

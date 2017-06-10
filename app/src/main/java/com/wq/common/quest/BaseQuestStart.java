@@ -3,6 +3,7 @@ package com.wq.common.quest;
 import com.google.gson.reflect.TypeToken;
 import com.sunrun.sunrunframwork.http.NAction;
 import com.sunrun.sunrunframwork.http.NetRequestHandler;
+import com.sunrun.sunrunframwork.utils.Utils;
 import com.wq.common.model.ClassTemplateBean;
 import com.wq.common.model.GroupListObj;
 import com.wq.common.model.HomeTemplateBean;
@@ -29,13 +30,15 @@ public class BaseQuestStart extends BaseQuestConfig {
      * @param phone_no 用户手机号码(账号)
      * @param password 用户登录密码md5值
      * @return code 200成功 3001账号或密码错误
+     * 18316315572  12345678
      */
     public static void login(NetRequestHandler netRequestHandler, String phone_no, String password) {
 
         netRequestHandler.requestAsynPost(new NAction()
                 .setUrl(BaseQuestConfig.LOGIN_URL)
                 .put("phone_no", phone_no)
-                .put("password", password)
+                .put("password", Utils.getMD5(password) )
+//                .put("password", (password) )
                 .setTypeToken(LoginInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_LOGIN_CODE));
     }
@@ -379,12 +382,12 @@ public class BaseQuestStart extends BaseQuestConfig {
      * @param email     用户邮箱地址 (可选)
      * @return code code 200 成功 3001 phone_no参数未传入 3002 password参数未传入  3003 账号已存在 3004写入用户数据失败 3005 手机号码不合法
      */
-    public static void register(NetRequestHandler netRequestHandler, Object phone_no, Object password, Object captcha) {
+    public static void register(NetRequestHandler netRequestHandler, Object phone_no, String password, Object captcha) {
 
         netRequestHandler.requestAsynPost(new NAction()
                 .setUrl(BaseQuestConfig.REGISTER_URL)
                 .put("phone_no", phone_no)
-                .put("password", password)
+                .put("password", Utils.getMD5(password))
                 // .setTypeToken(LoginInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_REGISTER_CODE));
     }

@@ -93,7 +93,7 @@
                                     android:background="@null"
                                     android:hint="请输入11位手机号或邮箱"
                                     android:inputType="phone"
-                                    android:text="15916035572"
+                                    android:text="18316315572"
                                     android:textSize="15sp"
                                     android:singleLine="true"
                                     android:textColorHint="#dfdfdf" />
@@ -140,7 +140,7 @@
                                     android:background="@null"
                                     android:hint="请输入6-16位密码"
                                     android:password="true"
-                                    android:text="25d55ad283aa400af464c76d713c07ad"
+                                    android:text="12345678"
                                     android:singleLine="true"
                                     android:textSize="15sp"
                                     android:textColorHint="#dfdfdf" />

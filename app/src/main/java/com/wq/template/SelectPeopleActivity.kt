@@ -10,6 +10,7 @@ import com.sunrun.sunrunframwork.view.sidebar.CharacterParser
 import com.sunrun.sunrunframwork.view.sidebar.PinyinComparator
 import com.sunrun.sunrunframwork.view.sidebar.SideBarUtils
 import com.sunrun.sunrunframwork.weight.pulltorefresh.PullToRefreshBase
+import com.wq.base.LBaseActivity
 import com.wq.common.quest.BaseQuestConfig.QUEST_GET_TEAM_MEMBER_LIST_CODE
 import com.wq.common.quest.BaseQuestStart
 import com.wq.common.util.SESSION
@@ -20,13 +21,14 @@ import com.wq.project01.R
 import com.wq.template.adapters.SelectPeopleSortAdapter
 import com.wq.template.mode.PeopleEntity
 import kotlinx.android.synthetic.main.ui_activity_select_friends.*
+import java.io.FileInputStream
 import java.util.*
 
 /**
  * 团队成员.选择提醒谁看
  */
 
-class SelectPeopleActivity : BaseActivity() {
+class SelectPeopleActivity : LBaseActivity() {
     var friends: ArrayList<PeopleEntity> = ArrayList()//成员列表集合
     var selectPeopleSortAdapter = SelectPeopleSortAdapter(this, ArrayList())//适配器
     var characterParser = CharacterParser.getInstance()//字符串-拼音 解析器,
@@ -42,6 +44,14 @@ class SelectPeopleActivity : BaseActivity() {
         //获取已选ids和名字
         ids = SESSION("ids")
         names = SESSION("names")
+        refreshLayout.mode = PullToRefreshBase.Mode.DISABLED
+        initListener()
+        refreshLayout.setAdapter(selectPeopleSortAdapter)
+        selectPeopleSortAdapter.selectMode(MULTISELECT)
+        BaseQuestStart.getTeamMemberList(this, SESSION("group_id"), 0)
+    }
+
+    private fun initListener() {
         //设置右侧触摸监听
         sidrbar.setOnTouchingLetterChangedListener { s ->
             //该字母首次出现的位置
@@ -53,7 +63,6 @@ class SelectPeopleActivity : BaseActivity() {
         titleBar.setRightAction {
             returnSelectedVal();
         }
-        refreshLayout.mode = PullToRefreshBase.Mode.DISABLED
         //lvSelectFriends.setEmptyView(GetEmptyViewUtils.GetEmptyView(that,R.mipmap.img_nodata,"暂无联系人"));
         refreshLayout.setOnItemClickListener { parent, view, position, id ->
             val realPosition = position - refreshLayout.refreshableView.headerViewsCount
@@ -62,9 +71,6 @@ class SelectPeopleActivity : BaseActivity() {
         edit_search.onTextChanged { charSequence, start, count, after ->
             filterData(charSequence.toString())
         }
-        refreshLayout.setAdapter(selectPeopleSortAdapter)
-        selectPeopleSortAdapter.selectMode(MULTISELECT)
-        BaseQuestStart.getTeamMemberList(this, SESSION("group_id"), 0)
     }
 
     private fun returnSelectedVal() {
@@ -133,7 +139,7 @@ class SelectPeopleActivity : BaseActivity() {
         } else {
             filterDateList.clear()
             filterDateList.addAll(friends.filter {
-                val name = it.getName()
+                val name = it.user_name
                 name.toLowerCase().indexOf(filterStr.toLowerCase()) != -1
                         || characterParser.getSelling(name).startsWith(filterStr)
             })
