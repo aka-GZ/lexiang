@@ -1,10 +1,14 @@
 package com.wq.common.model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by cnsunrun on 2017/5/26.
  */
 
 public class LoginInfo {
+
+
     /**
      * user_money : 0.00
      * phone_no : 15916035572
@@ -15,10 +19,10 @@ public class LoginInfo {
 
     private String user_money;
     private String phone_no;
-    private Object email;
+    private String email;
     private String login_time;
     private String token;
-
+    public String user_name;
 
 
     public String getUser_money() {
@@ -41,9 +45,6 @@ public class LoginInfo {
         return email;
     }
 
-    public void setEmail(Object email) {
-        this.email = email;
-    }
 
     public String getLogin_time() {
         return login_time;

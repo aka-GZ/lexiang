@@ -9,7 +9,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.wq.base.LBaseFragment;
+import com.wq.common.quest.Config;
 import com.wq.common.util.IntentUtil;
+import com.wq.common.util.LoginUtil;
 import com.wq.common.util.popwindow.MenuWindow;
 import com.wq.common.widget.TitleBar;
 import com.wq.project01.R;
@@ -71,11 +73,12 @@ public class MineFragment extends LBaseFragment {
                 MenuWindow.showHomePopDialog(that,view);
             }
         });
+        tvNickname.setText(Config.getLoginInfo().user_name);
     }
 
 
 
-    @OnClick({R.id.lay_attention, R.id.lay_fens, R.id.item_mine_template, R.id.item_team_template, R.id.item_use_history})
+    @OnClick({R.id.lay_attention, R.id.lay_fens, R.id.item_mine_template, R.id.item_team_template, R.id.item_use_history,R.id.item_use_exit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.lay_attention:
@@ -90,6 +93,9 @@ public class MineFragment extends LBaseFragment {
                 break;
             case R.id.item_use_history:
                 IntentUtil.startActivity(that, UseHistoryListActivity.class);
+                break;
+            case R.id.item_use_exit:
+                LoginUtil.exitLogin(that);
                 break;
         }
     }

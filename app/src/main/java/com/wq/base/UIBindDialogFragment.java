@@ -67,6 +67,12 @@ public abstract class UIBindDialogFragment extends DialogFragment implements
         dialogWindow.setGravity(Gravity.BOTTOM);
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
+        dialogWindow.getDecorView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+            }
+        });
         return dialog;
     }
 

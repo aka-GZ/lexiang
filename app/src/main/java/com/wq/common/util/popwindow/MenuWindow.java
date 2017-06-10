@@ -39,7 +39,7 @@ public class MenuWindow {
         layoutView.findViewById(R.id.item_1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                StartIntent.startFMInviteAvtivity(context);
+                //创建模板
                 IntentUtil.startActivity(context, AddTemplateActivity.class);
                 popupWindow.dismiss();
             }
@@ -47,7 +47,8 @@ public class MenuWindow {
         layoutView.findViewById(R.id.item_2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IntentUtil.startActivity(context, SelectPeopleActivity.class);
+                //团队成员
+                IntentUtil.startActivity(context, PeopleManagerActivity.class);
 //                StartIntent.startRidesInfoActivity(context);
                 popupWindow.dismiss();
             }
@@ -55,8 +56,18 @@ public class MenuWindow {
         layoutView.findViewById(R.id.item_3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //创建团队
 //                StartIntent.startHelpAndBackActivity(context);
-                IntentUtil.startActivity(context,PeopleManagerActivity.class);
+//                IntentUtil.startActivity(context,PeopleManagerActivity.class);
+                popupWindow.dismiss();
+            }
+        });
+        layoutView.findViewById(R.id.item_4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //删除团队
+//                StartIntent.startHelpAndBackActivity(context);
+//                IntentUtil.startActivity(context,PeopleManagerActivity.class);
                 popupWindow.dismiss();
             }
         });

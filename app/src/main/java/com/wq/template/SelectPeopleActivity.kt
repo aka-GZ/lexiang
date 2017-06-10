@@ -29,7 +29,7 @@ import java.util.*
  */
 
 class SelectPeopleActivity : LBaseActivity() {
-    var friends: ArrayList<PeopleEntity> = ArrayList()//成员列表集合
+    var friends: List<PeopleEntity> = ArrayList()//成员列表集合
     var selectPeopleSortAdapter = SelectPeopleSortAdapter(this, ArrayList())//适配器
     var characterParser = CharacterParser.getInstance()//字符串-拼音 解析器,
     var pinyinComparator: PinyinComparator = PinyinComparator()//拼音排序比较器
@@ -89,17 +89,9 @@ class SelectPeopleActivity : LBaseActivity() {
         when (requestCode) {
             QUEST_GET_TEAM_MEMBER_LIST_CODE -> {
                 bean.Data<List<PeopleEntity>>()?.let {
-                    setData2List(it);
+                    this.friends=it;
+                    setData2List(friends=it);
                 }
-                friends .add(PeopleEntity().apply {
-                    uid="1" ;
-                    user_name="哈哈"
-                })
-                friends.add(PeopleEntity().apply {
-                    uid="2" ;
-                    user_name="哈哈2"
-                })
-                setData2List(friends)
             }
         }
         super.nofityUpdate(requestCode, bean)
@@ -149,8 +141,5 @@ class SelectPeopleActivity : LBaseActivity() {
         Collections.sort(filterDateList, pinyinComparator)
         selectPeopleSortAdapter.updateListView(filterDateList)
         selectPeopleSortAdapter.notifyDataSetChanged()
-        //        if(filterDateList.size()<=0){
-        //            mClearEditText.startAnimation(ClearEditText.shakeAnimation(5));
-        //        }
     }
 }

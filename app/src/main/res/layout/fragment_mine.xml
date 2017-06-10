@@ -156,6 +156,13 @@
         <View
             android:layout_marginLeft="10dp"
             style="@style/limit_line"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:background="@drawable/selec_itemview"
+            android:id="@+id/item_use_exit"
+            android:gravity="center"
+            android:text="退出登录"
+            android:layout_height="45dp" />
     </LinearLayout>
     <View
         style="@style/limit_line"/>

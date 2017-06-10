@@ -4,16 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg"
-    android:clipToPadding="true"
-    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <com.wq.common.widget.TitleBar
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        app:rightText="完成"
         style="@style/BackTitleBarStyle"
-        app:rightVisible="visible"
         android:id="@+id/titleBar"
         app:title="选择"
         />
@@ -24,7 +20,6 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_below="@+id/titleBar"
-        android:layout_above="@+id/lay_bottom"
         android:layout_marginTop="10dp"
         android:background="@color/white">
 
@@ -49,6 +44,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_below="@+id/search_lay"
+        android:layout_above="@+id/lay_bottom"
         android:layout_height="match_parent">
 
         <com.sunrun.sunrunframwork.weight.pulltorefresh.PullToRefreshListView
@@ -91,10 +87,12 @@
         <Button
             android:id="@+id/btn_add"
             android:text="添加"
+            style="@style/dialogBtnCancel"
             android:background="@drawable/btn_dialog_ok_bg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <Button
+            style="@style/dialogBtnCancel"
             android:id="@+id/btn_remove"
             android:text="移除"
             android:background="@drawable/btn_dialog_cancel_bg"
