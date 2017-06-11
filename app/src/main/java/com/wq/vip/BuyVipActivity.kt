@@ -4,16 +4,18 @@ import android.os.Bundle
 import butterknife.ButterKnife
 import com.sunrun.sunrunframwork.bean.BaseBean
 import com.sunrun.sunrunframwork.uiutils.UIUtils
+import com.sunrun.sunrunframwork.utils.log.Logger
 import com.sunrun.sunrunframwork.weight.pulltorefresh.PullToRefreshBase
 import com.wq.base.LBaseActivity
-import com.wq.common.quest.BaseQuestConfig.QUEST_GET_RECHARGE_OPTION_CODE
-import com.wq.common.quest.BaseQuestConfig.QUEST_GET_TEAM_MEMBER_LIST_CODE
+import com.wq.common.quest.BaseQuestConfig.*
 import com.wq.common.quest.BaseQuestStart
+import com.wq.common.util.isOk
 import com.wq.project01.R
 import com.wq.template.adapters.RechageOptionAdapter
 import com.wq.template.mode.PeopleEntity
 import com.wq.vip.mode.RechargeOption
 import kotlinx.android.synthetic.main.activity_buy_vip.*
+import org.jetbrains.anko.toast
 
 /**
  * 开通企业版
@@ -34,7 +36,14 @@ class BuyVipActivity : LBaseActivity() {
         when (requestCode) {
             QUEST_GET_RECHARGE_OPTION_CODE -> {
                 bean.Data<List<RechargeOption>>()?.let {
-                    refreshLayout.setAdapter(RechageOptionAdapter(that,it))
+                    refreshLayout.setAdapter(RechageOptionAdapter(this,it))
+                }
+            }
+            QUEST_RECHARGE_MEMBER_CODE->{
+                if(bean.isOk()){
+                    Logger.D(bean.Data())
+                }else{
+                    toast(bean.msg)
                 }
             }
         }

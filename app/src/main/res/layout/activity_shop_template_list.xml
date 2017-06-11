@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    tools:context="com.wq.project01.MainActivity">
+
+    <com.wq.common.widget.TitleBar
+        android:layout_width="match_parent"
+        android:id="@+id/titleBar"
+        app:title="素材市场"
+        app:leftAsFinish="true"
+        app:leftIcon="@drawable/back_h"
+        app:backgroundColor="@color/title_color"
+        android:layout_height="45dp"
+        />
+    <RelativeLayout
+        android:id="@+id/search_lay"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/shap_search_bg">
+
+        <ImageView
+            android:id="@+id/iv_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/img_search_for" />
+
+        <EditText
+            android:id="@+id/edit_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/iv_search"
+            android:background="@null"
+            android:textSize="14sp"
+            android:hint="请输入模板关键字"
+            android:paddingLeft="10dp" />
+
+    </RelativeLayout>
+    <com.sunrun.sunrunframwork.weight.pulltorefresh.PullToRefreshListView
+        android:layout_width="match_parent"
+        android:id="@+id/refresh_layout"
+        android:divider="@null"
+        app:ptrMode="both"
+        android:scrollbars="none"
+        android:layout_height="match_parent"/>
+</LinearLayout>

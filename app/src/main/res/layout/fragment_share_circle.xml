@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.wq.project01.MainActivity">
+
+    <com.wq.common.widget.TitleBar
+        android:id="@+id/titleBar"
+        style="@style/DefTitleBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:title="乐享圈"
+        app:bottomDividerHeight="0dp"
+        app:titleColor="@color/white" />
+
+<TextView
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:textSize="18sp"
+    android:layout_height="match_parent"
+    android:text="功能还在开发中喔,尽请期待!"
+    />
+</LinearLayout>

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.wq.base.LBaseActivity;
 import com.wq.base.LBaseFragment;
 import com.wq.common.quest.Config;
+import com.wq.common.util.AlertDialogUtil;
 import com.wq.common.util.IntentUtil;
 import com.wq.common.util.LoginUtil;
 import com.wq.common.util.popwindow.MenuWindow;
@@ -101,7 +102,13 @@ public class MineFragment extends LBaseFragment {
                 IntentUtil.startActivity(that, UseHistoryListActivity.class);
                 break;
             case R.id.item_use_exit:
-                LoginUtil.exitLogin(that);
+                AlertDialogUtil.showConfimDialog(that, "是否退出登录?", R.drawable.ic_dialog_tuichu, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        LoginUtil.exitLogin(that);
+                    }
+                },null);
+
                 break;
         }
     }

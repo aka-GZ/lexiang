@@ -28,7 +28,7 @@ import butterknife.Unbinder;
 public abstract class LPageActivity<T> extends PagingActivity<T> {
 
     public LPageActivity() {
-        pagingHelp=new PagingHelp(this){
+        pagingHelp=new PagingHelp<T>(this){
             {
                 curPage=0;
                 pageSize=10;

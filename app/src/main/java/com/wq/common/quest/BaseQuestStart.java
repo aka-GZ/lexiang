@@ -180,31 +180,7 @@ public class BaseQuestStart extends BaseQuestConfig {
     }
 
 
-    /**
-     * 获取九宫格市场模板列表
-     * API参数传入方式: POST
-     * 传入JSON格式: {"firstRow":"0","listRows":"20","searchText":"模板名称","class_id":"12"}
-     * 返回JSON格式: {"meta":{"code":200,"message":"success"},"body":[{"template_id":"3","template_name":"u6d4bu8bd5777","use_num":"0","template_add_time":"2017-05-26 05:38:51","template_cover_img_url":"http://localhost:81/Public/Uploads/Model/Cube/2017-05-26/7sjhu0tyhGYkFjnM.jpeg","forwardingtimes":"0"},{"template_id":"4","template_name":"u6d4bu8bd5","use_num":"0","template_add_time":"2017-05-27 09:15:23","template_cover_img_url":"http://localhost:81/Public/Uploads/Model/Cube/2017-05-27/DCb7yuxnR0di42Ol.jpeg","forwardingtimes":"0","class_id":"1"}]}
-     * API_URL_本地: http://localhost:81/api.php/Cube/getShopTemplateList
-     * API_URL_服务器: http://fx.lyfz.net/wxyx/api.php/Cube/getShopTemplateList
-     *
-     * @param firstRow->开始记录数
-     * @param listRows->每页显示数量
-     * @param searchText->模板名称 (可选传)
-     * @param class_id->模板分类id (可选传)
-     * @return class_id->模板分类ID -1未分配
-     */
-    public static void getShopTemplateList(NetRequestHandler netRequestHandler, String firstRow, String listRows, String searchText, String class_id) {
 
-        netRequestHandler.requestAsynPost(new NAction()
-                .setUrl(BaseQuestConfig.GET_SHOP_TEMPLATE_LIST_URL)
-                .put("firstRow", firstRow)
-                .put("listRows", listRows)
-                .put("searchText", searchText)
-                .put("class_id", class_id)
-                // .setTypeToken(LoginInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
-                .setRequestCode(BaseQuestConfig.QUEST_GET_SHOP_TEMPLATE_LIST_CODE));
-    }
 
     /**
      * 获取我的模板转发提醒
@@ -609,7 +585,31 @@ public class BaseQuestStart extends BaseQuestConfig {
                 .setTypeToken(new TypeToken<List<HomeTemplateBean>>(){})//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_SHOP_HOT_TEMPLATE_LIST_CODE));
     }
+    /**
+     * 获取九宫格市场模板列表
+     * API参数传入方式: POST
+     * 传入JSON格式: {"firstRow":"0","listRows":"20","searchText":"模板名称","class_id":"12"}
+     * 返回JSON格式: {"meta":{"code":200,"message":"success"},"body":[{"template_id":"3","template_name":"u6d4bu8bd5777","use_num":"0","template_add_time":"2017-05-26 05:38:51","template_cover_img_url":"http://localhost:81/Public/Uploads/Model/Cube/2017-05-26/7sjhu0tyhGYkFjnM.jpeg","forwardingtimes":"0"},{"template_id":"4","template_name":"u6d4bu8bd5","use_num":"0","template_add_time":"2017-05-27 09:15:23","template_cover_img_url":"http://localhost:81/Public/Uploads/Model/Cube/2017-05-27/DCb7yuxnR0di42Ol.jpeg","forwardingtimes":"0","class_id":"1"}]}
+     * API_URL_本地: http://localhost:81/api.php/Cube/getShopTemplateList
+     * API_URL_服务器: http://fx.lyfz.net/wxyx/api.php/Cube/getShopTemplateList
+     *
+     * @param firstRow->开始记录数
+     * @param listRows->每页显示数量
+     * @param searchText->模板名称 (可选传)
+     * @param class_id->模板分类id (可选传)
+     * @return class_id->模板分类ID -1未分配
+     */
+    public static void getShopTemplateList(NetRequestHandler netRequestHandler,String requestUrl, int firstRow, String searchText, String class_id) {
 
+        netRequestHandler.requestAsynPost(new NAction()
+                .setUrl(BaseQuestConfig.GET_SHOP_TEMPLATE_LIST_URL)
+                .put("firstRow", firstRow)
+                .put("listRows", PAGE_COUNT)
+                .put("searchText", searchText)
+                .put("class_id", class_id)
+                .setTypeToken(new TypeToken<List<HomeTemplateBean>>(){})//指定解析类型,该程序里面对应body 里面的json内容
+                .setRequestCode(BaseQuestConfig.QUEST_GET_SHOP_TEMPLATE_LIST_CODE));
+    }
 
     /**
      * 获取我的使用记录

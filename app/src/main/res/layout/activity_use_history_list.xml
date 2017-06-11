@@ -55,6 +55,7 @@
         android:id="@+id/btn_search"
         style="@style/submitBtn"
         android:text="搜索"
+        android:visibility="gone"
         android:layout_margin="15dp"
         />
     </LinearLayout>

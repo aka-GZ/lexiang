@@ -10,7 +10,11 @@ import com.wq.login.FonudPwdActivity;
 import com.wq.login.LoginActivity;
 import com.wq.login.RegisterActivity;
 import com.wq.main.NavigatorActivity;
+import com.wq.main.TemplateListActivity;
 import com.wq.template.SelectPeopleActivity;
+import com.wq.template.TemplateDataActivity;
+
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Created by weiquan on 2017/6/2.
@@ -69,5 +73,31 @@ public class IntentUtil extends BaseStartIntent {
     public static void startSlectPeopleActivity(Activity context,int requestCode){
         Intent intent=new Intent(context, SelectPeopleActivity.class);
         context.startActivityForResult(intent,requestCode);
+    }
+
+    /**
+     * 模板详情
+     * @param that
+     * @param template_name
+     * @param template_id
+     */
+    public static void startTemplateDataActivity(@Nullable Activity that, @Nullable String template_name, @Nullable String template_id) {
+        Intent intent=new Intent(that,TemplateDataActivity.class);
+        intent.putExtra("template_name",template_name);
+        intent.putExtra("template_id",template_id);
+        that.startActivity(intent);
+    }
+
+    /**
+     * 九宫格市场模板列表
+     * @param that
+     * @param url
+     */
+    public static void startTemplateListActivity( Activity that, @Nullable String url,String keywords,String title) {
+        Intent intent=new Intent(that,TemplateListActivity.class);
+        intent.putExtra("url",url);
+        intent.putExtra("keywords",keywords);
+        intent.putExtra("title",title);
+        that.startActivity(intent);
     }
 }

@@ -39,7 +39,7 @@ public class NavigatorActivity extends LBaseActivity {
         initNavTabView();
         //设置页面加载的Fragment
         fragments[0] =new HomeFragment();
-        fragments[1] = new HomeFragment();
+        fragments[1] = new ShareCircleFragment();
         fragments[2] = new MineFragment();
         switchPanel(fragments[0]);
         requestDelegate.doRequest();//请求数据
