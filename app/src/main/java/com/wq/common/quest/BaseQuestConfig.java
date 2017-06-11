@@ -128,6 +128,9 @@ public class BaseQuestConfig implements NetQuestConfig {
 
 
 
+    //获取九宫格市场热门模板列表
+    public static String GET_MY_USE_TEMPLATE_URL = HTTP_API + "/api.php/Cube/getMyUseTemplate";
+    public static final int QUEST_MY_USE_TEMPLATE_CODE = 0X028;
 
 }
 

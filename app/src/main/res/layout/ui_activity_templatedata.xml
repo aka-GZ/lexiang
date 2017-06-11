@@ -1,18 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <com.wq.common.widget.TitleBar
+        android:id="@+id/titlebar"
         style="@style/BackTitleBarStyle"
         android:layout_width="match_parent"
         android:layout_height="@dimen/titlebar_height"
-        app:title="素材市场"
-        android:id="@+id/titlebar"
-        />
+        app:title="素材市场" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="20dp"
+        android:orientation="vertical"
+        android:layout_weight="1">
 
+        <TextView
+            android:id="@+id/templatedata_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/text3"
+            android:lineSpacingMultiplier="1.2"
+             />
+
+        <GridView
+            android:id="@+id/templatedata_gv"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:numColumns="3"
+            android:horizontalSpacing="3dp"
+            android:verticalSpacing="3dp"
+            android:layout_weight="1"
+            android:layout_marginTop="20dp"/>
+    </LinearLayout>
 
 </LinearLayout>

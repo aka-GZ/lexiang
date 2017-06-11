@@ -11,6 +11,8 @@ import com.wq.common.model.LoginInfo;
 import com.wq.common.model.MyTemplateBean;
 import com.wq.common.model.ShopHotTemplateBean;
 import com.wq.common.model.TeamTemplateListObj;
+import com.wq.common.model.TemplateDataObj;
+import com.wq.common.model.UseHistoryListBean;
 import com.wq.template.mode.PeopleEntity;
 import com.wq.vip.mode.RechargeOption;
 
@@ -137,7 +139,7 @@ public class BaseQuestStart extends BaseQuestConfig {
         netRequestHandler.requestAsynPost(new NAction()
                 .setUrl(BaseQuestConfig.GET_TEMPLATE_DATA_URL)
                 .put("template_id", template_id)
-                // .setTypeToken(LoginInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
+                 .setTypeToken(TemplateDataObj.class)//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_GET_TEMPLATE_DATA_CODE));
     }
 
@@ -601,11 +603,44 @@ public class BaseQuestStart extends BaseQuestConfig {
         netRequestHandler.requestAsynPost(new NAction()
                 .setUrl(BaseQuestConfig.GET_SHOP_HOT_TEMPLATE_LIST_URL)
                 .put("firstRow", firstRow)
-                .put("listRows", 10)
+                .put("listRows", PAGE_COUNT)
                 .put("searchText", searchText)
                 .put("class_id", class_id)
                 .setTypeToken(new TypeToken<List<HomeTemplateBean>>(){})//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_SHOP_HOT_TEMPLATE_LIST_CODE));
+    }
+
+
+    /**
+     * 获取我的使用记录
+     * API参数传入方式: POST
+     * 传入JSON格式: {"firstRow":"1","listRows":"10"}
+     * 返回JSON格式: {"meta":{"code":200,"message":"success"},"body":[{"template_name":"u6d4bu8bd5","template_content":"u6d4bu8bd5u5185u5bb9","template_id":"13","use_time":"2017-06-30 16:02:28","use_num":"1"},{"template_name":"u6d4bu8bd5","template_content":"u6d4bu8bd5u5185u5bb9","template_id":"15","use_time":"2017-06-29 16:02:15","use_num":"1"},{"template_name":"u6d4bu8bd5","template_content":"u6d4bu8bd5u5185u5bb9","template_id":"17","use_time":"2017-06-11 16:04:20","use_num":"2"},{"template_name":"u6d4bu8bd5","template_content":"u6d4bu8bd5u5185u5bb9","template_id":"18","use_time":"2017-06-30 16:02:21","use_num":"1"}]}
+     * API_URL_本地: http://localhost:81/api.php/Cube/getMyUseTemplate
+     * API_URL_服务器: http://fx.lyfz.net/wxyx/api.php/Cube/getMyUseTemplate
+     * @param uid 用户uid
+     * @param firstRow 开始记录数
+     * @param listRows 每页显示数量
+     * @param startTime 查询发布开始时间 (可选传)
+     * @param endTime 查询发布结束时间 (可选传)
+     * @return code 200->成功
+     * @return template_name 模板名称
+     * @return template_content 模板内容
+     * @return template_id 模板id
+     * @return use_time 模板使用时间
+     * @return use_num 模板使用次数
+     */
+    public static void getMyUseTemplate(NetRequestHandler netRequestHandler, String uid, String firstRow, String startTime, String endTime) {
+
+        netRequestHandler.requestAsynPost(new NAction()
+                .setUrl(BaseQuestConfig.GET_MY_USE_TEMPLATE_URL)
+                .put("uid", uid)
+                .put("firstRow", firstRow)
+                .put("listRows", PAGE_COUNT)
+                .put("startTime", startTime)
+                .put("endTime", endTime)
+                .setTypeToken(new TypeToken<List<UseHistoryListBean>>(){})//指定解析类型,该程序里面对应body 里面的json内容
+                .setRequestCode(BaseQuestConfig.QUEST_MY_USE_TEMPLATE_CODE));
     }
 
 
