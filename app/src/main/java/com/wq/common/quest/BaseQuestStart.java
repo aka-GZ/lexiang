@@ -58,7 +58,7 @@ public class BaseQuestStart extends BaseQuestConfig {
      * @param is_open->模板是否公开                    -1不公开 1公开 (可选传)
      * @return code 200->成功 3001->template_name参数为空 3002->template_content参数为空 3005->template_cover_img参数为空  3003->img_list图片至少1张最多9张 3004->img_list包含不合法文件 3006->template_cover_img包含不合法文件 3007->数据插入失败
      */
-    public static void addTemplate(NetRequestHandler netRequestHandler, String template_name, String template_content, String template_cover_img, List<String> img_list, List<String> remind_id_list, String is_open) {
+    public static void addTemplate(NetRequestHandler netRequestHandler, Object template_name, Object template_content, String template_cover_img, List<String> img_list, List<String> remind_id_list, String is_open) {
 
         netRequestHandler.requestAsynPost(new NAction()
                 .setUrl(BaseQuestConfig.ADD_TEMPLATE_URL)

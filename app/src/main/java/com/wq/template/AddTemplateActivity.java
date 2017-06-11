@@ -33,6 +33,7 @@ import com.wq.common.model.TeamTemplateListObj;
 import com.wq.common.quest.BaseQuestConfig;
 import com.wq.common.quest.BaseQuestStart;
 import com.wq.common.util.IntentUtil;
+import com.wq.common.util.Tool;
 import com.wq.common.widget.TitleBar;
 import com.wq.project01.R;
 
@@ -110,8 +111,8 @@ public class AddTemplateActivity extends LBaseActivity {
             public void onClick(View v) {
 //                String title = tvTitle.getText().toString().trim();
 //                String content = editContent.getText().toString().trim();
-               
 
+                Save();
 
 
             }
@@ -126,6 +127,11 @@ public class AddTemplateActivity extends LBaseActivity {
 
         is_open =  cbGongkai.isSelected() ?  "1": "-1";
 
+
+        for ( File file  : multiImage.getFiles() ) {
+                        Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+                        bitmaps.add(bitmap);
+        }
         try {
             verify(tvTitle, new VerifyerSet.EmptyVerifyer("请输入模板名称"));
             verify(editContent,new VerifyerSet.EmptyVerifyer("请输入分享内容"));
@@ -137,18 +143,24 @@ public class AddTemplateActivity extends LBaseActivity {
         Bitmap bit4 = null;
         if (bitmaps.size() > 0 ) {
             Width = bitmaps.get(0).getWidth();
+            bitmaps_2.clear();
+            bitmaps_2.addAll(bitmaps);
             for (int i = 0; i < 9; i++) {
-                if (bitmaps.size()-1 < i){
-                    bitmaps.add(Bitmap.createBitmap(Width, Width, Bitmap.Config.ARGB_8888));
+                if (bitmaps_2.size()-1 < i){
+                    bitmaps_2.add(Bitmap.createBitmap(Width, Width, Bitmap.Config.ARGB_8888));
                 }
             }
-            Bitmap bit1 = add3Bitmap(bitmaps.get(0), bitmaps.get(1), bitmaps.get(2));
-            Bitmap bit2 = add3Bitmap(bitmaps.get(3), bitmaps.get(4), bitmaps.get(5));
-            Bitmap bit3 = add3Bitmap(bitmaps.get(6), bitmaps.get(7), bitmaps.get(8));
+            Bitmap bit1 = add3Bitmap(bitmaps_2.get(0), bitmaps_2.get(1), bitmaps_2.get(2));
+            Bitmap bit2 = add3Bitmap(bitmaps_2.get(3), bitmaps_2.get(4), bitmaps_2.get(5));
+            Bitmap bit3 = add3Bitmap(bitmaps_2.get(6), bitmaps_2.get(7), bitmaps_2.get(8));
             bit4 = addBitmap(bit1, bit2, bit3);
         }else{
             ToastUtils.shortToast("分享模板图片为空");
             return;
+        }
+        bitmaps_3.clear();
+        for (Bitmap bit: bitmaps ) {
+            bitmaps_3.add(Tool.bitmapToBase64(bit));
         }
         /**
          * 用户添加模板
@@ -164,7 +176,7 @@ public class AddTemplateActivity extends LBaseActivity {
          * @param is_open->模板是否公开                    -1不公开 1公开 (可选传)
          * @return code 200->成功 3001->template_name参数为空 3002->template_content参数为空 3005->template_cover_img参数为空  3003->img_list图片至少1张最多9张 3004->img_list包含不合法文件 3006->template_cover_img包含不合法文件 3007->数据插入失败
          */
-        BaseQuestStart.addTemplate(this,tvTitle,editContent,bs64 ,bs64, list, is_open);
+        BaseQuestStart.addTemplate(this,tvTitle,editContent, Tool.bitmapToBase64(bit4) ,bitmaps_3, list, is_open);
     }
 
     @Override
@@ -186,6 +198,8 @@ public class AddTemplateActivity extends LBaseActivity {
     }
 
     ArrayList<Bitmap> bitmaps = new ArrayList<Bitmap>();
+    ArrayList<Bitmap> bitmaps_2 = new ArrayList<Bitmap>();
+    ArrayList<String> bitmaps_3 = new ArrayList<String>();
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 123 && resultCode == RESULT_OK){
@@ -200,13 +214,13 @@ public class AddTemplateActivity extends LBaseActivity {
                 for (BaseMedia image : images) {
                     multiImage.addFile(new File(image.getPath()));
 
-                    try {
-                        FileInputStream fis = new FileInputStream(image.getPath());
-                        Bitmap bitmap = BitmapFactory.decodeStream(fis);
-                        bitmaps.add(bitmap);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
+//                    try {
+//                        FileInputStream fis = new FileInputStream(image.getPath());
+//                        Bitmap bitmap = BitmapFactory.decodeStream(fis);
+//                        bitmaps.add(bitmap);
+//                    } catch (FileNotFoundException e) {
+//                        e.printStackTrace();
+//                    }
                 }
 
 
