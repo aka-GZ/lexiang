@@ -112,50 +112,71 @@ public class AddTemplateActivity extends LBaseActivity {
 //                String content = editContent.getText().toString().trim();
                
 
-                if (list ==null && name == null){
-                    list = new ArrayList<String>();
-                    name = " ";
-                }
 
-                is_open =  cbGongkai.isSelected() ?  "1": "-1";
-
-                    try {
-                        verify(tvTitle, new VerifyerSet.EmptyVerifyer("请输入模板名称"));
-                        verify(editContent,new VerifyerSet.EmptyVerifyer("请输入分享内容"));
-                    } catch (FormatException e) {
-                        e.printStackTrace();
-                        UIUtils.shortM(e.getLocalizedMessage());
-                    }
-                /**
-                 * 用户添加模板
-                 * API参数传入方式: POST
-                 * 传入JSON格式: {"template_name":"测试","template_content":"测试内容","template_cover_img":"base64code...","img_list":["base64code...","base64code..."],"remind_id_list":["uid1","uid2"],"is_open":"-1"}
-                 * 返回JSON格式: {"meta":{"code":200,"message":"success"}}
-                 *
-                 * @param template_name->九宫格模板名称标题
-                 * @param template_content->模板内容
-                 * @param template_cover_img->模板封面图片base64格式
-                 * @param img_list->图片list                   最少1张 最多9张 数据为base64格式
-                 * @param remind_id_list->提醒指定团队成员id         list
-                 * @param is_open->模板是否公开                    -1不公开 1公开 (可选传)
-                 * @return code 200->成功 3001->template_name参数为空 3002->template_content参数为空 3005->template_cover_img参数为空  3003->img_list图片至少1张最多9张 3004->img_list包含不合法文件 3006->template_cover_img包含不合法文件 3007->数据插入失败
-                 */
-               // BaseQuestStart.addTemplate(this,);
 
             }
         });
 
     }
+    public void Save(){
+        if (list ==null && name == null){
+            list = new ArrayList<String>();
+            name = " ";
+        }
+
+        is_open =  cbGongkai.isSelected() ?  "1": "-1";
+
+        try {
+            verify(tvTitle, new VerifyerSet.EmptyVerifyer("请输入模板名称"));
+            verify(editContent,new VerifyerSet.EmptyVerifyer("请输入分享内容"));
+        } catch (FormatException e) {
+            e.printStackTrace();
+            UIUtils.shortM(e.getLocalizedMessage());
+            return;
+        }
+        Bitmap bit4 = null;
+        if (bitmaps.size() > 0 ) {
+            Width = bitmaps.get(0).getWidth();
+            for (int i = 0; i < 9; i++) {
+                if (bitmaps.size()-1 < i){
+                    bitmaps.add(Bitmap.createBitmap(Width, Width, Bitmap.Config.ARGB_8888));
+                }
+            }
+            Bitmap bit1 = add3Bitmap(bitmaps.get(0), bitmaps.get(1), bitmaps.get(2));
+            Bitmap bit2 = add3Bitmap(bitmaps.get(3), bitmaps.get(4), bitmaps.get(5));
+            Bitmap bit3 = add3Bitmap(bitmaps.get(6), bitmaps.get(7), bitmaps.get(8));
+            bit4 = addBitmap(bit1, bit2, bit3);
+        }else{
+            ToastUtils.shortToast("分享模板图片为空");
+            return;
+        }
+        /**
+         * 用户添加模板
+         * API参数传入方式: POST
+         * 传入JSON格式: {"template_name":"测试","template_content":"测试内容","template_cover_img":"base64code...","img_list":["base64code...","base64code..."],"remind_id_list":["uid1","uid2"],"is_open":"-1"}
+         * 返回JSON格式: {"meta":{"code":200,"message":"success"}}
+         *
+         * @param template_name->九宫格模板名称标题
+         * @param template_content->模板内容
+         * @param template_cover_img->模板封面图片base64格式
+         * @param img_list->图片list                   最少1张 最多9张 数据为base64格式
+         * @param remind_id_list->提醒指定团队成员id         list
+         * @param is_open->模板是否公开                    -1不公开 1公开 (可选传)
+         * @return code 200->成功 3001->template_name参数为空 3002->template_content参数为空 3005->template_cover_img参数为空  3003->img_list图片至少1张最多9张 3004->img_list包含不合法文件 3006->template_cover_img包含不合法文件 3007->数据插入失败
+         */
+        BaseQuestStart.addTemplate(this,tvTitle,editContent,bs64 ,bs64, list, is_open);
+    }
 
     @Override
     public void nofityUpdate(int requestCode, BaseBean bean) {
         switch (requestCode) {
-            case BaseQuestConfig.QUEST_GET_GROUP_LIST_CODE:
+            case BaseQuestConfig.QUEST_ADD_TEMPLATE_CODE:
                 //log 设置 tag为NetServer 可以查看请求情况
                 if (bean.status == 200) {
-
+                    ToastUtils.shortToast("保存成功");
+                    finish();
                 } else {
-                    ToastUtils.shortToast("暂无团队信息");
+                    ToastUtils.shortToast("保存异常，请重新提交");
                 }
                 break;
         }
@@ -173,31 +194,25 @@ public class AddTemplateActivity extends LBaseActivity {
             name = getSession().getString("names");
 
             itemRemind.setRightText(name);
-        }
-        ArrayList<BaseMedia> images = Boxing.getResult(data);
-        if (images != null) {
-            for (BaseMedia image : images) {
-                multiImage.addFile(new File(image.getPath()));
+        }else {
+            ArrayList<BaseMedia> images = Boxing.getResult(data);
+            if (images != null) {
+                for (BaseMedia image : images) {
+                    multiImage.addFile(new File(image.getPath()));
 
-                try {
-                    FileInputStream fis = new FileInputStream(image.getPath());
-                    Bitmap bitmap  = BitmapFactory.decodeStream(fis);
-                    bitmaps.add(bitmap);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
+                    try {
+                        FileInputStream fis = new FileInputStream(image.getPath());
+                        Bitmap bitmap = BitmapFactory.decodeStream(fis);
+                        bitmaps.add(bitmap);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
                 }
+
+
+
             }
-
-            Bitmap bit1 = add3Bitmap(bitmaps.get(0),bitmaps.get(1),bitmaps.get(2));
-            Bitmap bit2 = add3Bitmap(bitmaps.get(3),bitmaps.get(4),bitmaps.get(5));
-            Bitmap bit3 = add3Bitmap(bitmaps.get(6),bitmaps.get(7),bitmaps.get(8));
-            Bitmap bit4 = addBitmap(bit1 ,bit2 ,bit3);
-
-
         }
-
-
-
         super.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -218,6 +233,7 @@ public class AddTemplateActivity extends LBaseActivity {
         }
     }
 
+    int Width = 0;
     /**
      * 横向拼接
      * <功能详细描述>
@@ -226,13 +242,13 @@ public class AddTemplateActivity extends LBaseActivity {
      * @return
      */
     private Bitmap add3Bitmap(Bitmap first, Bitmap second, Bitmap three) {
-        int width = first.getWidth()/3;
-        int height = first.getWidth()/3;
+        int width = Width/3;
+        int height = Width/3;
         Bitmap result = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(result);
         canvas.drawBitmap(first, 0, 0, null);
-        canvas.drawBitmap(second, first.getWidth()/3, 0, null);
-        canvas.drawBitmap(three, (first.getWidth()+second.getWidth())/3, 0, null);
+        canvas.drawBitmap(second, Width/3, 0, null);
+        canvas.drawBitmap(three, (Width+Width)/3, 0, null);
         return result;
     }
 
