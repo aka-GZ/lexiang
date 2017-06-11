@@ -3,7 +3,9 @@ package com.wq.common.util
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.TextView
+import com.sunrun.sunrunframwork.bean.BaseBean
 import com.sunrun.sunrunframwork.http.utils.UIUpdateHandler
+import com.wq.common.model.Const.CODE_OK
 import com.wq.main.RequestDelegate
 
 /**
@@ -68,4 +70,8 @@ fun <T,R> Iterable<T>.list2list(callback:(T)->R):List<R>{
     var aimList= arrayListOf<R>()
     forEach { aimList.add(callback.invoke(it)) }
     return aimList;
+}
+
+fun BaseBean.isOk():Boolean{
+   return status==CODE_OK
 }

@@ -28,7 +28,7 @@ import java.util.*
  * 团队成员
  */
 
-class PeopleManagerActivity : BaseActivity() {
+class PeopleManagerActivity : LBaseActivity() {
     var friends: List<PeopleEntity> = ArrayList()//成员列表集合
     var selectPeopleSortAdapter = SelectPeopleSortAdapter(this, ArrayList())//适配器
     var characterParser = CharacterParser.getInstance()//字符串-拼音 解析器,

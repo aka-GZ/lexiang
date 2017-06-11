@@ -62,7 +62,10 @@
             android:name="com.wq.template.PeopleManagerActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-
+        <activity
+            android:name="com.wq.template.BuyVipActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
 
     </application>
 

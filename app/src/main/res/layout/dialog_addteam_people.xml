@@ -27,7 +27,7 @@
                 android:gravity="center"
                 android:lineSpacingMultiplier="1.3"
                 android:padding="13dp"
-                android:text="添加团队成员"
+                android:text="加入团队"
                 android:textColor="#222"
                 android:textSize="14sp" />
 
@@ -38,7 +38,7 @@
                 android:gravity="left"
                 android:lineSpacingMultiplier="1.3"
                 android:padding="13dp"
-                android:text="请输入手机内容"
+                android:hint="请输入团队码"
                 android:background="@drawable/shap_border_bg"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"

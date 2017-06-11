@@ -39,7 +39,7 @@ class MyTemplateListActivity : LPageActivity<MyTemplateBean>() {
     override fun loadData(page: Int) {
         //firstRow 开始记录数   , listRows 每页显示数量
         BaseQuestStart.getTemplateList(this, page, null,null);
-        setDataToView(arrayListOf(MyTemplateBean(),MyTemplateBean()),refresh_layout.refreshableView)
+//        setDataToView(arrayListOf(MyTemplateBean(),MyTemplateBean()),refresh_layout.refreshableView)
     }
 
 

@@ -46,13 +46,22 @@
             android:layout_height="40dp"
             android:id="@+id/item_3"
             app:RightImgShow="false"
-            app:leftTVText="创建团队"
+            app:leftTVText="加入团队"
             app:SetLeftTextColor="@color/text3"
             />
         <com.sunrun.sunrunframwork.view.ItemView
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:id="@+id/item_4"
+            app:RightImgShow="false"
+
+            app:leftTVText="创建团队"
+            app:SetLeftTextColor="@color/text3"
+            />
+        <com.sunrun.sunrunframwork.view.ItemView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:id="@+id/item_5"
             app:RightImgShow="false"
             app:leftTVText="删除团队"
             app:SetLeftTextColor="@color/text3"

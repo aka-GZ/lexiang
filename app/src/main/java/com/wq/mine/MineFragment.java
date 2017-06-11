@@ -2,12 +2,14 @@ package com.wq.mine;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.wq.base.LBaseActivity;
 import com.wq.base.LBaseFragment;
 import com.wq.common.quest.Config;
 import com.wq.common.util.IntentUtil;
@@ -15,6 +17,7 @@ import com.wq.common.util.LoginUtil;
 import com.wq.common.util.popwindow.MenuWindow;
 import com.wq.common.widget.TitleBar;
 import com.wq.project01.R;
+import com.wq.template.BuyVipActivity;
 import com.wq.template.MyTemplateListActivity;
 import com.wq.template.TeamTemplateListActivity;
 import com.wq.template.UseHistoryListActivity;
@@ -70,7 +73,7 @@ public class MineFragment extends LBaseFragment {
         titleBar.setRightAction(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MenuWindow.showHomePopDialog(that,view);
+                MenuWindow.showHomePopDialog((LBaseActivity) that,view);
             }
         });
         tvNickname.setText(Config.getLoginInfo().user_name);
@@ -78,12 +81,15 @@ public class MineFragment extends LBaseFragment {
 
 
 
-    @OnClick({R.id.lay_attention, R.id.lay_fens, R.id.item_mine_template, R.id.item_team_template, R.id.item_use_history,R.id.item_use_exit})
+    @OnClick({R.id.lay_attention, R.id.lay_fens,R.id.tv_open_qiye, R.id.item_mine_template, R.id.item_team_template, R.id.item_use_history,R.id.item_use_exit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.lay_attention:
                 break;
             case R.id.lay_fens:
+                break;
+            case R.id.tv_open_qiye:
+                IntentUtil.startActivity(that, BuyVipActivity.class);
                 break;
             case R.id.item_mine_template:
                 IntentUtil.startActivity(that,MyTemplateListActivity.class);

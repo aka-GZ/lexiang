@@ -1,18 +1,24 @@
 package com.wq.common.util.popwindow;
 
-import android.app.Activity;
 import android.graphics.drawable.ColorDrawable;
-import android.view.Gravity;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.PopupWindow;
 
+import com.sunrun.sunrunframwork.uiutils.UIUtils;
+import com.wq.base.LBaseActivity;
+import com.wq.common.quest.BaseQuestStart;
+import com.wq.common.util.AlertDialogUtil;
 import com.wq.common.util.IntentUtil;
+import com.wq.common.widget.FixedPopupWindow;
 import com.wq.project01.R;
+import com.wq.template.AddTeamDialogFragment;
 import com.wq.template.AddTemplateActivity;
+import com.wq.template.CreateTeamDialogFragment;
 import com.wq.template.PeopleManagerActivity;
-import com.wq.template.SelectPeopleActivity;
 
 /**
+ * 个人右上角,操作框
  * Created by weiquan on 2017/6/6.
  */
 
@@ -23,8 +29,8 @@ public class MenuWindow {
      * @param context
      * @param anchor
      */
-    public static void showHomePopDialog(final Activity context, View anchor) {
-        final PopupWindow popupWindow = new PopupWindow(-1, -1);
+    public static void showHomePopDialog(final LBaseActivity context, View anchor) {
+        final PopupWindow popupWindow = new FixedPopupWindow(-1, -1);
         popupWindow.setContentView(View.inflate(context, R.layout.pop_more_handle_view, null));
         popupWindow.setOutsideTouchable(true);
         popupWindow.setAnimationStyle(R.style.popAnim);
@@ -49,26 +55,44 @@ public class MenuWindow {
             public void onClick(View v) {
                 //团队成员
                 IntentUtil.startActivity(context, PeopleManagerActivity.class);
-//                StartIntent.startRidesInfoActivity(context);
                 popupWindow.dismiss();
             }
         });
         layoutView.findViewById(R.id.item_3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //创建团队
-//                StartIntent.startHelpAndBackActivity(context);
-//                IntentUtil.startActivity(context,PeopleManagerActivity.class);
+                //加入团队
+                new AddTeamDialogFragment().show(context.getSupportFragmentManager(),"add_team");
+
                 popupWindow.dismiss();
             }
         });
         layoutView.findViewById(R.id.item_4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //删除团队
-//                StartIntent.startHelpAndBackActivity(context);
-//                IntentUtil.startActivity(context,PeopleManagerActivity.class);
+                //创建团队
+                new CreateTeamDialogFragment().show(context.getSupportFragmentManager(),"create_team");
                 popupWindow.dismiss();
+            }
+        });
+        layoutView.findViewById(R.id.item_5).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //删除团队
+                popupWindow.dismiss();
+                if(!context.getSession().hasValue("group_id")){
+                    UIUtils.shortM("尚未加入团队");
+                    return;
+                }
+                AlertDialogUtil.showConfimDialog(context, null, 0, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        UIUtils.showLoadDialog(context,"操作中..");
+                        BaseQuestStart.SignOutTeam(context,null,context.getSession().getString("group_id"));
+                    }
+                },null);
+
             }
         });
 //        popupWindow.showAtLocation(anchor, Gravity.NO_GRAVITY,0,0);

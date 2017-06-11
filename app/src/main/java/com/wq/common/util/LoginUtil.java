@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 
 import com.sunrun.sunrunframwork.http.cache.ACache;
+import com.wq.common.App;
+import com.wq.common.quest.Config;
 
 
 /**
@@ -17,9 +19,9 @@ public class LoginUtil {
     }
 
     public static void exitLogin(Context context, boolean isOrtherLogin) {
-//        Config.putLoginInfo(null);
+        Config.putLoginInfo(null);
 //        Config.putConfigInfo(context, LoginConfig.PWD, null);
-//        BaoBaoShuApp.getInstance().closeActivitys(MainActivity.class);
+        App.getInstance().closeAllActivity();
         IntentUtil.startLogin( context, isOrtherLogin);
         ACache.get(context).clear();
     }

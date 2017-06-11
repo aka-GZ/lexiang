@@ -12,6 +12,7 @@ import com.wq.common.model.MyTemplateBean;
 import com.wq.common.model.ShopHotTemplateBean;
 import com.wq.common.model.TeamTemplateListObj;
 import com.wq.template.mode.PeopleEntity;
+import com.wq.vip.mode.RechargeOption;
 
 import java.util.List;
 
@@ -407,7 +408,7 @@ public class BaseQuestStart extends BaseQuestConfig {
 
         netRequestHandler.requestAsynPost(new NAction()
                 .setUrl(BaseQuestConfig.GET_RECHARGE_OPTION_URL)
-                // .setTypeToken(LoginInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
+                 .setTypeToken(new TypeToken<List<RechargeOption>>(){})//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_GET_RECHARGE_OPTION_CODE));
     }
 

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    >
+
+    <com.wq.common.widget.TitleBar
+        android:layout_width="match_parent"
+        android:id="@+id/titleBar"
+        app:backgroundColor="@color/title_color"
+        app:title="开通企业版"
+        app:leftAsFinish="true"
+        app:leftIcon="@drawable/back_h"
+        android:layout_height="45dp"
+        />
+    <!--<View-->
+        <!--style="@style/limit_gap"/>-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:id="@+id/tvLab"
+        android:text="VIP套餐"
+        android:paddingLeft="10dp"
+        android:gravity="center_vertical"
+        />
+    <View
+        style="@style/limit_line"/>
+    <com.sunrun.sunrunframwork.weight.pulltorefresh.PullToRefreshListView
+        android:layout_width="match_parent"
+        android:id="@+id/refreshLayout"
+        android:divider="@null"
+        android:scrollbars="none"
+        android:layout_height="match_parent"/>
+</LinearLayout>
