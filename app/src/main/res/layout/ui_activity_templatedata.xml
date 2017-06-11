@@ -30,7 +30,7 @@
                 android:textColor="@color/text3"
                 android:textSize="18sp" />
 
-            <GridView
+            <com.sunrun.sunrunframwork.weight.GridViewForScroll
                 android:id="@+id/templatedata_gv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
