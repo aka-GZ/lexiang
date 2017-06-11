@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
+    android:background="@color/bg"
     tools:context="com.wq.project01.MainActivity">
 
     <com.wq.common.widget.TitleBar
@@ -66,5 +67,5 @@
         android:id="@+id/refreshLayout"
         android:divider="@null"
         android:scrollbars="none"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"/>
 </LinearLayout>

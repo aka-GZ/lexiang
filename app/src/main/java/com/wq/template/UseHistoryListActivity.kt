@@ -14,7 +14,6 @@ import com.sunrun.sunrunframwork.adapter.ViewHolderAdapter
 import com.sunrun.sunrunframwork.uiutils.UIUtils
 import com.sunrun.sunrunframwork.weight.pulltorefresh.PullToRefreshListView
 import com.wq.base.LPageActivity
-import com.wq.common.util.ChooserHelper
 import com.wq.common.widget.TitleBar
 import com.wq.project01.R
 
@@ -32,9 +31,7 @@ import com.wq.common.boxing.GlideMediaLoader
 import com.wq.common.model.UseHistoryListBean
 import com.wq.common.quest.BaseQuestConfig.QUEST_MY_USE_TEMPLATE_CODE
 import com.wq.common.quest.BaseQuestStart
-import com.wq.common.util.IntentUtil
-import com.wq.common.util.isOk
-import com.wq.common.util.onClick
+import com.wq.common.util.*
 import kotlinx.android.synthetic.main.activity_use_history_list.*
 import org.jetbrains.anko.toast
 
@@ -61,6 +58,7 @@ class UseHistoryListActivity : LPageActivity<UseHistoryListBean>() {
 //        onClick([startTime,endTime,callback={
 //            view->
 //        });
+        GetEmptyViewUtils.bindEmptyView(refreshLayout,0,"暂无数据",true)
         startTime.setOnClickListener {
             startTimeChooser.showDateChooser(that, startTime) { picker, date ->
                 startTimeStr=startTime.text.toString();
