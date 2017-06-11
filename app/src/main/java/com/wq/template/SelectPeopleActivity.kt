@@ -13,10 +13,7 @@ import com.sunrun.sunrunframwork.weight.pulltorefresh.PullToRefreshBase
 import com.wq.base.LBaseActivity
 import com.wq.common.quest.BaseQuestConfig.QUEST_GET_TEAM_MEMBER_LIST_CODE
 import com.wq.common.quest.BaseQuestStart
-import com.wq.common.util.SESSION
-import com.wq.common.util.list2list
-import com.wq.common.util.onTextChanged
-import com.wq.common.util.toString
+import com.wq.common.util.*
 import com.wq.project01.R
 import com.wq.template.adapters.SelectPeopleSortAdapter
 import com.wq.template.mode.PeopleEntity
@@ -49,6 +46,7 @@ class SelectPeopleActivity : LBaseActivity() {
         refreshLayout.setAdapter(selectPeopleSortAdapter)
         selectPeopleSortAdapter.selectMode(MULTISELECT)
         BaseQuestStart.getTeamMemberList(this, SESSION("group_id"), 0)
+        GetEmptyViewUtils.bindEmptyView(refreshLayout,0,"暂无团队成员",true)
     }
 
     private fun initListener() {

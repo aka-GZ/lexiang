@@ -50,6 +50,7 @@ class PeopleManagerActivity : LBaseActivity() {
         selectPeopleSortAdapter.selectMode(MULTISELECT)
         group_id=SESSION("group_id");
         getTeamMemberList();
+        GetEmptyViewUtils.bindEmptyView(refreshLayout,0,"暂无团队成员",true)
     }
 
      fun getTeamMemberList(){

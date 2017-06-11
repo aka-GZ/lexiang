@@ -32,6 +32,7 @@ class HomeFragment : LBaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //请求页面数据
+
         BaseQuestStart.getClassTemplate(this)
         BaseQuestStart.getShopRecommendTemplateList(this, "0", null, null)
         BaseQuestStart.getShopHotTemplateList(this, "0", null, null)

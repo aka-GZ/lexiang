@@ -602,7 +602,7 @@ public class BaseQuestStart extends BaseQuestConfig {
     public static void getShopTemplateList(NetRequestHandler netRequestHandler,String requestUrl, int firstRow, String searchText, String class_id) {
 
         netRequestHandler.requestAsynPost(new NAction()
-                .setUrl(BaseQuestConfig.GET_SHOP_TEMPLATE_LIST_URL)
+                .setUrl(requestUrl)
                 .put("firstRow", firstRow)
                 .put("listRows", PAGE_COUNT)
                 .put("searchText", searchText)
@@ -630,11 +630,10 @@ public class BaseQuestStart extends BaseQuestConfig {
      * @return use_time 模板使用时间
      * @return use_num 模板使用次数
      */
-    public static void getMyUseTemplate(NetRequestHandler netRequestHandler, String uid, String firstRow, String startTime, String endTime) {
+    public static void getMyUseTemplate(NetRequestHandler netRequestHandler,  int firstRow, String startTime, String endTime) {
 
         netRequestHandler.requestAsynPost(new NAction()
                 .setUrl(BaseQuestConfig.GET_MY_USE_TEMPLATE_URL)
-                .put("uid", uid)
                 .put("firstRow", firstRow)
                 .put("listRows", PAGE_COUNT)
                 .put("startTime", startTime)

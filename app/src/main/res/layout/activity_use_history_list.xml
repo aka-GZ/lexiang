@@ -31,9 +31,9 @@
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:id="@+id/start_time"
+            android:id="@+id/startTime"
             android:gravity="center"
-            android:text="2017-03-04"
+            android:hint="开始时间"
             android:layout_height="wrap_content" />
         <View
             android:layout_width="40dp"
@@ -42,9 +42,9 @@
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:id="@+id/end_time"
+            android:id="@+id/endTime"
             android:gravity="center"
-            android:text="2017-03-04"
+            android:text="结束时间"
             android:layout_height="wrap_content" />
     </LinearLayout>
     <View
@@ -63,7 +63,7 @@
         <!--style="@style/limit_gap"/>-->
     <com.sunrun.sunrunframwork.weight.pulltorefresh.PullToRefreshListView
         android:layout_width="match_parent"
-        android:id="@+id/refresh_layout"
+        android:id="@+id/refreshLayout"
         android:divider="@null"
         android:scrollbars="none"
         android:layout_height="wrap_content"/>

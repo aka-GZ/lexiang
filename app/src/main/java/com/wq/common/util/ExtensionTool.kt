@@ -2,6 +2,7 @@ package com.wq.common.util
 
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import android.widget.TextView
 import com.sunrun.sunrunframwork.bean.BaseBean
 import com.sunrun.sunrunframwork.http.utils.UIUpdateHandler
@@ -74,4 +75,10 @@ fun <T,R> Iterable<T>.list2list(callback:(T)->R):List<R>{
 
 fun BaseBean.isOk():Boolean{
    return status==CODE_OK
+}
+
+fun onClick(vararg views: View,callback: (View) ->Unit ):Unit{
+    for (view in views){
+        view.setOnClickListener(callback)
+    }
 }

@@ -4,166 +4,183 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.wq.project01.MainActivity">
 
 
     <com.wq.common.widget.TitleBar
-        android:layout_width="match_parent"
         android:id="@+id/titleBar"
-        app:title="个人中心"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
         app:backgroundColor="@color/title_color"
         app:rightText="操作"
         app:rightVisible="visible"
-        />
+        app:title="个人中心" />
 
     <!--app:rightIcon="@drawable/back_h"-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:padding="10dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
         android:gravity="center_vertical"
-        android:layout_height="wrap_content">
+
+        android:orientation="horizontal"
+        android:padding="10dp">
+
         <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="70dp"
             android:id="@+id/img_head"
-            android:src="@mipmap/ic_launcher"
-            android:layout_height="70dp" />
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@mipmap/ic_launcher" />
+
         <TextView
             android:id="@+id/tv_nickname"
-            android:textSize="16sp"
-            android:textColor="@color/text2"
-            android:text="刘明"
-            android:layout_marginLeft="10dp"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content" />
+            android:text="刘明"
+            android:textColor="@color/text2"
+            android:textSize="16sp" />
+
         <TextView
             android:id="@+id/tv_open_qiye"
-            android:textSize="14sp"
-            android:textColor="@color/yellow_color"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="开通企业版"
-            android:layout_height="wrap_content" />
+            android:textColor="@color/yellow_color"
+            android:textSize="14sp" />
 
     </LinearLayout>
+
     <View
+        style="@style/limit_line"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        style="@style/limit_line"/>
+        android:layout_marginRight="10dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:padding="10dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
         android:gravity="center_vertical"
-        android:layout_height="wrap_content">
-
+        android:orientation="horizontal"
+        android:padding="10dp">
 
 
         <LinearLayout
+            android:id="@+id/lay_attention"
             android:layout_width="0dp"
-            android:orientation="vertical"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:id="@+id/lay_attention"
-            android:layout_height="wrap_content">
+            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/tv_attention"
-                android:textSize="14sp"
-                android:textColor="@color/text2"
-                android:text="关注"
-                android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="关注"
+                android:textColor="@color/text2"
+                android:textSize="14sp" />
+
             <TextView
                 android:id="@+id/tv_attention_number"
-                android:textSize="14sp"
-                android:textColor="@color/text2"
-                android:text="500"
-                android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="500"
+                android:textColor="@color/text2"
+                android:textSize="14sp" />
         </LinearLayout>
+
         <View
             style="@style/vertical_limit_line"
-            android:layout_height="30dp"
-            />
+            android:layout_height="30dp" />
+
         <LinearLayout
+            android:id="@+id/lay_fens"
             android:layout_width="0dp"
-            android:orientation="vertical"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:id="@+id/lay_fens"
-            android:layout_height="wrap_content">
+            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/tv_fens"
-                android:textSize="14sp"
-                android:textColor="@color/text2"
-                android:text="粉丝"
-                android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="粉丝"
+                android:textColor="@color/text2"
+                android:textSize="14sp" />
+
             <TextView
                 android:id="@+id/tv_fens_number"
-                android:textSize="14sp"
-                android:textColor="@color/text2"
-                android:text="500"
-                android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="500"
+                android:textColor="@color/text2"
+                android:textSize="14sp" />
         </LinearLayout>
 
     </LinearLayout>
 
 
-    <View
-        style="@style/limit_gap"/>
+    <View style="@style/limit_gap" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
         android:background="@color/white"
-        android:layout_height="wrap_content">
+        android:orientation="vertical">
+
         <TextView
-            android:layout_width="match_parent"
-            android:background="@drawable/selec_itemview"
             android:id="@+id/item_mine_template"
-            android:gravity="center"
-            android:text="我的模板"
-            android:layout_height="45dp" />
-        <View
-            android:layout_marginLeft="10dp"
-            style="@style/limit_line"/>
-        <TextView
             android:layout_width="match_parent"
+            android:layout_height="45dp"
             android:background="@drawable/selec_itemview"
+            android:gravity="center"
+            android:text="我的模板" />
+
+        <View
+            style="@style/limit_line"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
             android:id="@+id/item_team_template"
-            android:gravity="center"
-            android:text="团队模板"
-            android:layout_height="45dp" />
-        <View
-            android:layout_marginLeft="10dp"
-            style="@style/limit_line"/>
-        <TextView
             android:layout_width="match_parent"
+            android:layout_height="45dp"
             android:background="@drawable/selec_itemview"
+            android:gravity="center"
+            android:text="团队模板" />
+
+        <View
+            style="@style/limit_line"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
             android:id="@+id/item_use_history"
-            android:gravity="center"
-            android:text="使用记录"
-            android:layout_height="45dp" />
-        <View
-            android:layout_marginLeft="10dp"
-            style="@style/limit_line"/>
-        <TextView
             android:layout_width="match_parent"
+            android:layout_height="45dp"
             android:background="@drawable/selec_itemview"
-            android:id="@+id/item_use_exit"
             android:gravity="center"
-            android:text="退出登录"
-            android:layout_height="45dp" />
+            android:text="使用记录" />
+
+        <View
+            style="@style/limit_line"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:id="@+id/item_use_exit"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/selec_itemview"
+            android:gravity="center"
+            android:text="退出登录" />
     </LinearLayout>
-    <View
-        style="@style/limit_line"/>
+
+    <View style="@style/limit_line" />
 </LinearLayout>

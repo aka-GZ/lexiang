@@ -20,6 +20,13 @@ public class UseHistoryListBean {
     private String template_id;
     private String use_time;
     private String use_num;
+    private String template_cover_img_url;
+
+    public String useDate;
+    public String useTime;
+    public String getTemplate_cover_img_url() {
+        return template_cover_img_url;
+    }
 
     public String getTemplate_name() {
         return template_name;
