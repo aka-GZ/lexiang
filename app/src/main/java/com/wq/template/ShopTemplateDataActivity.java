@@ -1,34 +1,31 @@
 package com.wq.template;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
 
 import com.sunrun.sunrunframwork.bean.BaseBean;
+import com.sunrun.sunrunframwork.uiutils.ToastUtils;
 import com.sunrun.sunrunframwork.uiutils.UIUtils;
 import com.wq.base.LBaseActivity;
-import com.wq.common.model.TeamTemplateListObj;
 import com.wq.common.model.TemplateDataObj;
 import com.wq.common.quest.BaseQuestStart;
-import com.wq.common.quest.Config;
 import com.wq.common.widget.TitleBar;
 import com.wq.project01.R;
 import com.wq.template.adapters.TemplateDataAdapter;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.wq.common.model.Const.CODE_OK;
-import static com.wq.common.quest.BaseQuestConfig.QUEST_GET_TEMPLATE_DATA_CODE;
+import static com.wq.common.quest.BaseQuestConfig.QUEST_GET_SHOP_TEMPLATE_DATA_CODE;
 
 /**
  * Created by Zheng on 2017/6/11.
  */
 
-public class TemplateDataActivity extends LBaseActivity {
+public class ShopTemplateDataActivity extends LBaseActivity {
 
     String template_name;
     String template_id;
@@ -38,6 +35,9 @@ public class TemplateDataActivity extends LBaseActivity {
     TextView templatedataTv;
     @BindView(R.id.templatedata_gv)
     GridView templatedataGv;
+    @BindView(R.id.templatedata_shared_tv)
+    TextView templatedataSharedTv;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,30 +78,44 @@ public class TemplateDataActivity extends LBaseActivity {
          * @return forwarding_times->模板转发次数
          * @return remindPeopleList->九宫格提醒人uid list
          */
-        BaseQuestStart.getTemplateData(this , template_id);
+        BaseQuestStart.getShopTemplateData(this, template_id);
     }
 
-     @Override
-         public void nofityUpdate(int requestCode, BaseBean bean) {
+    @Override
+    public void nofityUpdate(int requestCode, BaseBean bean) {
 
-             switch (requestCode) {
-                 case QUEST_GET_TEMPLATE_DATA_CODE:
-                     if (bean.status == CODE_OK) {
+        switch (requestCode) {
+            case QUEST_GET_SHOP_TEMPLATE_DATA_CODE:
+                if (bean.status == CODE_OK) {
 
-                         TemplateDataObj obj = bean.Data();//获取数据内容
+                    TemplateDataObj obj = bean.Data();//获取数据内容
 
-                         titlebar.setTitle("素材市场-" + obj.getTemplate_name());
-                         templatedataTv.setText(""+ obj.getTemplate_content());
-                         TemplateDataAdapter adapter = new TemplateDataAdapter(TemplateDataActivity.this , obj.getImgList() );
-                         templatedataGv.setAdapter(adapter);
-                         adapter.notifyDataSetChanged();
+                    titlebar.setTitle("素材市场-" + obj.getTemplate_name());
+                    templatedataTv.setText("" + obj.getTemplate_content());
+                    TemplateDataAdapter adapter = new TemplateDataAdapter(ShopTemplateDataActivity.this, obj.getImgList());
+                    templatedataGv.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
 
-                     } else {
-                         UIUtils.shortM(bean.msg);
-                     }
+                    templatedataSharedTv.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ToastUtils.shortToast("分享");
+                        }
+                    });
 
-                     break;
 
-             }
-          }
+                } else if (bean.status == 3003) {
+
+
+                    UIUtils.shortM(bean.msg);
+                    finish();
+
+                } else {
+                    UIUtils.shortM(bean.msg);
+                }
+
+                break;
+
+        }
+    }
 }

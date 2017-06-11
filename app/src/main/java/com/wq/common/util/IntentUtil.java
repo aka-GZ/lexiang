@@ -12,7 +12,7 @@ import com.wq.login.RegisterActivity;
 import com.wq.main.NavigatorActivity;
 import com.wq.main.TemplateListActivity;
 import com.wq.template.SelectPeopleActivity;
-import com.wq.template.TemplateDataActivity;
+import com.wq.template.ShopTemplateDataActivity;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -82,7 +82,7 @@ public class IntentUtil extends BaseStartIntent {
      * @param template_id
      */
     public static void startTemplateDataActivity(@Nullable Activity that, @Nullable String template_name, @Nullable String template_id) {
-        Intent intent=new Intent(that,TemplateDataActivity.class);
+        Intent intent=new Intent(that,ShopTemplateDataActivity.class);
         intent.putExtra("template_name",template_name);
         intent.putExtra("template_id",template_id);
         that.startActivity(intent);

@@ -495,12 +495,13 @@ public class BaseQuestStart extends BaseQuestConfig {
      * @param template_id->模板ID
      * @return remindPeopleList->九宫格提醒人uid list
      */
-    public static void getShopTemplateData(NetRequestHandler netRequestHandler, String uid, String template_id) {
+    public static void getShopTemplateData(NetRequestHandler netRequestHandler, String template_id) {
 
         netRequestHandler.requestAsynPost(new NAction()
                 .setUrl(BaseQuestConfig.GET_SHOP_TEMPLATE_DATA_URL)
-                .put("uid", uid)
+               // .put("uid", uid)
                 .put("template_id", template_id)
+                .setTypeToken(TemplateDataObj.class)//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_GET_SHOP_TEMPLATE_DATA_CODE));
     }
 

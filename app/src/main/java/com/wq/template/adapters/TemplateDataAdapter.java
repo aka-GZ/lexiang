@@ -10,6 +10,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.sunrun.sunrunframwork.uiutils.DisplayUtil;
+import com.sunrun.sunrunframwork.uiutils.UIUtils;
+import com.sunrun.sunrunframwork.utils.ScreenUtils;
 import com.wq.common.boxing.GlideMediaLoader;
 import com.wq.common.model.TemplateDataObj;
 import com.wq.project01.R;
@@ -24,10 +27,13 @@ public class TemplateDataAdapter extends BaseAdapter {
 
     Context ctx;
     List<TemplateDataObj.ImgListBean> list;
-
+    int imgW;
     public TemplateDataAdapter(Context ctx , List<TemplateDataObj.ImgListBean> list) {
         this.ctx = ctx;
         this.list = list;
+        imgW= ScreenUtils.WHD(ctx)[0];
+        imgW=(imgW- DisplayUtil.dp2px(ctx,46))/3;
+
     }
 
     @Override
@@ -57,11 +63,8 @@ public class TemplateDataAdapter extends BaseAdapter {
         }else {
             viewHolder = (ViewHolder) view.getTag();
         }
-
+        UIUtils.setViewWH(viewHolder.item_template_data_iv,imgW,imgW);
         GlideMediaLoader.load(ctx , viewHolder.item_template_data_iv ,list.get(position).getImg_url());
-
-
-
         return view;
 
     }

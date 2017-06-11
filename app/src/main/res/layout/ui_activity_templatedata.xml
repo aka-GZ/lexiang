@@ -12,31 +12,51 @@
         android:layout_height="@dimen/titlebar_height"
         app:title="素材市场" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:padding="20dp"
-        android:orientation="vertical"
-        android:layout_weight="1">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/templatedata_tv"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textColor="@color/text3"
-            android:lineSpacingMultiplier="1.2"
-             />
+            android:orientation="vertical"
+            android:padding="20dp">
 
-        <GridView
-            android:id="@+id/templatedata_gv"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:numColumns="3"
-            android:horizontalSpacing="3dp"
-            android:verticalSpacing="3dp"
-            android:layout_weight="1"
-            android:layout_marginTop="20dp"/>
-    </LinearLayout>
+            <TextView
+                android:id="@+id/templatedata_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="1.2"
+                android:textColor="@color/text3"
+                android:textSize="18sp" />
 
+            <GridView
+                android:id="@+id/templatedata_gv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:horizontalSpacing="3dp"
+                android:numColumns="3"
+                android:verticalSpacing="3dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/templatedata_shared_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="分享"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

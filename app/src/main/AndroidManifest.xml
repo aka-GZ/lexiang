@@ -68,7 +68,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name="com.wq.template.TemplateDataActivity"
+            android:name="com.wq.template.ShopTemplateDataActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
