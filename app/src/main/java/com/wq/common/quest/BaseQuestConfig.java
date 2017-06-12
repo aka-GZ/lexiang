@@ -132,6 +132,10 @@ public class BaseQuestConfig implements NetQuestConfig {
     public static String GET_MY_USE_TEMPLATE_URL = HTTP_API + "/api.php/Cube/getMyUseTemplate";
     public static final int QUEST_MY_USE_TEMPLATE_CODE = 0X028;
 
+    //注册验证码
+    public static String GET_GETVERIFICATIONCODE_URL = HTTP_API + "/api.php/Auth/getVerificationCode";
+    public static final int QUEST_GETVERIFICATIONCODE_CODE = 0X029;
+
 }
 
 

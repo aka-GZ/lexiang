@@ -3,9 +3,14 @@ package com.wq.common.util
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.widget.AbsListView
+import android.widget.GridView
+import android.widget.ListView
 import android.widget.TextView
 import com.sunrun.sunrunframwork.bean.BaseBean
 import com.sunrun.sunrunframwork.http.utils.UIUpdateHandler
+import com.sunrun.sunrunframwork.weight.pulltorefresh.PullToRefreshAdapterViewBase
+import com.sunrun.sunrunframwork.weight.pulltorefresh.PullToRefreshBase
 import com.wq.common.model.Const.CODE_OK
 import com.wq.main.RequestDelegate
 
@@ -80,5 +85,20 @@ fun BaseBean.isOk():Boolean{
 fun onClick(vararg views: View,callback: (View) ->Unit ):Unit{
     for (view in views){
         view.setOnClickListener(callback)
+    }
+}
+
+fun <T : AbsListView?> PullToRefreshAdapterViewBase<T>.itemClick(callback: (Int) -> Unit){
+
+    setOnItemClickListener { adapterView, view, i, l ->
+        if(refreshableView is ListView){
+            var list=refreshableView as ListView;
+            callback.invoke(i-1)
+        }else if(refreshableView is GridView){
+            var list=refreshableView as GridView;
+            callback.invoke(i-1)
+        }else {
+            callback.invoke(i)
+        }
     }
 }

@@ -10,6 +10,8 @@ import com.wq.common.quest.BaseQuestConfig.GET_SHOP_TEMPLATE_LIST_URL
 import com.wq.common.quest.BaseQuestConfig.QUEST_GET_SHOP_TEMPLATE_LIST_CODE
 import com.wq.common.quest.BaseQuestStart
 import com.wq.common.util.GetEmptyViewUtils
+import com.wq.common.util.IntentUtil
+import com.wq.common.util.itemClick
 import com.wq.common.util.onTextChanged
 import com.wq.main.adapter.HotTemplateAdapter
 import com.wq.main.adapter.ShopTemplateAdapter
@@ -40,6 +42,9 @@ class TemplateListActivity : LPageActivity<HomeTemplateBean>() {
         }
         setPullListener(refresh_layout)
         GetEmptyViewUtils.bindEmptyView(refresh_layout,0,"暂无数据",true);
+        refresh_layout.itemClick { index ->
+            IntentUtil.startTemplateDataActivity(that, listData[index].template_name, listData[index].template_id)
+        }
     }
 
     override fun loadData(page: Int) {
@@ -54,6 +59,7 @@ class TemplateListActivity : LPageActivity<HomeTemplateBean>() {
             QUEST_GET_SHOP_TEMPLATE_LIST_CODE->{
                 bean.Data<List<HomeTemplateBean>>()?.let {
                     setDataToView(it,refresh_layout.refreshableView)
+
                 };
             }
         }

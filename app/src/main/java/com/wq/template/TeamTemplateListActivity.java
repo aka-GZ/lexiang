@@ -22,6 +22,7 @@ import com.wq.common.model.LoginInfo;
 import com.wq.common.model.TeamTemplateListObj;
 import com.wq.common.quest.BaseQuestConfig;
 import com.wq.common.quest.BaseQuestStart;
+import com.wq.common.util.IntentUtil;
 import com.wq.common.widget.TitleBar;
 import com.wq.project01.R;
 
@@ -40,7 +41,7 @@ import static com.wq.project01.R.id.img_icon;
  * Created by weiquan on 2017/6/2.0
  */
 
-public class TeamTemplateListActivity extends LPageActivity {
+public class TeamTemplateListActivity extends LPageActivity<TeamTemplateListObj> {
 
     @BindView(R.id.titleBar)
     TitleBar titleBar;
@@ -56,13 +57,15 @@ public class TeamTemplateListActivity extends LPageActivity {
         setPullListener(refreshLayout);
         refreshLayout.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                View dialogView = View.inflate(that,R.layout.dialog_send_info,null);
-                Dialog dialog= UIUtils.createDialog(that,dialogView);
+            public void onItemClick(AdapterView<?> adapterView, View view, int index, long l) {
+//                IntentUtil.startMyTemplateDataActivity(that, getListData().get(index-1).template_name, getListData().get(index-1).template_id);
+                IntentUtil.startTemplateDataActivity(that, getListData().get(index-1).template_name, getListData().get(index-1).template_id);
             }
         });
     }
- private int page = 1;
+
+    private int page = 1;
+
     @Override
     public void loadData(int i) {
 //        ArrayList list=new ArrayList();
@@ -72,7 +75,7 @@ public class TeamTemplateListActivity extends LPageActivity {
         //firstRow 开始记录数   , listRows 每页显示数量
         String firstRow = "0";//默认第0组
         String listRows = "10";
-        BaseQuestStart.getGroupList(this , firstRow , listRows);
+        BaseQuestStart.getGroupList(this, firstRow, listRows);
 
 
     }
@@ -91,7 +94,7 @@ public class TeamTemplateListActivity extends LPageActivity {
                         String firstRow = page + "";
                         String listRows = "10";
                         BaseQuestStart.getTeamTemplateList(this, group_id, firstRow, listRows);
-                    }else{
+                    } else {
                         ToastUtils.shortToast("暂无团队信息");
                     }
                 }
@@ -100,7 +103,7 @@ public class TeamTemplateListActivity extends LPageActivity {
                 //log 设置 tag为NetServer 可以查看请求情况
                 if (bean.status == 200) {
                     List<TeamTemplateListObj> list = bean.Data();//获取数据内容
-                    setDataToView(list,refreshLayout.getRefreshableView());
+                    setDataToView(list, refreshLayout.getRefreshableView());
                 }
                 break;
         }
@@ -109,19 +112,25 @@ public class TeamTemplateListActivity extends LPageActivity {
 
     @Override
     public BaseAdapter getAdapter(List list) {
-        return new ViewHolderAdapter<TeamTemplateListObj>(that,list,R.layout.item_team_template) {
+        return new ViewHolderAdapter<TeamTemplateListObj>(that, list, R.layout.item_team_template) {
 
             @Override
-            public void fillView(ViewHodler viewHodler, TeamTemplateListObj o, int i) {
-                GlideMediaLoader.load(mContext,viewHodler.getView(R.id.img_icon),o.getTemplate_cover_img_url());
-                viewHodler.setText(R.id.tv_titlle,o.getTemplate_name());
+            public void fillView(ViewHodler viewHodler,final TeamTemplateListObj o, int i) {
+                GlideMediaLoader.load(mContext, viewHodler.getView(R.id.img_icon), o.getTemplate_cover_img_url());
+                viewHodler.setText(R.id.tv_titlle, o.getTemplate_name());
                 viewHodler.setText(R.id.tv_time, DateUtil.getTimeText(o.getForward_expiration_date()));
-                int Forwarded  = o.getForwarded().size();
-                int Not_Forward  = o.getNot_forward().size();
+                int Forwarded = o.getForwarded().size();
+                int Not_Forward = o.getNot_forward().size();
                 int totle = Forwarded + Not_Forward;
                 viewHodler.setText(R.id.tv_team_number, Forwarded + "/" + Not_Forward);
-
-                viewHodler.setText(R.id.tv_people,o.getFounder_forwarding_times());
+                viewHodler.setText(R.id.tv_people, o.getFounder_forwarding_times());
+                viewHodler.setClickListener(R.id.tv_team_number, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        getSession().put("team_template",o);
+                        new TeamZhuanDialogFragment().show(getSupportFragmentManager(),"zhuan");
+                    }
+                });
             }
         };
     }

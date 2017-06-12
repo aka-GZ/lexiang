@@ -55,7 +55,7 @@ public class FixedPopupWindow extends PopupWindow {
 
     @Override
     public void setOutsideTouchable(boolean touchable) {
-        if(touchable){
+        if (touchable) {
             getContentView().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -65,20 +65,24 @@ public class FixedPopupWindow extends PopupWindow {
         }
         super.setOutsideTouchable(touchable);
     }
+
     public void showAsDropDown(View anchor) {
         showAsDropDown(anchor, 0, 0);
     }
+
     public void showAsDropDown(View anchor, int xoff, int yoff) {
-        showAsDropDown(anchor, xoff, yoff,  Gravity.TOP | Gravity.START);
+        if (Build.VERSION.SDK_INT < 24) {
+            super.showAsDropDown(anchor, xoff, yoff);
+        } else {
+            showAsDropDown(anchor, xoff, yoff, Gravity.TOP | Gravity.START);
+        }
     }
+
     @Override
     public void showAsDropDown(View anchor, int xoff, int yoff, int gravity) {
-        if (Build.VERSION.SDK_INT < 24)
-        {
-            super.showAsDropDown(anchor, xoff, yoff,gravity);
-        }
-        else
-        {
+        if (Build.VERSION.SDK_INT < 24) {
+            super.showAsDropDown(anchor, xoff, yoff, gravity);
+        } else {
             // 适配 android 7.0
             int[] location = new int[2];
             anchor.getLocationOnScreen(location);
@@ -183,6 +187,7 @@ public class FixedPopupWindow extends PopupWindow {
 
     /**
      * 反射获取对象
+     *
      * @param paramName
      * @return
      */
@@ -202,6 +207,7 @@ public class FixedPopupWindow extends PopupWindow {
 
     /**
      * 反射赋值对象
+     *
      * @param paramName
      * @param obj
      */
@@ -220,6 +226,7 @@ public class FixedPopupWindow extends PopupWindow {
 
     /**
      * 反射执行方法
+     *
      * @param methodName
      * @param args
      * @return
@@ -237,8 +244,10 @@ public class FixedPopupWindow extends PopupWindow {
         }
         return null;
     }
+
     /**
      * 反射执行方法
+     *
      * @param methodName
      * @return
      */
@@ -255,20 +264,18 @@ public class FixedPopupWindow extends PopupWindow {
         }
         return null;
     }
+
     /**
      * 利用递归找一个类的指定方法，如果找不到，去父亲里面找直到最上层Object对象为止。
      *
-     * @param clazz
-     *            目标类
-     * @param methodName
-     *            方法名
-     * @param classes
-     *            方法参数类型数组
+     * @param clazz      目标类
+     * @param methodName 方法名
+     * @param classes    方法参数类型数组
      * @return 方法对象
      * @throws Exception
      */
     private Method getMethod(Class clazz, String methodName,
-                                   final Class[] classes) throws Exception {
+                             final Class[] classes) throws Exception {
         Method method = null;
         try {
             method = clazz.getDeclaredMethod(methodName, classes);

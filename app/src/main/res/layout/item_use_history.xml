@@ -16,9 +16,10 @@
 
         <TextView
             android:id="@+id/tv_date"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
+            android:background="@color/white"
             android:text="2017-10-10"
             android:textColor="@color/text4" />
     </LinearLayout>
@@ -29,6 +30,7 @@
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingBottom="5dp"
+        android:background="@drawable/selec_itemview"
         android:paddingLeft="10dp"
         android:paddingTop="5dp">
 

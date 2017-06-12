@@ -1,5 +1,6 @@
 package com.wq.common.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,8 +22,8 @@ public class TeamTemplateListObj {
      */
 
 
-    private String template_id;
-    private String template_name;
+    public String template_id;
+    public String template_name;
     private Object class_id;
     private String template_cover_img_url;
     private String template_add_time;
@@ -81,7 +82,7 @@ public class TeamTemplateListObj {
     }
 
     public List<TeamTemplateForwarded> getForwarded() {
-        return forwarded;
+        return forwarded==null?new ArrayList<TeamTemplateForwarded>():forwarded;
     }
 
     public void setForwarded(List<TeamTemplateForwarded> forwarded) {
@@ -89,7 +90,7 @@ public class TeamTemplateListObj {
     }
 
     public List<TeamTemplateNotForwarded> getNot_forward() {
-        return not_forward;
+        return not_forward==null?new ArrayList<TeamTemplateNotForwarded>():not_forward;
     }
 
     public void setNot_forward(List<TeamTemplateNotForwarded> not_forward) {

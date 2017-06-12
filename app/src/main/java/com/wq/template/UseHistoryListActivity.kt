@@ -42,7 +42,6 @@ import org.jetbrains.anko.toast
 
 class UseHistoryListActivity : LPageActivity<UseHistoryListBean>() {
 
-
     internal var startTimeChooser = ChooserHelper()
     internal var endTimeChooser = ChooserHelper()
     var startTimeStr:String?=null;
@@ -52,12 +51,6 @@ class UseHistoryListActivity : LPageActivity<UseHistoryListBean>() {
         setContentView(R.layout.activity_use_history_list)
         ButterKnife.bind(this)
         setPullListener(refreshLayout)
-       // startTime.text=DateUtil.getCurrentDate(DateUtil.dateFormatYMD)
-        //endTime.text=DateUtil.getCurrentDate(DateUtil.dateFormatYMD)
-
-//        onClick([startTime,endTime,callback={
-//            view->
-//        });
         GetEmptyViewUtils.bindEmptyView(refreshLayout,0,"暂无数据",true)
         startTime.setOnClickListener {
             startTimeChooser.showDateChooser(that, startTime) { picker, date ->
@@ -105,12 +98,12 @@ class UseHistoryListActivity : LPageActivity<UseHistoryListBean>() {
                         it.useDate=date;
                         it.useTime=time;
                     }
+                    //设置数据
                     setDataToView(it, refreshLayout.refreshableView)
-                    refreshLayout.setOnItemClickListener { adapterView, view, i, l ->
+                    //设置点击事件
+                    refreshLayout.itemClick { i->
                         //跳转到详情页面
-                        IntentUtil.startTemplateDataActivity(this,it[i].template_name,it[i].template_id)
-//            val dialogView = View.inflate(that, R.layout.dialog_send_info, null)
-//            val dialog = UIUtils.createDialog(that, dialogView)
+                        IntentUtil.startTemplateDataActivity(this,listData[i].template_name,listData[i].template_id)
                     }
                 }
             }

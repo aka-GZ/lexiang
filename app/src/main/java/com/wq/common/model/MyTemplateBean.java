@@ -21,4 +21,15 @@ public class MyTemplateBean {
     public String template_add_time;
     public String template_cover_img_url;
     public String forwardingtimes;
+
+
+    /**
+     * forwarding_times : 0
+     * class_id : -1
+     * template_content : 测的
+     */
+
+    public String forwarding_times;
+    public String class_id;
+    public String template_content;
 }

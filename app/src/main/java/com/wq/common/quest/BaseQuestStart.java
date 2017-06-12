@@ -1,5 +1,7 @@
 package com.wq.common.quest;
 
+import android.widget.EditText;
+
 import com.google.gson.reflect.TypeToken;
 import com.sunrun.sunrunframwork.http.NAction;
 import com.sunrun.sunrunframwork.http.NetRequestHandler;
@@ -13,6 +15,7 @@ import com.wq.common.model.ShopHotTemplateBean;
 import com.wq.common.model.TeamTemplateListObj;
 import com.wq.common.model.TemplateDataObj;
 import com.wq.common.model.UseHistoryListBean;
+import com.wq.login.RegisterActivity;
 import com.wq.template.mode.PeopleEntity;
 import com.wq.vip.mode.RechargeOption;
 
@@ -361,12 +364,15 @@ public class BaseQuestStart extends BaseQuestConfig {
      * @param email     用户邮箱地址 (可选)
      * @return code code 200 成功 3001 phone_no参数未传入 3002 password参数未传入  3003 账号已存在 3004写入用户数据失败 3005 手机号码不合法
      */
-    public static void register(NetRequestHandler netRequestHandler, Object phone_no, String password, Object captcha) {
+    public static void register(NetRequestHandler netRequestHandler, Object phone_no, String password, Object verification_code,Object user_name,Object email) {
 
         netRequestHandler.requestAsynPost(new NAction()
                 .setUrl(BaseQuestConfig.REGISTER_URL)
                 .put("phone_no", phone_no)
                 .put("password", Utils.getMD5(password))
+                .put("verification_code", verification_code)
+                .put("user_name", user_name)
+                .put("email", email)
                 // .setTypeToken(LoginInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_REGISTER_CODE));
     }
@@ -644,4 +650,16 @@ public class BaseQuestStart extends BaseQuestConfig {
     }
 
 
+    /**
+     * 获取验证码
+     * @param netRequestHandler
+     * @param phone_no
+     */
+    public static void captcha(NetRequestHandler netRequestHandler, EditText phone_no) {
+        netRequestHandler.requestAsynPost(new NAction()
+                .setUrl(BaseQuestConfig.GET_GETVERIFICATIONCODE_URL)
+                .put("phone_no", phone_no)
+//                .setTypeToken(new TypeToken<List<UseHistoryListBean>>(){})//指定解析类型,该程序里面对应body 里面的json内容
+                .setRequestCode(BaseQuestConfig.QUEST_GETVERIFICATIONCODE_CODE));
+    }
 }
