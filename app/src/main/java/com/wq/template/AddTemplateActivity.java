@@ -1,15 +1,14 @@
 package com.wq.template;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.bilibili.boxing.Boxing;
 import com.bilibili.boxing.model.config.BoxingConfig;
@@ -17,19 +16,16 @@ import com.bilibili.boxing.model.entity.BaseMedia;
 import com.bilibili.boxing_impl.ui.BoxingActivity;
 import com.google.gson.reflect.TypeToken;
 import com.sunrun.sunrunframwork.bean.BaseBean;
+import com.sunrun.sunrunframwork.uiutils.BitmapUtils;
 import com.sunrun.sunrunframwork.uiutils.PictureShow;
 import com.sunrun.sunrunframwork.uiutils.ToastUtils;
 import com.sunrun.sunrunframwork.uiutils.UIUtils;
 import com.sunrun.sunrunframwork.utils.formVerify.FormatException;
-import com.sunrun.sunrunframwork.utils.formVerify.VerifyUtil;
 import com.sunrun.sunrunframwork.utils.formVerify.VerifyerSet;
 import com.sunrun.sunrunframwork.view.ItemView;
-import com.sunrun.sunrunframwork.view.title.BaseTitleLayoutView;
 import com.sunrun.sunrunframwork.weight.MultiImageUploadView;
 import com.sunrun.sunrunframwork.weight.switchbtn.SlideSwitch;
 import com.wq.base.LBaseActivity;
-import com.wq.common.model.GroupListObj;
-import com.wq.common.model.TeamTemplateListObj;
 import com.wq.common.quest.BaseQuestConfig;
 import com.wq.common.quest.BaseQuestStart;
 import com.wq.common.util.IntentUtil;
@@ -38,13 +34,10 @@ import com.wq.common.widget.TitleBar;
 import com.wq.project01.R;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.sunrun.sunrunframwork.utils.formVerify.VerifyUtil.verify;
@@ -81,7 +74,7 @@ public class AddTemplateActivity extends LBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_template);
-
+        new ToastUtils();
         cbGongkai.setState(true);
 
 //        imgUpload.
@@ -120,6 +113,7 @@ public class AddTemplateActivity extends LBaseActivity {
         });
 
     }
+
     Runnable run = new Runnable() {
         @Override
         public void run() {
@@ -128,50 +122,35 @@ public class AddTemplateActivity extends LBaseActivity {
     };
 
     Bitmap bit4 = null;
-    public void Save(){
-        if (list ==null && name == null){
+
+    public void Save() {
+        if (list == null && name == null) {
             list = new ArrayList<String>();
             name = " ";
         }
-
-        is_open =  cbGongkai.isSelected() ?  "1": "-1";
-
-
-        for ( File file  : multiImage.getFiles() ) {
-                        Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-                        bitmaps.add(bitmap);
+        is_open = cbGongkai.isSelected() ? "1" : "-1";
+        for (File file : multiImage.getFiles()) {
+            Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+            bitmaps.add(bitmap);
         }
         try {
             verify(tvTitle, new VerifyerSet.EmptyVerifyer("请输入模板名称"));
-            verify(editContent,new VerifyerSet.EmptyVerifyer("请输入分享内容"));
+            verify(editContent, new VerifyerSet.EmptyVerifyer("请输入分享内容"));
         } catch (FormatException e) {
             e.printStackTrace();
-            UIUtils.shortM(e.getLocalizedMessage());
+            ToastUtils.shortToast(e.getLocalizedMessage());
             return;
         }
-        if (bitmaps.size() > 0 ) {
-            Width = bitmaps.get(0).getWidth();
-            bitmaps_2.clear();
-            bitmaps_2.addAll(bitmaps);
-            for (int i = 0; i < 9; i++) {
-                if (bitmaps_2.size()-1 < i){
-                    bitmaps_2.add(Bitmap.createBitmap(Width, Width, Bitmap.Config.ARGB_8888));
-                }
-            }
-            Bitmap bit1 = add3Bitmap(bitmaps_2.get(0), bitmaps_2.get(1), bitmaps_2.get(2));
-            Bitmap bit2 = add3Bitmap(bitmaps_2.get(3), bitmaps_2.get(4), bitmaps_2.get(5));
-            Bitmap bit3 = add3Bitmap(bitmaps_2.get(6), bitmaps_2.get(7), bitmaps_2.get(8));
-            bit4 = addBitmap(bit1, bit2, bit3);
-        }else{
+        if (multiImage.getFiles().size() > 0) {
+
+            bit4 = createGridBitmap(bitmaps);
+        } else {
             ToastUtils.shortToast("分享模板图片为空");
             return;
         }
         bitmaps_3.clear();
-//        for (Bitmap bit: bitmaps ) {
-//            bitmaps_3.add(Tool.bitmapToBase64(bit));
-//        }
-        for ( File file  : multiImage.getFiles() ) {
-            bitmaps_3.add(Tool.image2String(file));
+        for (File file : multiImage.getFiles()) {
+             bitmaps_3.add(Tool.image2String(file));
         }
         /**
          * 用户添加模板
@@ -190,11 +169,10 @@ public class AddTemplateActivity extends LBaseActivity {
         this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
-                BaseQuestStart.addTemplate(AddTemplateActivity.this,tvTitle,editContent, Tool.image2String(Tool.saveBitmapFile(bit4)) ,bitmaps_3, list, is_open);
-
+                BaseQuestStart.addTemplate(AddTemplateActivity.this, tvTitle, editContent, Tool.image2String(Tool.saveBitmapFile(bit4)), bitmaps_3, list, is_open);
             }
-        }); }
+        });
+    }
 
 
     @Override
@@ -216,33 +194,23 @@ public class AddTemplateActivity extends LBaseActivity {
     }
 
     ArrayList<Bitmap> bitmaps = new ArrayList<Bitmap>();
-    ArrayList<Bitmap> bitmaps_2 = new ArrayList<Bitmap>();
     ArrayList<String> bitmaps_3 = new ArrayList<String>();
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 123 && resultCode == RESULT_OK){
+        if (requestCode == 123 && resultCode == RESULT_OK) {
 
-            list = getSession().getBean("ids",new TypeToken<List<String>>(){});
+            list = getSession().getBean("ids", new TypeToken<List<String>>() {
+            });
             name = getSession().getString("names");
 
             itemRemind.setRightText(name);
-        }else {
+        } else {
             ArrayList<BaseMedia> images = Boxing.getResult(data);
             if (images != null) {
                 for (BaseMedia image : images) {
                     multiImage.addFile(new File(image.getPath()));
-
-//                    try {
-//                        FileInputStream fis = new FileInputStream(image.getPath());
-//                        Bitmap bitmap = BitmapFactory.decodeStream(fis);
-//                        bitmaps.add(bitmap);
-//                    } catch (FileNotFoundException e) {
-//                        e.printStackTrace();
-//                    }
                 }
-
-
-
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -256,7 +224,7 @@ public class AddTemplateActivity extends LBaseActivity {
                 break;
             case R.id.item_remind:
 
-                IntentUtil.startSlectPeopleActivity(AddTemplateActivity.this , 123);
+                IntentUtil.startSlectPeopleActivity(AddTemplateActivity.this, 123);
 
 
                 break;
@@ -266,40 +234,29 @@ public class AddTemplateActivity extends LBaseActivity {
     }
 
     int Width = 0;
-    /**
-     * 横向拼接
-     * <功能详细描述>
-     * @param first
-     * @param second
-     * @return
-     */
-    private Bitmap add3Bitmap(Bitmap first, Bitmap second, Bitmap three) {
-        int width = Width/3;
-        int height = Width/3;
-        Bitmap result = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(result);
-        canvas.drawBitmap(first, 0, 0, null);
-        canvas.drawBitmap(second, Width/3, 0, null);
-        canvas.drawBitmap(three, (Width+Width)/3, 0, null);
-        return result;
-    }
 
 
-    /**
-     * 纵向拼接
-     * <功能详细描述>
-     * @param first
-     * @param second
-     * @return
-     */
-    private Bitmap addBitmap(Bitmap first, Bitmap second, Bitmap three) {
-        int width = Math.max(first.getWidth(),second.getWidth());
-        int height = (first.getWidth() + second.getWidth() + three.getWidth())/3;;
-        Bitmap result = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(result);
-        canvas.drawBitmap(first, 0, 0, null);
-        canvas.drawBitmap(second, first.getWidth()/3, 0, null);
-        canvas.drawBitmap(three, (first.getWidth()+second.getWidth())/3, 0, null);
-        return result;
+
+    public Bitmap createGridBitmap(List<Bitmap> bits) {
+        int W = 500;
+        Bitmap aimBit = Bitmap.createBitmap(W, W, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(aimBit);
+        canvas.drawARGB(255, 255, 255, 255);//绘制底色
+        int smallW = W / 3;
+        Paint paint=new Paint();
+        paint.setARGB(255,255,255,255);
+        paint.setStrokeWidth(5);
+        paint.setAntiAlias(true);
+        for (int i = 0; i < 9; i++) {
+            int row = i / 3;
+            int nol = i % 3;
+            if (i < bits.size()) {
+                Bitmap scalBit=BitmapUtils.zoomBitmap(bits.get(i),smallW,smallW);
+                canvas.drawBitmap(scalBit, nol * smallW,row * smallW, null);
+            }
+            canvas.drawLine(0,row*smallW,500,row*smallW,paint); //横线
+            canvas.drawLine(nol*smallW,0,nol*smallW,500,paint);//竖线
+        }
+        return aimBit;
     }
 }

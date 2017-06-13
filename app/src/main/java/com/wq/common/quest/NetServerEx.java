@@ -41,7 +41,7 @@ public class NetServerEx extends NetServer {
            RequestHandle handler = null;
            TextHttpResponseHandler responseHandler = new TextHttpResponseHandler() {
                public void onSuccess(int arg0, Header[] arg1, String json) {
-                  Logger.D((arg0 == -2147483648?"CACHE: ":"") + (action.requestType == 2321?"GET: ":"POST: ") + action.url + "?" + action.params + "\n请求成功: " + json);
+                  Logger.D((arg0 == -2147483648?"CACHE: ":"") + (action.requestType == 2321?"GET: ":"POST: ") + action.url + "?"  + "\n请求成功: " + json);
                    BaseBean bean = (BaseBean)NetServer.Settings.getSetting().getDataConvert().convert(action, json);
                    if(arg0 != -2147483648) {
                        if(uiUpdateHandler.getSession() != null && !bean.isEmpty()) {
@@ -88,14 +88,15 @@ public class NetServerEx extends NetServer {
                        }
                    }
 
-                   Logger.D((action.requestType == 2321?"GET: ":"POST: ") + action.url + "?" + action.params + "\n请求失败: " + arg2 + "  " + arg3);
+                   Logger.D((action.requestType == 2321?"GET: ":"POST: ") + action.url + "?"  + "\n请求失败: " + arg2 + "  " + arg3);
                    BaseBean bean1 = new BaseBean();
                    bean1.msg = NetUtils.getExceptionMsg(arg3, arg2);
                    uiUpdateHandler.loadFaild(action.requestCode, bean1);
                }
            };
          //  handler = NetUtils.doPost(action.url, action.params, responseHandler);
-           ByteArrayEntity be = new ByteArrayEntity(JsonDeal.object2Json(action.getTreeMap()).getBytes());
+           String jsonContent=JsonDeal.object2Json(action.getTreeMap());
+           ByteArrayEntity be = new ByteArrayEntity(jsonContent.getBytes());
            NetUtils.getAsynHttpClient().post(context,action.url,be,"application/json",responseHandler);
        }else {
            super.doRequest(action);

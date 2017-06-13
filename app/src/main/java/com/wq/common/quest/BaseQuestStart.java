@@ -19,6 +19,7 @@ import com.wq.login.RegisterActivity;
 import com.wq.template.mode.PeopleEntity;
 import com.wq.vip.mode.RechargeOption;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -67,9 +68,11 @@ public class BaseQuestStart extends BaseQuestConfig {
 
         netRequestHandler.requestAsynPost(new NAction()
                 .setUrl(BaseQuestConfig.ADD_TEMPLATE_URL)
+//                        .setUrl("http://192.168.1.109/naoke/Api/User/index")
                 .put("template_name", template_name)
                 .put("template_content", template_content)
                 .put("template_cover_img", template_cover_img)
+//                .put("template_cover_img", "11")
                 .put("img_list", img_list)
                 .put("remind_id_list", remind_id_list)
                 .put("is_open", is_open)

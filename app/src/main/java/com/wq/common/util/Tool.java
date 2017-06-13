@@ -35,8 +35,8 @@ public class Tool {
             e.printStackTrace();
         }
         //对字节数组Base64编码
-
-        return Utils.base64Encode(new String(data));//返回Base64编码过的字节数组字符串
+      return   "data:image/jpeg;base64,".concat(new String(Base64.encode(data,Base64.DEFAULT)));
+     //   return Utils.base64Encode(new String(data));//返回Base64编码过的字节数组字符串
     }
 
     //base64字符串转化成图片
@@ -108,7 +108,7 @@ public class Tool {
                 byte[] bitmapBytes = baos.toByteArray();
                 //result = Base64.encodeToString(bitmapBytes, Base64.DEFAULT);
 
-                result = Utils.base64Encode(new String(bitmapBytes));//返回Base64编码过的字节数组字符串
+                result = new String(Base64.encode(bitmapBytes,Base64.DEFAULT));//返回Base64编码过的字节数组字符串
 
             }
         } catch (IOException e) {

@@ -39,7 +39,6 @@ public class OtherRequestPreproccess implements RequestPreproccess {
             nAction.put("firstRow",(firstRow)*pageCount);
         }
         NetUtils.getAsynHttpClient().addHeader("token", Config.getLoginInfo().getToken());
-        Logger.D(nAction.toString());
 //        NetUtils.getAsynHttpClient().addHeader("token","88568ef65dcb446aa084352742f3fe19");
 
 

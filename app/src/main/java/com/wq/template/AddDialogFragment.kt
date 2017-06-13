@@ -3,6 +3,8 @@ package com.wq.template
 
 import android.os.Bundle
 import android.view.View
+import com.sunrun.sunrunframwork.uiutils.BitmapUtils
+import com.sunrun.sunrunframwork.uiutils.UIUtils
 import com.wq.base.UIBindDialogFragment
 import com.wq.project01.R
 import kotlinx.android.synthetic.main.dialog_add_people.*
@@ -21,6 +23,7 @@ class AddDialogFragment : UIBindDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         submit.setOnClickListener { dismiss() }
         cancel.setOnClickListener { dismiss() }
+//        UIUtils.sa
     }
 
 }
