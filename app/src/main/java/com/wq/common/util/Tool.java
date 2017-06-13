@@ -4,8 +4,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 
+import com.sunrun.sunrunframwork.uiutils.UIUtils;
 import com.sunrun.sunrunframwork.utils.Utils;
 
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -60,8 +62,22 @@ public class Tool {
             return false;
         }
     }
-
-
+//bitmap转file
+    public static File saveBitmapFile(Bitmap bitmap){
+        File file=new File("/mnt/sdcard/pic/01.jpg");//将要保存图片的路径
+//        try {
+//            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
+//            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+//            bos.flush();
+//            bos.close();
+//            return file;
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+        UIUtils.saveBitmapToFile(bitmap,file.getAbsolutePath());
+        return file;
+    }
 
 
 

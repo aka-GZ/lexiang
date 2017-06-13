@@ -75,13 +75,14 @@ public class AddTemplateActivity extends LBaseActivity {
 
     private List<String> list;
     private String name;
-    private String is_open = "-1";
+    private String is_open = "1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_template);
 
+        cbGongkai.setState(true);
 
 //        imgUpload.
         multiImage.setNumCol(3);//设置列数
@@ -112,13 +113,21 @@ public class AddTemplateActivity extends LBaseActivity {
 //                String title = tvTitle.getText().toString().trim();
 //                String content = editContent.getText().toString().trim();
 
-                Save();
+                new Thread(run).start();
 
 
             }
         });
 
     }
+    Runnable run = new Runnable() {
+        @Override
+        public void run() {
+            Save();
+        }
+    };
+
+    Bitmap bit4 = null;
     public void Save(){
         if (list ==null && name == null){
             list = new ArrayList<String>();
@@ -140,7 +149,6 @@ public class AddTemplateActivity extends LBaseActivity {
             UIUtils.shortM(e.getLocalizedMessage());
             return;
         }
-        Bitmap bit4 = null;
         if (bitmaps.size() > 0 ) {
             Width = bitmaps.get(0).getWidth();
             bitmaps_2.clear();
@@ -159,8 +167,11 @@ public class AddTemplateActivity extends LBaseActivity {
             return;
         }
         bitmaps_3.clear();
-        for (Bitmap bit: bitmaps ) {
-            bitmaps_3.add(Tool.bitmapToBase64(bit));
+//        for (Bitmap bit: bitmaps ) {
+//            bitmaps_3.add(Tool.bitmapToBase64(bit));
+//        }
+        for ( File file  : multiImage.getFiles() ) {
+            bitmaps_3.add(Tool.image2String(file));
         }
         /**
          * 用户添加模板
@@ -176,8 +187,15 @@ public class AddTemplateActivity extends LBaseActivity {
          * @param is_open->模板是否公开                    -1不公开 1公开 (可选传)
          * @return code 200->成功 3001->template_name参数为空 3002->template_content参数为空 3005->template_cover_img参数为空  3003->img_list图片至少1张最多9张 3004->img_list包含不合法文件 3006->template_cover_img包含不合法文件 3007->数据插入失败
          */
-        BaseQuestStart.addTemplate(this,tvTitle,editContent, Tool.bitmapToBase64(bit4) ,bitmaps_3, list, is_open);
-    }
+        this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+                BaseQuestStart.addTemplate(AddTemplateActivity.this,tvTitle,editContent, Tool.image2String(Tool.saveBitmapFile(bit4)) ,bitmaps_3, list, is_open);
+
+            }
+        }); }
+
 
     @Override
     public void nofityUpdate(int requestCode, BaseBean bean) {

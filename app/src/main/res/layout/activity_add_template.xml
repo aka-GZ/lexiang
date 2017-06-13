@@ -4,98 +4,115 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-
     android:layout_height="match_parent"
+
+    android:orientation="vertical"
     tools:context="com.wq.project01.MainActivity">
 
 
     <com.wq.common.widget.TitleBar
-        android:layout_width="match_parent"
         android:id="@+id/titleBar"
-        app:title="创建模板"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
         app:backgroundColor="@color/title_color"
         app:leftAsFinish="true"
+        app:leftIcon="@drawable/back_h"
         app:rightText="保存"
         app:rightVisible="visible"
-        app:leftIcon="@drawable/back_h"
-        android:layout_height="45dp"
-        />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        android:gravity="center_vertical"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" 
-            android:text="模板标题"
-            android:textSize="16sp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="15dp"
-            />
+        app:title="创建模板" />
 
-        <EditText
-            android:id="@+id/tv_title"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginRight="30dp"
-            android:background="#E9E7E8"
-            android:gravity="center|left"
-            android:hint="请输入模板标题"
-            android:paddingLeft="15dp"
-            android:textSize="16sp" />
-    </LinearLayout>
-    <View
-        style="@style/limit_line"/>
-    <EditText
-        android:id="@+id/edit_content"
-        android:layout_width="match_parent"
-        android:gravity="left"
-        android:layout_margin="15dp"
-        android:layout_height="wrap_content"
-        android:hint="这一刻的想法"
-        android:textSize="16sp"
-        android:minLines="3"
-        android:background="@null"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
 
-        />
-    <com.sunrun.sunrunframwork.weight.MultiImageUploadView
-        android:layout_width="match_parent"
-        android:id="@+id/imgUpload"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_height="wrap_content"/>
-    <View
-        style="@style/limit_gap"/>
-    <com.sunrun.sunrunframwork.view.ItemView
-        android:layout_width="match_parent"
-        android:id="@+id/item_gongkai"
-        app:leftTVText="是否公开"
-        app:RightImgShow="false"
-        android:layout_height="45dp">
-        <com.sunrun.sunrunframwork.weight.switchbtn.SlideSwitch
-            android:layout_width="40dp"
-            android:id="@+id/cb_gongkai"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            app:themeColor="@color/title_color"
-            android:minHeight="20dp"
-            android:layout_marginRight="10dp"
-            android:layout_height="20dp" />
-        </com.sunrun.sunrunframwork.view.ItemView>
-    <View
-        style="@style/limit_line"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="10dp">
 
-    <com.sunrun.sunrunframwork.view.ItemView
-        android:id="@+id/item_remind"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="模板标题"
+                    android:textSize="16sp" />
 
-        app:leftTVText="提醒谁看" />
+                <EditText
+                    android:id="@+id/tv_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="30dp"
+                    android:background="#E9E7E8"
+                    android:gravity="center|left"
+                    android:hint="请输入模板标题"
+                    android:paddingLeft="15dp"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
-    <View
-        style="@style/limit_line"/>
+            <View style="@style/limit_line" />
+
+            <EditText
+                android:id="@+id/edit_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:background="@null"
+                android:gravity="left"
+                android:hint="这一刻的想法"
+                android:minLines="3"
+                android:textSize="16sp"
+
+
+                />
+
+            <com.sunrun.sunrunframwork.weight.MultiImageUploadView
+                android:id="@+id/imgUpload"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp" />
+
+            <View style="@style/limit_gap" />
+
+            <com.sunrun.sunrunframwork.view.ItemView
+                android:id="@+id/item_gongkai"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                app:RightImgShow="false"
+                app:leftTVText="是否公开">
+
+                <com.sunrun.sunrunframwork.weight.switchbtn.SlideSwitch
+                    android:id="@+id/cb_gongkai"
+                    android:layout_width="40dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:minHeight="20dp"
+                    app:themeColor="@color/title_color" />
+            </com.sunrun.sunrunframwork.view.ItemView>
+
+            <View style="@style/limit_line" />
+
+            <com.sunrun.sunrunframwork.view.ItemView
+                android:id="@+id/item_remind"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+
+                app:leftTVText="提醒谁看" />
+
+            <View style="@style/limit_line" />
+
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -3,12 +3,16 @@ package com.wq.mine;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.sunrun.sunrunframwork.uiutils.ToastUtils;
+import com.sunrun.sunrunframwork.utils.AppUtils;
 import com.wq.base.LBaseActivity;
 import com.wq.base.LBaseFragment;
 import com.wq.common.quest.Config;
@@ -78,6 +82,8 @@ public class MineFragment extends LBaseFragment {
             }
         });
         tvNickname.setText(Config.getLoginInfo().user_name);
+
+
     }
 
 

@@ -12,6 +12,7 @@ import com.sunrun.sunrunframwork.adapter.ImagePagerAdapter;
 import com.sunrun.sunrunframwork.common.DefaultMediaLoader;
 import com.sunrun.sunrunframwork.uibase.BaseActivity;
 import com.sunrun.sunrunframwork.utils.AHandler;
+import com.sunrun.sunrunframwork.utils.AppUtils;
 import com.sunrun.sunrunframwork.weight.AutoScrollViewPager;
 import com.wq.base.LBaseActivity;
 import com.wq.common.quest.Config;
@@ -42,10 +43,19 @@ public class SplashActivity extends LBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         act = this;
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ui_avtivity_splash);
+
+
+
+//        Log.e("-----------" , "sHA1 = " + AppUtils.sHA1(that));
+//        Log.e("-----------" , "getSingInfo = " +AppUtils.getSingInfo(that));
+
+
         startNum = Integer.parseInt(Config.getConfigInfo(this, Config.START_NUM, "0"));// 启动次数
         Config.putConfigInfo(this, Config.START_NUM, String.valueOf(startNum + 1));// 启动次数加1
 //		setStatusBarTintColor(getColors(R.color.lucency));
