@@ -57,6 +57,7 @@
     <View
         style="@style/limit_line"
         android:layout_marginLeft="10dp"
+        android:visibility="gone"
         android:layout_marginRight="10dp" />
 
     <LinearLayout
@@ -65,6 +66,7 @@
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal"
+        android:visibility="gone"
         android:padding="10dp">
 
 

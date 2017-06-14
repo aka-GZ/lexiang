@@ -54,7 +54,7 @@
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="爸妈育儿误区"
+                android:text="标题"
                 android:textColor="@color/text2"
                 android:textSize="16sp" />
 
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:maxLines="3"
-                android:text="内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"
+                android:text="内容"
                 android:textColor="@color/text2"
                 android:textSize="12sp" />
         </LinearLayout>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Project01</string>
+    <string name="app_name">乐享</string>
     <!--App 登录注册相关文字信息-->
     <string name="remberPwd">记住密码</string>
     <string name="forgetpassword">忘记密码</string>
