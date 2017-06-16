@@ -1,10 +1,15 @@
 package com.wq.template;
 
+import android.content.ComponentName;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.FutureTarget;
 import com.sunrun.sunrunframwork.bean.BaseBean;
 import com.sunrun.sunrunframwork.uiutils.ToastUtils;
 import com.sunrun.sunrunframwork.uiutils.UIUtils;
@@ -14,6 +19,10 @@ import com.wq.common.quest.BaseQuestStart;
 import com.wq.common.widget.TitleBar;
 import com.wq.project01.R;
 import com.wq.template.adapters.TemplateDataAdapter;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,6 +60,7 @@ public class ShopTemplateDataActivity extends LBaseActivity {
 
     }
 
+
     private void init() {
         titlebar.setTitle("素材市场");
     }
@@ -81,6 +91,7 @@ public class ShopTemplateDataActivity extends LBaseActivity {
         BaseQuestStart.getShopTemplateData(this, template_id);
     }
 
+    ArrayList imageList = new ArrayList();
     @Override
     public void nofityUpdate(int requestCode, BaseBean bean) {
 
@@ -88,7 +99,7 @@ public class ShopTemplateDataActivity extends LBaseActivity {
             case QUEST_GET_SHOP_TEMPLATE_DATA_CODE:
                 if (bean.status == CODE_OK) {
 
-                    TemplateDataObj obj = bean.Data();//获取数据内容
+                    final TemplateDataObj obj = bean.Data();//获取数据内容
 
                     titlebar.setTitle("素材市场-" + obj.getTemplate_name());
                     templatedataTv.setText("" + obj.getTemplate_content());
@@ -96,12 +107,42 @@ public class ShopTemplateDataActivity extends LBaseActivity {
                     templatedataGv.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
 
-                    templatedataSharedTv.setOnClickListener(new View.OnClickListener() {
+                    imageList.clear();
+                    new Thread(new Runnable() {
                         @Override
-                        public void onClick(View v) {
-                            ToastUtils.shortToast("分享");
+                        public void run() {
+                            for ( TemplateDataObj.ImgListBean o: obj.getImgList()) {
+                                Log.e("===========","保存保存保存保存保存保存保存" + getlmgPathFromCache(o.getImg_url()));
+
+                                imageList.add(getlmgPathFromCache(o.getImg_url()));
+                            }
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    templatedataSharedTv.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            ToastUtils.shortToast("分享");
+                                            Intent weChatIntent = new Intent();
+                                            weChatIntent.setComponent(new ComponentName("com.tencent.mm", "com.tencent.mm.ui.tools.ShareToTimeLineUI"));
+
+                                            Log.e("imageList.size()",imageList.size()+"");
+                                            if (imageList.size() == 0) return;
+                                            weChatIntent.setAction(Intent.ACTION_SEND_MULTIPLE);
+                                            weChatIntent.setType("image/*");
+                                            weChatIntent.putExtra(Intent.EXTRA_STREAM, imageList);
+                                            weChatIntent.putExtra("Kdescription", "" + obj.getTemplate_content()); //分享描述
+                                            startActivity(weChatIntent);
+                                        }
+                                    });
+                                }
+                            });
+
                         }
-                    });
+                    }).start();
+
+
 
 
                 } else if (bean.status == 3003) {
@@ -118,4 +159,21 @@ public class ShopTemplateDataActivity extends LBaseActivity {
 
         }
     }
+
+    private String getlmgPathFromCache(String url) {
+        FutureTarget<File> future = Glide.with(this)
+                .load(url)
+                .downloadOnly(100, 100);
+        try {
+            File cacheFile = future.get();
+            String path = cacheFile.getAbsolutePath();
+            return path;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
