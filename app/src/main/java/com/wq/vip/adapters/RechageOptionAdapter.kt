@@ -15,6 +15,7 @@ import com.wq.common.model.MyTemplateBean
 import com.wq.common.quest.BaseQuestStart
 import com.wq.project01.R
 import com.wq.template.BuyVipActivity
+import com.wq.vip.BuyVipActivity_2
 import com.wq.vip.mode.RechargeOption
 
 /**

@@ -26,6 +26,7 @@ import com.wq.template.BuyVipActivity;
 import com.wq.template.MyTemplateListActivity;
 import com.wq.template.TeamTemplateListActivity;
 import com.wq.template.UseHistoryListActivity;
+import com.wq.vip.BuyVipActivity_2;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -96,7 +97,7 @@ public class MineFragment extends LBaseFragment {
             case R.id.lay_fens:
                 break;
             case R.id.tv_open_qiye:
-                IntentUtil.startActivity(that, BuyVipActivity.class);
+                IntentUtil.startActivity(that, BuyVipActivity_2.class);
                 break;
             case R.id.item_mine_template:
                 IntentUtil.startActivity(that,MyTemplateListActivity.class);
