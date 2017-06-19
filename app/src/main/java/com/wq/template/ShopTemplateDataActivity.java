@@ -1,8 +1,13 @@
 package com.wq.template;
 
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.view.View;
 import android.widget.GridView;
@@ -16,6 +21,8 @@ import com.sunrun.sunrunframwork.uiutils.UIUtils;
 import com.wq.base.LBaseActivity;
 import com.wq.common.model.TemplateDataObj;
 import com.wq.common.quest.BaseQuestStart;
+import com.wq.common.util.DownLoadImageSetvice;
+import com.wq.common.util.ShareHelper;
 import com.wq.common.widget.TitleBar;
 import com.wq.project01.R;
 import com.wq.template.adapters.TemplateDataAdapter;
@@ -47,7 +54,7 @@ public class ShopTemplateDataActivity extends LBaseActivity {
     @BindView(R.id.templatedata_shared_tv)
     TextView templatedataSharedTv;
 
-
+    ShareHelper shareHelper=new ShareHelper(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.ui_activity_templatedata);
@@ -91,7 +98,6 @@ public class ShopTemplateDataActivity extends LBaseActivity {
         BaseQuestStart.getShopTemplateData(this, template_id);
     }
 
-    ArrayList imageList = new ArrayList();
     @Override
     public void nofityUpdate(int requestCode, BaseBean bean) {
 
@@ -106,48 +112,15 @@ public class ShopTemplateDataActivity extends LBaseActivity {
                     TemplateDataAdapter adapter = new TemplateDataAdapter(ShopTemplateDataActivity.this, obj.getImgList());
                     templatedataGv.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
-
-                    imageList.clear();
-                    new Thread(new Runnable() {
+                    shareHelper.saveShareImage(obj,false);
+                    templatedataSharedTv.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public void run() {
-                            for ( TemplateDataObj.ImgListBean o: obj.getImgList()) {
-                                Log.e("===========","保存保存保存保存保存保存保存" + getlmgPathFromCache(o.getImg_url()));
-
-                                imageList.add(getlmgPathFromCache(o.getImg_url()));
-                            }
-
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    templatedataSharedTv.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            ToastUtils.shortToast("分享");
-                                            Intent weChatIntent = new Intent();
-                                            weChatIntent.setComponent(new ComponentName("com.tencent.mm", "com.tencent.mm.ui.tools.ShareToTimeLineUI"));
-
-                                            Log.e("imageList.size()",imageList.size()+"");
-                                            if (imageList.size() == 0) return;
-                                            weChatIntent.setAction(Intent.ACTION_SEND_MULTIPLE);
-                                            weChatIntent.setType("image/*");
-                                            weChatIntent.putExtra(Intent.EXTRA_STREAM, imageList);
-                                            weChatIntent.putExtra("Kdescription", "" + obj.getTemplate_content()); //分享描述
-                                            startActivity(weChatIntent);
-                                        }
-                                    });
-                                }
-                            });
-
+                        public void onClick(View v) {
+                            shareHelper.saveShareImage(obj,true);
                         }
-                    }).start();
-
-
-
+                    });
 
                 } else if (bean.status == 3003) {
-
-
                     UIUtils.shortM(bean.msg);
                     finish();
 
@@ -159,6 +132,7 @@ public class ShopTemplateDataActivity extends LBaseActivity {
 
         }
     }
+
 
     private String getlmgPathFromCache(String url) {
         FutureTarget<File> future = Glide.with(this)
@@ -175,5 +149,4 @@ public class ShopTemplateDataActivity extends LBaseActivity {
         }
         return null;
     }
-
 }
