@@ -28,6 +28,7 @@ import butterknife.ButterKnife;
 import static com.sunrun.sunrunframwork.pay.PayConfig.SDK_PAY_FLAG;
 import static com.wq.common.model.Const.CODE_NEED_PAY;
 import static com.wq.common.model.Const.CODE_OK;
+import static com.wq.common.quest.BaseQuestConfig.QUEST_ALIPAY_APP_RETURN_DATA_CODE;
 import static com.wq.common.quest.BaseQuestConfig.QUEST_GET_RECHARGE_OPTION_CODE;
 import static com.wq.common.quest.BaseQuestConfig.QUEST_RECHARGE_MEMBER_CODE;
 
@@ -97,6 +98,14 @@ public class BuyVipActivity_2 extends LBaseActivity {
                 }
 
                 break;
+            case QUEST_ALIPAY_APP_RETURN_DATA_CODE:
+                if (bean.status == CODE_OK) {
+                    UIUtils.shortM("开通成功");
+                } else {
+                    UIUtils.shortM(bean.msg);
+                }
+
+                break;
             case QUEST_RECHARGE_MEMBER_CODE:
                     if(bean.status == CODE_NEED_PAY){
                         final String data = bean.Data();//获取数据内容
@@ -141,6 +150,7 @@ public class BuyVipActivity_2 extends LBaseActivity {
             // 判断resultStatus 为“9000”则代表支付成功，具体状态码代表含义可参考接口文档
             if (TextUtils.equals(resultStatus, "9000")) {
 
+                BaseQuestStart.aliPayAppReturnData(BuyVipActivity_2.this,(String) msg.obj);
 
             } else {
 

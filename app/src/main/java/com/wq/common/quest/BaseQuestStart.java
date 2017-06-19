@@ -464,13 +464,13 @@ public class BaseQuestStart extends BaseQuestConfig {
  * 请将支付宝客户端sdk支付成功返回的json数据原样返回到此接口 通知服务端支付成功
  *{"meta":{"code":200,"message":"success"}}
  */
-    //   public static void aliPayAppReturnData(NetRequestHandler netRequestHandler,String group_number) {
-//
-    //      netRequestHandler.requestAsynPost(new NAction()
-    //              .setUrl(BaseQuestConfig.JOIN_TEAM_URL)
-    //              .put("group_number", group_number)
-    ///              .setRequestCode(BaseQuestConfig.QUEST_JOIN_TEAM_CODE));
-    //  }
+       public static void aliPayAppReturnData(NetRequestHandler netRequestHandler,String payinfo) {
+
+          netRequestHandler.requestAsynPost(new NAction()
+                  .setUrl(BaseQuestConfig.ALIPAY_APP_RETURN_DATA_URL)
+                  .put("", payinfo)
+                  .setRequestCode(BaseQuestConfig.QUEST_ALIPAY_APP_RETURN_DATA_CODE));
+      }
 
 
     /**

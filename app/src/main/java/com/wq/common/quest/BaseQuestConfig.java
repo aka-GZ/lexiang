@@ -106,7 +106,7 @@ public class BaseQuestConfig implements NetQuestConfig {
     //支付宝app客户端支付成功通知服务端
     public static String ALIPAY_APP_RETURN_DATA_URL = HTTP_API + "/api.php/Pay/aliPayAppReturnData";
     public static final int QUEST_ALIPAY_APP_RETURN_DATA_CODE = 0X023;
-	
+
     //充值会员(支付宝支付方式)
     public static String RECHARGE_MEMBER_URL = HTTP_API + "/api.php/Cube/rechargeMember";
     public static final int QUEST_RECHARGE_MEMBER_CODE = 0X024;
