@@ -69,7 +69,7 @@ public class RechageOptionAdapter_2 extends BaseAdapter {
         }else {
             viewHolder = (ViewHolder) view.getTag();
         }
-        recharge = list.get(position);
+      final   RechargeOption    recharge = list.get(position);
         viewHolder.tv_title.setText(recharge.getOption_name());
         viewHolder.tv_price.setText("¥" + recharge.getPrice()+ "/" + recharge.getDay() + "天");
         viewHolder.btnBuy.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +85,7 @@ public class RechageOptionAdapter_2 extends BaseAdapter {
         return view;
 
     }
-    RechargeOption recharge;
+
 
     public class ViewHolder{
 

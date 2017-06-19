@@ -16,6 +16,7 @@ import com.bilibili.boxing.model.entity.BaseMedia;
 import com.bilibili.boxing_impl.ui.BoxingActivity;
 import com.google.gson.reflect.TypeToken;
 import com.sunrun.sunrunframwork.bean.BaseBean;
+import com.sunrun.sunrunframwork.pay.alipay.AlipayUtils;
 import com.sunrun.sunrunframwork.uiutils.BitmapUtils;
 import com.sunrun.sunrunframwork.uiutils.PictureShow;
 import com.sunrun.sunrunframwork.uiutils.ToastUtils;
@@ -141,6 +142,7 @@ public class AddTemplateActivity extends LBaseActivity {
             ToastUtils.shortToast(e.getLocalizedMessage());
             return;
         }
+
         if (multiImage.getFiles().size() > 0) {
 
             bit4 = createGridBitmap(bitmaps);

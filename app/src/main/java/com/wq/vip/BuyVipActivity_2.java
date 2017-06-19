@@ -26,6 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.sunrun.sunrunframwork.pay.PayConfig.SDK_PAY_FLAG;
+import static com.wq.common.model.Const.CODE_NEED_PAY;
 import static com.wq.common.model.Const.CODE_OK;
 import static com.wq.common.quest.BaseQuestConfig.QUEST_GET_RECHARGE_OPTION_CODE;
 import static com.wq.common.quest.BaseQuestConfig.QUEST_RECHARGE_MEMBER_CODE;
@@ -97,7 +98,7 @@ public class BuyVipActivity_2 extends LBaseActivity {
 
                 break;
             case QUEST_RECHARGE_MEMBER_CODE:
-                    if(bean.status == CODE_OK){
+                    if(bean.status == CODE_NEED_PAY){
                         final String data = bean.Data();//获取数据内容
                         Runnable payRunnable = new Runnable() {
                             @Override

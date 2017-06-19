@@ -6,6 +6,7 @@ package com.wq.common.model;
 
 public class Const {
     public static final int CODE_OK=200;
+    public static final int CODE_NEED_PAY=5001;
     public static final int CODE_OUT_LOGIN=6001;
     public static final int CODE_BUSY=6002;
 }
