@@ -23,7 +23,7 @@ public class LoginInfo {
     private String login_time;
     private String token;
     public String user_name;
-
+    public String avatar_url;
 
     public String getUser_money() {
         return user_money;

@@ -15,6 +15,7 @@ import com.sunrun.sunrunframwork.uiutils.ToastUtils;
 import com.sunrun.sunrunframwork.utils.AppUtils;
 import com.wq.base.LBaseActivity;
 import com.wq.base.LBaseFragment;
+import com.wq.common.boxing.GlideMediaLoader;
 import com.wq.common.quest.Config;
 import com.wq.common.util.AlertDialogUtil;
 import com.wq.common.util.IntentUtil;
@@ -83,7 +84,7 @@ public class MineFragment extends LBaseFragment {
             }
         });
         tvNickname.setText(Config.getLoginInfo().user_name);
-
+        GlideMediaLoader.loadHead(this,imgHead,Config.getLoginInfo().avatar_url);
 
     }
 
