@@ -136,6 +136,22 @@ public class BaseQuestConfig implements NetQuestConfig {
     public static String GET_GETVERIFICATIONCODE_URL = HTTP_API + "/api.php/Auth/getVerificationCode";
     public static final int QUEST_GETVERIFICATIONCODE_CODE = 0X029;
 
+    //修改用户头像
+    public static String EDIT_USER_AVATAR_URL = HTTP_API + "/api.php/Cube/editUserAvatar";
+    public static final int QUEST_EDIT_USER_AVATAR_CODE = 0X030;
+
+    //修改用户资料
+    public static String UPDATE_USER_INFO_URL = HTTP_API + "/api.php/Cube/updateUserInfo";
+    public static final int QUEST_UPDATE_USER_INFO_CODE = 0X031;
+
+    //找回密码
+    public static String GET_USER_BACK_PASSWORD_URL = HTTP_API + "/api.php/Auth/userBackPassword";
+    public static final int QUEST_USER_BACK_PASSWORD_CODE = 0X032;
+
+    //获取会员信息
+    public static String GET_MEMBER_URL = HTTP_API + "/api.php/Cube/getMember";
+    public static final int QUEST_GET_MEMBER_CODE = 0X033;
+
 }
 
 

@@ -665,4 +665,91 @@ public class BaseQuestStart extends BaseQuestConfig {
 //                .setTypeToken(new TypeToken<List<UseHistoryListBean>>(){})//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_GETVERIFICATIONCODE_CODE));
     }
+
+    /**
+     * 获取会员信息
+     * API参数传入方式: GET
+     * 传入JSON格式: 无
+     * 返回JSON格式: {"meta":{"code":200,"message":"success"},"body":{"expiration_time":"2017-08-19 15:32:16","group_num":"100"}}
+     * API_URL_本地: http://localhost:81/api.php/Cube/getMember
+     * API_URL_服务器: http://wxyx.lyfz.net/api.php/Cube/getMember
+     * @param uid 用户uid
+     * @return code->200 成功 3001->暂无会员信息
+     * @return expiration_time 会员到期时间 group_num 所购买套餐的团队允许加入人数
+     */
+    public static void getMember(NetRequestHandler netRequestHandler) {
+
+        netRequestHandler.requestAsynGet(new NAction()
+                .setUrl(BaseQuestConfig.GET_MEMBER_URL)
+            //    .setTypeToken(MemberDataObj.class)//指定解析类型,该程序里面对应body 里面的json内容
+                .setRequestCode(BaseQuestConfig.QUEST_GET_MEMBER_CODE));
+    }
+
+
+
+    /**
+     * 普通用户找回密码
+     * API参数传入方式: POST
+     * 传入JSON格式: {"phone_no":"15916035572","new_password":"md5psw","verification_code":"355156"}
+     * 返回JSON格式: {"meta":{"code":200,"message":"u6210u529f"}}
+     * API_URL_本地: http://localhost:81/api.php/Auth/userBackPassword
+     * API_URL_服务器: http://fx.lyfz.net/wxyx/api.php/Auth/userBackPassword
+     * @param phone_no 用户手机
+     * @param new_password 修改的新密码
+     * @param verification_code 手机验证码
+     * @return code->200 成功 3001->原密码错误 3002->phone_no参数缺少 3003->new_password参数缺少 3004->verification_code参数缺少 3005->短信验证码错误
+     */
+    public static void userBackPassword(NetRequestHandler netRequestHandler, EditText phone_no , EditText new_password, EditText verification_code ) {
+        netRequestHandler.requestAsynPost(new NAction()
+                .setUrl(BaseQuestConfig.GET_USER_BACK_PASSWORD_URL)
+                .put("phone_no", phone_no)
+                .put("new_password", new_password)
+                .put("verification_code", verification_code)
+                .setRequestCode(BaseQuestConfig.QUEST_USER_BACK_PASSWORD_CODE));
+    }
+
+
+
+    /**
+     * 修改用户资料
+     * API参数传入方式: POST
+     * 传入JSON格式: {"user_name":"张三"}
+     * 返回JSON格式: {"meta":{"code":200,"message":"success"}}
+     * API_URL_本地: http://localhost:81/api.php/Cube/updateUserInfo
+     * API_URL_服务器: http://wxyx.lyfz.net/api.php/Cube/updateUserInfo
+     * @param uid 用户uid
+     * @param user_name 用户姓名 昵称 称呼 (可选)
+     * @return code->200 成功 3001->更新数据失败
+     */
+    public static void updateUserInfo(NetRequestHandler netRequestHandler, String user_name) {
+        netRequestHandler.requestAsynPost(new NAction()
+                .setUrl(BaseQuestConfig.UPDATE_USER_INFO_URL)
+                .put("user_name", user_name)
+                .setRequestCode(BaseQuestConfig.QUEST_UPDATE_USER_INFO_CODE));
+    }
+
+
+    /**
+     * 修改用户头像
+     * API参数传入方式: POST
+     * 传入JSON格式: {"avatar_base_code":"base64code..."}
+     * 返回JSON格式: {"meta":{"code":200,"message":"success"},"body":{"avatar_url":"base64code"}}
+     * API_URL_本地: http://localhost:81/api.php/Cube/editUserAvatar
+     * API_URL_服务器: http://wxyx.lyfz.net/api.php/Cube/editUserAvatar
+     * @param uid 用户uid
+     * @param avatar_base_code 用户头像base64code值
+     * @return code 200->成功 3001->avatar_base_code参数为空 3002->更新数据失败 3003->删除原头像失败
+     * @return avatar_url 用户新头像地址
+     */
+    public static void editUserAvatar(NetRequestHandler netRequestHandler, String avatar_base_code) {
+        netRequestHandler.requestAsynPost(new NAction()
+                .setUrl(BaseQuestConfig.EDIT_USER_AVATAR_URL)
+                .put("avatar_base_code", avatar_base_code)
+                .setRequestCode(BaseQuestConfig.QUEST_EDIT_USER_AVATAR_CODE));
+    }
+
+
+
+
+
 }
