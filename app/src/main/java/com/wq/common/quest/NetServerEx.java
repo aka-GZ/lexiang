@@ -97,6 +97,7 @@ public class NetServerEx extends NetServer {
          //  handler = NetUtils.doPost(action.url, action.params, responseHandler);
            String jsonContent=JsonDeal.object2Json(action.getTreeMap());
            ByteArrayEntity be = new ByteArrayEntity(jsonContent.getBytes());
+           Logger.D(action.url+" "+jsonContent);
            NetUtils.getAsynHttpClient().post(context,action.url,be,"application/json",responseHandler);
        }else {
            super.doRequest(action);

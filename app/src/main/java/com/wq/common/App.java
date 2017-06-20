@@ -23,7 +23,7 @@ public class App extends BaseApplication {
         BoxingCrop.getInstance().init(new BoxingUcrop());
         NetServer.Settings.getSetting().setDataConvert(new OtherDataConvert());
         NetServer.Settings.getSetting().setRequestPreproccess(new OtherRequestPreproccess());
-        NetServer.Settings.getSetting().setShowLog(false);
+//        NetServer.Settings.getSetting().setShowLog(false);
     }
 
 }

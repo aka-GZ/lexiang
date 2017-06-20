@@ -2,7 +2,7 @@
     <string name="app_name">乐享</string>
     <!--App 登录注册相关文字信息-->
     <string name="remberPwd">记住密码</string>
-    <string name="forgetpassword">忘记密码</string>
+    <string name="forgetpassword">忘记密码?</string>
     <string name="inputPwdHint">请设置6-16位密码</string>
     <string name="inputPwdHint2">请再次输入6-16位密码</string>
     <string name="tip_gotoregist">我还不是会员?</string>

@@ -96,7 +96,7 @@ public class LoginActivity extends LBaseActivity implements TextWatcher, LoginCo
             isCachePwd = true;
             remberPwd.setChecked(true);
             // pwd.setText("**************");
-            pwd.setText(pwdStr);
+          //  pwd.setText(pwdStr);
         }
         isVaild();
         pwd.addTextChangedListener(this);
@@ -225,7 +225,7 @@ public class LoginActivity extends LBaseActivity implements TextWatcher, LoginCo
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (data != null) {
             account.setText(data.getStringExtra(ACCOUNT));
-            pwd.setText(pwdStr = data.getStringExtra(PWD));
+           // pwd.setText(pwdStr = data.getStringExtra(PWD));
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

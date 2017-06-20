@@ -17,6 +17,9 @@
     </style>
     <style name="DefTitleBarStyle">
         <item name="backgroundColor">@color/title_color</item>
+        <item name="titleColor">#FFF</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">44dp</item>
     </style>
     <!-- 无标题对话框 -->
     <style name="NoTitleDialog" parent="android:style/Theme.Dialog">

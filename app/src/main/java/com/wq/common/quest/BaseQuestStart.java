@@ -527,12 +527,12 @@ public class BaseQuestStart extends BaseQuestConfig {
      * @param new_password 修改后的新密码 md5
      * @return code 200->成功 3001->原密码错误 3002->更新数据失败
      */
-    public static void updateUserPassword(NetRequestHandler netRequestHandler, Object password, Object new_password, Object editConfimPwd) {
+    public static void updateUserPassword(NetRequestHandler netRequestHandler, EditText password, EditText new_password, EditText editConfimPwd) {
 
         netRequestHandler.requestAsynPost(new NAction()
                 .setUrl(BaseQuestConfig.UPDATE_PASSWORD_URL)
-                .put("password", password)
-                .put("new_password", new_password)
+                .put("password", Utils.getMD5(password.getText().toString()))
+                .put("new_password", Utils.getMD5(new_password.getText().toString()))
                 .setRequestCode(BaseQuestConfig.QUEST_UPDATE_PASSWORD_CODE));
     }
 
@@ -703,7 +703,7 @@ public class BaseQuestStart extends BaseQuestConfig {
         netRequestHandler.requestAsynPost(new NAction()
                 .setUrl(BaseQuestConfig.GET_USER_BACK_PASSWORD_URL)
                 .put("phone_no", phone_no)
-                .put("new_password", new_password)
+                .put("new_password", Utils.getMD5(new_password.getText().toString()))
                 .put("verification_code", verification_code)
                 .setRequestCode(BaseQuestConfig.QUEST_USER_BACK_PASSWORD_CODE));
     }

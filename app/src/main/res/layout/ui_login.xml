@@ -209,7 +209,6 @@
                                 style="@style/textStyle3"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
-                                android:visibility="gone"
                                 android:gravity="center_vertical|right"
                                 android:text="@string/forgetpassword"
                                 android:textSize="15sp" />

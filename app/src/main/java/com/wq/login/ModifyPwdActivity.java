@@ -1,5 +1,6 @@
 package com.wq.login;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,10 +10,12 @@ import com.sunrun.sunrunframwork.bean.BaseBean;
 import com.sunrun.sunrunframwork.uibase.BaseActivity;
 import com.sunrun.sunrunframwork.uiutils.UIUtils;
 import com.sunrun.sunrunframwork.view.title.BaseTitleLayoutView;
+import com.wq.base.LBaseActivity;
 import com.wq.common.App;
 import com.wq.common.quest.BaseQuestStart;
 import com.wq.common.quest.Config;
 import com.wq.common.util.IntentUtil;
+import com.wq.common.widget.TitleBar;
 import com.wq.login.other.LoginConfig;
 import com.wq.main.NavigatorActivity;
 import com.wq.project01.R;
@@ -22,6 +25,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.sunrun.sunrunframwork.utils.EmptyDeal.empty;
+import static com.wq.common.model.Const.CODE_OK;
 import static com.wq.common.quest.BaseQuestConfig.QUEST_UPDATE_PASSWORD_CODE;
 
 /**
@@ -29,7 +33,7 @@ import static com.wq.common.quest.BaseQuestConfig.QUEST_UPDATE_PASSWORD_CODE;
  * Created by WQ on 2016/12/19.
  */
 
-public class ModifyPwdActivity extends BaseActivity {
+public class ModifyPwdActivity extends LBaseActivity {
     @BindView(R.id.edit_old_pwd)
     EditText editOldPwd;
     @BindView(R.id.edit_new_pwd)
@@ -38,26 +42,26 @@ public class ModifyPwdActivity extends BaseActivity {
     EditText editConfimPwd;
     @BindView(R.id.submit)
     Button submit;
-    @BindView(R.id.title_layout_view)
-    BaseTitleLayoutView titleLayoutView;
+    @BindView(R.id.titleBar)
+    TitleBar titleBar;
 
     @Override
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
         setContentView(R.layout.ui_activity_modify_password);
         ButterKnife.bind(this);
-        titleLayoutView.getRelRightArea().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                IntentUtil.startFonudPwdAct(that, Config.getLoginInfo().getPhone_no());
-            }
-        });
+//        titleLayoutView.getRelRightArea().setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                IntentUtil.startFonudPwdAct(that, Config.getLoginInfo().getPhone_no());
+//            }
+//        });
     }
     public void nofityUpdate(int requestCode,BaseBean bean){
         switch(requestCode){
             case QUEST_UPDATE_PASSWORD_CODE:
                 UIUtils.shortM(bean);
-                if(bean.status==1){
+                if(bean.status==CODE_OK){
                     Config.putLoginInfo(null);
                     Config.putConfigInfo(that, LoginConfig.PWD,null);
                     IntentUtil.startLogin(that);
@@ -73,5 +77,8 @@ public class ModifyPwdActivity extends BaseActivity {
         if(empty(editOldPwd,"原始密码不能为空")||empty(editNewPwd,"新密码不能为空"))return ;
         UIUtils.showLoadDialog(that,"密码修改中..");
         BaseQuestStart.updateUserPassword(this,editOldPwd,editNewPwd,editConfimPwd);
+    }
+    public static void launch(Activity activity){
+        IntentUtil.startActivity(activity,ModifyPwdActivity.class);
     }
 }

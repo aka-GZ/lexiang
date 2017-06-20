@@ -4,19 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg"
-    android:clipToPadding="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:fitsSystemWindows="true"
     android:orientation="vertical" >
 
     <!--<include-->
     <!--android:value="@+value/titlebar"-->
     <!--layout="@layout/lay_titlebar" />-->
-    <com.sunrun.sunrunframwork.view.title.BaseTitleLayoutView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/titlebar_height"
-        app:TitlesLeftIcon="@drawable/img_title_back"
-        app:TitlesText="忘记密码"
+    <com.wq.common.widget.TitleBar
+        style="@style/BackTitleBarStyle"
+        app:title="忘记密码"
         android:id="@+id/titlebar"
         />
     <ImageView
@@ -78,7 +74,7 @@
                     android:textColor="@color/text3"
                     android:textSize="15sp"
                     android:singleLine="true"
-                    android:hint="请输入已认证的手机号或邮箱地址" />
+                    android:hint="请输入手机号" />
 
 
             </LinearLayout>
@@ -292,55 +288,5 @@
         </LinearLayout>
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-    <!--
-    <com.tbcf.customview.NoneScrollView
-        android:value="@+value/scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="none" >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="237dp"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:gravity="center"
-                android:orientation="vertical" >
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp" >
-
-                    <com.tbcf.customview.ConcentricCircle
-                        android:value="@+value/headBg"
-                        android:layout_width="130dp"
-                        android:layout_height="130dp"
-                        android:layout_centerInParent="true"
-                        android:scaleType="centerCrop" />
-
-                    <com.tbcf.customview.CircularImage
-                        android:value="@+value/head_image"
-                       android:layout_width="92dp"
-                        android:layout_height="92dp"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/login_img" />
-                </RelativeLayout>
-            </LinearLayout>
-    </com.tbcf.customview.NoneScrollView>
-    -->
 
 </RelativeLayout>

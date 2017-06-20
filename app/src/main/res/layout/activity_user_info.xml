@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical">
+
+    <com.wq.common.widget.TitleBar
+        android:id="@+id/titleBar"
+        style="@style/BackTitleBarStyle"
+        app:title="个人信息" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="#fff"
+                android:orientation="vertical"
+                android:showDividers="middle">
+
+                <LinearLayout
+                    android:id="@+id/btnPortrait"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selec_itemview"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="头像"
+                        android:textColor="@color/text2"
+                        android:textSize="16sp" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/img_head"
+                        android:layout_width="62dp"
+                        android:layout_height="62dp"
+                        android:layout_gravity="right"
+                        android:src="#33000000" />
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:src="@drawable/icon_more" />
+                </LinearLayout>
+
+                <View style="@style/limit_line" />
+
+                <com.sunrun.sunrunframwork.view.ItemView
+                    android:id="@+id/btnNickname"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/function_item_height"
+                    app:RightTVText=""
+                    app:SetLeftTextColor="@color/text2"
+                    app:leftTVText="用户名" />
+                <View style="@style/limit_line" />
+                <com.sunrun.sunrunframwork.view.ItemView
+                    android:id="@+id/btnModifyPwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/function_item_height"
+                    app:RightTVText=""
+                    app:SetLeftTextColor="@color/text2"
+                    app:leftTVText="修改密码" />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+</LinearLayout>

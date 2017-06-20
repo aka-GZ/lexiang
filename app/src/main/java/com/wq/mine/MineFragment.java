@@ -83,16 +83,27 @@ public class MineFragment extends LBaseFragment {
                 MenuWindow.showHomePopDialog((LBaseActivity) that,view);
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        setData2Page();
+        super.onResume();
+    }
+
+    private void setData2Page() {
         tvNickname.setText(Config.getLoginInfo().user_name);
         GlideMediaLoader.loadHead(this,imgHead,Config.getLoginInfo().avatar_url);
-
     }
 
 
-
-    @OnClick({R.id.lay_attention, R.id.lay_fens,R.id.tv_open_qiye, R.id.item_mine_template, R.id.item_team_template, R.id.item_use_history,R.id.item_use_exit})
+    @OnClick({R.id.lay_attention,R.id.tv_nickname,R.id.img_head, R.id.lay_fens,R.id.tv_open_qiye, R.id.item_mine_template, R.id.item_team_template, R.id.item_use_history,R.id.item_use_exit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.img_head:
+            case R.id.tv_nickname:
+                UserInfoActivity.launch(that);
+                break;
             case R.id.lay_attention:
                 break;
             case R.id.lay_fens:
