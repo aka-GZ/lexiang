@@ -138,9 +138,15 @@ public class UserInfoActivity extends LBaseActivity {
 
                 if (size(medias) > 0) {
                     BaseMedia media = medias.get(0);
-                    String imgPath = media.getPath();
+                  final   String imgPath = media.getPath();
+//                    imgHead.postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//
+//                        }
+//                    },200);
                     Glide.clear(imgHead);
-                    GlideMediaLoader.loadHead(this, imgHead, imgPath);
+                    GlideMediaLoader.loadHead(that, imgHead, imgPath);
                     loginInfo.avatar_url=imgPath;
                     headFile = new File(imgPath);
                     UIUtils.showLoadDialog(that,"提交中..");

@@ -21,7 +21,7 @@ public class GlideMediaLoader {
         with(context)
                 .load(path).centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(placeholder).into((ImageView) imgview);
+                .placeholder(placeholder).dontAnimate().into((ImageView) imgview);
     }
     public static void load(Object context,View imgview,String path){
         load(context, imgview, path, R.drawable.new_nopic);
