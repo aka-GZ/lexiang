@@ -140,7 +140,7 @@
                                     android:background="@null"
                                     android:hint="请输入6-16位密码"
                                     android:password="true"
-                                    android:text="12345678"
+                                    android:text=""
                                     android:singleLine="true"
                                     android:textSize="15sp"
                                     android:textColorHint="#dfdfdf" />
