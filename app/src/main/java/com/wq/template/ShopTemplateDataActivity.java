@@ -1,14 +1,6 @@
 package com.wq.template;
 
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.support.v4.content.FileProvider;
-import android.util.Log;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
@@ -16,19 +8,16 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.FutureTarget;
 import com.sunrun.sunrunframwork.bean.BaseBean;
-import com.sunrun.sunrunframwork.uiutils.ToastUtils;
 import com.sunrun.sunrunframwork.uiutils.UIUtils;
 import com.wq.base.LBaseActivity;
 import com.wq.common.model.TemplateDataObj;
 import com.wq.common.quest.BaseQuestStart;
-import com.wq.common.util.DownLoadImageSetvice;
 import com.wq.common.util.ShareHelper;
 import com.wq.common.widget.TitleBar;
 import com.wq.project01.R;
 import com.wq.template.adapters.TemplateDataAdapter;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
@@ -54,7 +43,12 @@ public class ShopTemplateDataActivity extends LBaseActivity {
     @BindView(R.id.templatedata_shared_tv)
     TextView templatedataSharedTv;
 
-    ShareHelper shareHelper=new ShareHelper(this);
+    ShareHelper shareHelper = new ShareHelper(this);
+    @BindView(R.id.templatedata_remind_tv)
+    TextView templatedataRemindTv;
+    @BindView(R.id.templatedata_inform_tv)
+    TextView templatedataInformTv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.ui_activity_templatedata);
@@ -112,11 +106,11 @@ public class ShopTemplateDataActivity extends LBaseActivity {
                     TemplateDataAdapter adapter = new TemplateDataAdapter(ShopTemplateDataActivity.this, obj.getImgList());
                     templatedataGv.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
-                    shareHelper.saveShareImage(obj,false);
+                    shareHelper.saveShareImage(obj, false);
                     templatedataSharedTv.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            shareHelper.saveShareImage(obj,true);
+                            shareHelper.saveShareImage(obj, true);
                         }
                     });
 

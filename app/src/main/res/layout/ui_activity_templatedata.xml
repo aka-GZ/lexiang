@@ -5,9 +5,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <com.wq.common.widget.TitleBar
+        android:id="@+id/titlebar"
+        style="@style/BackTitleBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/titlebar_height"
+        app:title="素材市场" />
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,60 +40,55 @@
                 android:numColumns="3"
                 android:verticalSpacing="3dp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:padding="5dp">
-
-                <TextView
-                    android:id="@+id/templatedata_remind_tv"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/shap_button_bg"
-                    android:gravity="center"
-                    android:padding="8dp"
-                    android:text="提醒转发"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/templatedata_shared_tv"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/shap_button_bg"
-                    android:gravity="center"
-                    android:padding="8dp"
-                    android:text="一键转发"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/templatedata_inform_tv"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/shap_button_bg"
-                    android:gravity="center"
-                    android:padding="8dp"
-                    android:text="转发通知"
-                    android:textSize="16sp" />
-
-
-            </LinearLayout>
         </LinearLayout>
+
     </ScrollView>
 
-    <com.wq.common.widget.TitleBar
-        android:id="@+id/titlebar"
-        style="@style/BackTitleBarStyle"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/titlebar_height"
-        app:title="素材市场" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/templatedata_remind_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/shap_button_bg"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="提醒转发"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/templatedata_shared_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/shap_button_bg"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="一键转发"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/templatedata_inform_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/shap_button_bg"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="转发通知"
+            android:textSize="16sp" />
+
+
+    </LinearLayout>
 
 </LinearLayout>
