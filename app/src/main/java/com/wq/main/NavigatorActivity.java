@@ -39,8 +39,8 @@ public class NavigatorActivity extends LBaseActivity {
         initNavTabView();
         //设置页面加载的Fragment
         fragments[0] =new HomeFragment();
-        fragments[1] = new ShareCircleFragment();
-        fragments[2] = new MineFragment();
+//        fragments[1] = new ShareCircleFragment();
+        fragments[1] = new MineFragment();
         switchPanel(fragments[0]);
         requestDelegate.doRequest();//请求数据
     }
@@ -74,8 +74,8 @@ public class NavigatorActivity extends LBaseActivity {
         //Navbar 可以动态设置Badge的数字和显示以及隐藏,
         //但是一经创建,不可修改文字和图片,若非要改,需要调用initialise()重新布局
         navTabView.addItem(navbars[0] = new BottomNavigationItem(R.drawable.micon_index_select, "素材市场").setInactiveIconResource(R.drawable.micon_index));//;.setBadgeItem(badgeItems[0] = new BadgeItem().hide(false)));
-        navTabView.addItem(navbars[1] = new BottomNavigationItem(R.drawable.micon_gains_select, "乐享圈").setInactiveIconResource(R.drawable.micon_gains));//.setBadgeItem(badgeItems[1] = new BadgeItem().hide(false)));
-        navTabView.addItem(navbars[2] = new BottomNavigationItem(R.drawable.micon_mine_select, "个人中心").setInactiveIconResource(R.drawable.micon_mine));//.setBadgeItem(badgeItems[2] = new BadgeItem().hide(false)));
+//        navTabView.addItem(navbars[1] = new BottomNavigationItem(R.drawable.micon_gains_select, "乐享圈").setInactiveIconResource(R.drawable.micon_gains));//.setBadgeItem(badgeItems[1] = new BadgeItem().hide(false)));
+        navTabView.addItem(navbars[1] = new BottomNavigationItem(R.drawable.micon_mine_select, "个人中心").setInactiveIconResource(R.drawable.micon_mine));//.setBadgeItem(badgeItems[2] = new BadgeItem().hide(false)));
         navTabView.initialise();
         navTabView.setTabSelectedListener(new BottomNavigationBar.SimpleOnTabSelectedListener() {
             @Override
@@ -83,7 +83,7 @@ public class NavigatorActivity extends LBaseActivity {
                 super.onTabSelected(position);
                 switch (position) {
                     case 0:
-                    case 2:
+//                    case 2:
                     case 1:
                         switchPanel(fragments[position]);
                         break;

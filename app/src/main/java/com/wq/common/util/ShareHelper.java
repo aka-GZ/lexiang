@@ -59,7 +59,7 @@ public class ShareHelper {
     public void saveShareImage(final TemplateDataObj obj,boolean locaNeedShare) {
 
         if(!needShare) {
-            needShare = locaNeedShare;
+            needShare = locaNeedShare;return;
         }
         if(locaNeedShare){
             if(!AppUtils.checkPackage(activity,"com.tencent.mm")){

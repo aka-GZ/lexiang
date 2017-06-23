@@ -69,10 +69,10 @@ public class RegisterActivity extends LBaseActivity implements TextWatcher, Logi
     int type = 0;
     @BindView(R.id.titlebar)
     TitleBar titlebar;
-    @BindView(R.id.editNickname)
-    EditText editNickname;
-    @BindView(R.id.editEmail)
-    EditText editEmail;
+    @BindView(R.id.editUsername)
+    EditText editUsername;
+    @BindView(R.id.editCompany)
+    EditText editCompany;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +82,6 @@ public class RegisterActivity extends LBaseActivity implements TextWatcher, Logi
         initNetServer();
         type = getIntent().getIntExtra("type", 0);
         account.setText(getIntent().getStringExtra("account"));
-        register.setText("提交");
         register.setEnabled(true);
         int old_time = (int) ((System.currentTimeMillis() - getSession().getLong("register_time")) / 1000);
         if (old_time < 60) {
@@ -222,7 +221,7 @@ public class RegisterActivity extends LBaseActivity implements TextWatcher, Logi
         }
         UIUtils.showLoadDialog(that, "注册中..");
         // 注册
-        BaseQuestStart.register(this, account, pwd.getText().toString(), captcha, editNickname,editEmail);
+        BaseQuestStart.register(this, account, pwd.getText().toString(), captcha, editUsername,editCompany);
     }
 
     boolean isVaild() {

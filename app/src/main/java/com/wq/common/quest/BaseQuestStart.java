@@ -361,13 +361,14 @@ public class BaseQuestStart extends BaseQuestConfig {
      * 传入JSON格式: {"phone_no":"15916035572","password":"c8837b23ff8aaa8a2dde915473ce0991"}
      * 返回JSON格式: {"meta":{"code":200,"message":"u6210u529f"}}
      *
-     * @param phone_no  用户手机号
-     * @param password  用户密码md5值
-     * @param user_name 用户姓名 昵称 称呼 (可选)
-     * @param email     用户邮箱地址 (可选)
+     * @param phone_no 用户手机号
+     * @param password 用户密码md5值
+     * @param verification_code 短信验证码
+     * @param desc 公司名称
+     * @param user_name 用户姓名 昵称 称呼
      * @return code code 200 成功 3001 phone_no参数未传入 3002 password参数未传入  3003 账号已存在 3004写入用户数据失败 3005 手机号码不合法
      */
-    public static void register(NetRequestHandler netRequestHandler, Object phone_no, String password, Object verification_code,Object user_name,Object email) {
+    public static void register(NetRequestHandler netRequestHandler, Object phone_no, String password, Object verification_code,Object user_name,Object desc) {
 
         netRequestHandler.requestAsynPost(new NAction()
                 .setUrl(BaseQuestConfig.REGISTER_URL)
@@ -375,7 +376,7 @@ public class BaseQuestStart extends BaseQuestConfig {
                 .put("password", Utils.getMD5(password))
                 .put("verification_code", verification_code)
                 .put("user_name", user_name)
-                .put("email", email)
+                .put("desc", desc)
                 // .setTypeToken(LoginInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_REGISTER_CODE));
     }

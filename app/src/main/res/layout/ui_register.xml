@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/login_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <com.wq.common.widget.TitleBar
+        android:id="@+id/titlebar"
         style="@style/BackTitleBarStyle"
         android:layout_width="match_parent"
         android:layout_height="@dimen/titlebar_height"
-        app:title="快速注册"
-        android:id="@+id/titlebar"
-        />
+        app:title="快速注册" />
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scaleType="fitXY"
         android:layout_below="@+id/titlebar"
+        android:scaleType="fitXY"
         android:src="@mipmap/bg_home_touying" />
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -30,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/titlebar"
         android:layout_marginTop="30dp"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <!-- <include layout="@layout/lay_login_top" /> -->
 
@@ -38,7 +39,42 @@
             android:layout_width="match_parent"
             android:layout_height="270dp"
             android:background="@color/white"
-            android:orientation="vertical" >
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/view_gap">
+
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="@dimen/view_gap2"
+                    android:layout_marginRight="@dimen/view_gap2"
+                    android:background="@color/limit_line1"
+
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/editCompany"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="企业名"
+                    android:maxLength="16"
+                    android:singleLine="true"
+                    android:textColor="@color/text3"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <View
+                style="@style/limit_line"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -46,43 +82,31 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingBottom="@dimen/view_gap_4"
-                android:paddingLeft="@dimen/view_gap"
-                android:paddingRight="@dimen/view_gap_4"
-                android:paddingTop="@dimen/view_gap_4" >
+                android:padding="@dimen/view_gap">
 
-                <ImageView
-                    android:id="@+id/icon1"
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:visibility="gone"
-                    />
 
                 <View
                     android:layout_width="1px"
                     android:layout_height="20dp"
                     android:layout_marginLeft="@dimen/view_gap2"
                     android:layout_marginRight="@dimen/view_gap2"
-                    android:visibility="gone"
-                    android:background="@color/limit_line1" />
+                    android:background="@color/limit_line1"
+
+                    android:visibility="gone" />
 
                 <EditText
-                    android:id="@+id/account"
-                    android:layout_width="match_parent"
+                    android:id="@+id/editUsername"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@null"
-                    android:inputType="phone"
-                    android:maxLength="11"
+                    android:hint="用户名"
+                    android:maxLength="16"
+                    android:singleLine="true"
                     android:textColor="@color/text3"
-                    android:textSize="15sp"
-                      android:singleLine="true" 
-                    android:hint="请输入11位手机号码" />
-
-
+                    android:textSize="15sp" />
             </LinearLayout>
 
-            <!-- <View style="@style/login_lineStyle" /> -->
             <View
                 style="@style/limit_line"
                 android:layout_marginLeft="10dp"
@@ -93,22 +117,68 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="@dimen/view_gap" >
+                android:paddingBottom="@dimen/view_gap_4"
+                android:paddingLeft="@dimen/view_gap"
+                android:paddingRight="@dimen/view_gap_4"
+                android:paddingTop="@dimen/view_gap_4">
+
+                <ImageView
+                    android:id="@+id/icon1"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:visibility="gone" />
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="@dimen/view_gap2"
+                    android:layout_marginRight="@dimen/view_gap2"
+                    android:background="@color/limit_line1"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/account"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="请输入11位手机号码"
+                    android:inputType="phone"
+                    android:maxLength="11"
+                    android:singleLine="true"
+                    android:textColor="@color/text3"
+                    android:textSize="15sp" />
+
+
+            </LinearLayout>
+
+            <!-- <View style="@style/login_lineStyle" /> -->
+            <View
+                style="@style/limit_line"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/view_gap">
 
                 <ImageView
                     android:id="@+id/icon2"
                     android:layout_width="22dp"
                     android:layout_height="22dp"
-                    android:visibility="gone"
-                    />
+                    android:visibility="gone" />
 
                 <View
                     android:layout_width="1px"
                     android:layout_height="20dp"
-                    android:visibility="gone"
                     android:layout_marginLeft="@dimen/view_gap2"
                     android:layout_marginRight="@dimen/view_gap2"
-                    android:background="@color/limit_line1" />
+                    android:background="@color/limit_line1"
+                    android:visibility="gone" />
 
                 <EditText
                     android:id="@+id/captcha"
@@ -116,13 +186,13 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@null"
-                    android:textColor="@color/text3"
-                    android:inputType="number"
-                    android:textSize="15sp"
-                    android:maxLength="10"
                     android:hint="请输入验证码"
-                      android:singleLine="true" 
-                    />
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:singleLine="true"
+                    android:textColor="@color/text3"
+                    android:textSize="15sp" />
+
                 <TextView
                     android:id="@+id/getCaptcha"
                     android:layout_width="wrap_content"
@@ -133,6 +203,7 @@
                     android:paddingRight="@dimen/view_gap"
                     android:text="@string/getCaptcha"
                     android:textColor="@color/white" />
+
                 <ImageView
                     android:id="@+id/showPwd"
                     android:layout_width="18dp"
@@ -145,97 +216,31 @@
                 style="@style/limit_line"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp" />
+
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="@dimen/view_gap" >
-
-
-                <View
-                    android:layout_width="1px"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="@dimen/view_gap2"
-                    android:visibility="gone"
-                    android:layout_marginRight="@dimen/view_gap2"
-
-                    android:background="@color/limit_line1" />
-
-                <EditText
-                    android:id="@+id/editNickname"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@null"
-                    android:textColor="@color/text3"
-                    android:textSize="15sp"
-                    android:hint="用户昵称(选填)"
-                    android:singleLine="true"
-                    android:maxLength="16" />
-            </LinearLayout>
-            <View
-                style="@style/limit_line"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="@dimen/view_gap" >
-
-
-                <View
-                    android:layout_width="1px"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="@dimen/view_gap2"
-                    android:visibility="gone"
-                    android:layout_marginRight="@dimen/view_gap2"
-
-                    android:background="@color/limit_line1" />
-
-                <EditText
-                    android:id="@+id/editEmail"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@null"
-                    android:textColor="@color/text3"
-                    android:textSize="15sp"
-                    android:hint="用户邮箱地址(选填)"
-                    android:singleLine="true"
-                    android:maxLength="16" />
-            </LinearLayout>
-            <View
-                style="@style/limit_line"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="@dimen/view_gap" >
+                android:padding="@dimen/view_gap">
 
                 <ImageView
                     android:id="@+id/icon3"
                     android:layout_width="22dp"
                     android:layout_height="22dp"
-                    android:visibility="gone"
-                    />
+                    android:visibility="gone" />
 
                 <View
                     android:layout_width="1px"
                     android:layout_height="20dp"
                     android:layout_marginLeft="@dimen/view_gap2"
-                    android:visibility="gone"
                     android:layout_marginRight="@dimen/view_gap2"
+                    android:background="@color/limit_line1"
 
-                    android:background="@color/limit_line1" />
+                    android:visibility="gone" />
 
                 <EditText
                     android:id="@+id/pwd"
@@ -243,39 +248,40 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@null"
-                    android:password="true"
-                    android:textColor="@color/text3"
-                    android:textSize="15sp"
                     android:hint="@string/inputPwdHint"
-                      android:singleLine="true" 
-                    android:maxLength="16" />
+                    android:maxLength="16"
+                    android:password="true"
+                    android:singleLine="true"
+                    android:textColor="@color/text3"
+                    android:textSize="15sp" />
             </LinearLayout>
+
             <View
                 style="@style/limit_line"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp" />
-<LinearLayout
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="@dimen/view_gap" >
+                android:padding="@dimen/view_gap">
 
                 <ImageView
                     android:id="@+id/icon4"
                     android:layout_width="22dp"
                     android:layout_height="22dp"
-                    android:visibility="gone"
-                    />
+                    android:visibility="gone" />
 
                 <View
                     android:layout_width="1px"
                     android:layout_height="20dp"
                     android:layout_marginLeft="@dimen/view_gap2"
                     android:layout_marginRight="@dimen/view_gap2"
-                    android:visibility="gone"
-                    android:background="@color/limit_line1" />
+                    android:background="@color/limit_line1"
+                    android:visibility="gone" />
 
                 <EditText
                     android:id="@+id/pwd2"
@@ -283,12 +289,12 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@null"
-                    android:password="true"
                     android:hint="确认密码"
+                    android:maxLength="16"
+                    android:password="true"
+                    android:singleLine="true"
                     android:textColor="@color/text3"
-                    android:textSize="15sp"
-                      android:singleLine="true" 
-                    android:maxLength="16" />
+                    android:textSize="15sp" />
             </LinearLayout>
             <!-- <View style="@style/login_lineStyle" /> -->
         </LinearLayout>
@@ -301,7 +307,7 @@
             android:layout_marginTop="15dp"
             android:orientation="horizontal"
 
-            android:visibility="gone" >
+            android:visibility="gone">
 
             <!-- android:paddingLeft="8dp" -->
 
@@ -310,51 +316,50 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:button="@drawable/checkbox_style"
+                android:checked="true"
                 android:drawablePadding="8dp"
                 android:padding="0dp"
-                android:checked="true"
                 android:textColor="@color/text4" />
 
             <TextView
-                android:layout_marginLeft="@dimen/view_gap"
                 android:id="@+id/agreement"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/text3"
-                android:text="@string/readAgreement" />
+                android:layout_marginLeft="@dimen/view_gap"
+                android:text="@string/readAgreement"
+                android:textColor="@color/text3" />
         </LinearLayout>
 
         <Button
-            style="@style/submitBtn"
             android:id="@+id/register"
+            style="@style/submitBtn"
             android:layout_marginLeft="@dimen/view_gap2"
             android:layout_marginRight="@dimen/view_gap2"
             android:layout_marginTop="15dp"
-            android:text="提交"
-             />
+            android:text="注册" />
 
         <LinearLayout
             android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="right"
-            android:visibility="gone"
-            android:layout_marginTop="15dp"
             android:layout_marginRight="10dp"
-            android:orientation="horizontal" >
+            android:layout_marginTop="15dp"
+            android:gravity="right"
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <!--<TextView-->
-                <!--style="@style/textStyle4"-->
-                <!--android:gravity="center"-->
-                <!--android:textSize="16sp"-->
-                <!--android:text="@string/tip_hasAccount" />-->
+            <!--style="@style/textStyle4"-->
+            <!--android:gravity="center"-->
+            <!--android:textSize="16sp"-->
+            <!--android:text="@string/tip_hasAccount" />-->
 
             <TextView
                 android:id="@+id/forgetpassword"
                 style="@style/textStyle3"
                 android:gravity="center"
                 android:text="忘记密码"
-                android:textSize="16sp" /> 
+                android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>
     <!--

@@ -36,6 +36,9 @@ public class OtherDataConvert extends BaseBeanConvert {
         }else if (bean.status==CODE_BUSY){
             UIUtils.shortM("请求太频繁，请稍后重试！");
         }
+        if("success".equals(bean.msg)){
+            bean.msg="成功";
+        }
         bean.tag = action.getTag();
         return bean;
     }
