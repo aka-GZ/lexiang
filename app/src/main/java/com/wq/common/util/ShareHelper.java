@@ -58,9 +58,9 @@ public class ShareHelper {
      */
     public void saveShareImage(final TemplateDataObj obj,boolean locaNeedShare) {
 
-        if(!needShare) {
-            needShare = locaNeedShare;return;
-        }
+//        if(!needShare) {
+//            needShare = locaNeedShare;
+//        }
         if(locaNeedShare){
             if(!AppUtils.checkPackage(activity,"com.tencent.mm")){
                 ToastUtils.shortToast("请安装微信后再次尝试");
@@ -69,6 +69,7 @@ public class ShareHelper {
             UIUtils.showLoadDialog(activity);
         }else {
             imageList.clear();
+            return;
         }
         new Thread(new Runnable() {
             @Override
@@ -96,6 +97,7 @@ public class ShareHelper {
                             return;
                         }
                     }
+                    needShare=true;
                 }
 
                 if(needShare)
@@ -119,7 +121,7 @@ public class ShareHelper {
                     @Override
                     public void task() {
                         try {
-                            Thread.sleep(3000);
+                            Thread.sleep(5000);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
