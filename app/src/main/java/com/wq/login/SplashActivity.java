@@ -51,7 +51,7 @@ public class SplashActivity extends LBaseActivity {
         setContentView(R.layout.ui_avtivity_splash);
 
 
-
+//
 //        Log.e("-----------" , "sHA1 = " + AppUtils.sHA1(that));
 //        Log.e("-----------" , "getSingInfo = " +AppUtils.getSingInfo(that));
 

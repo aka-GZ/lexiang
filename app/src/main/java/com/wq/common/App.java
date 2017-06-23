@@ -10,6 +10,8 @@ import com.wq.common.boxing.BoxingUcrop;
 import com.wq.common.util.OtherDataConvert;
 import com.wq.common.util.OtherRequestPreproccess;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * Created by WQ on 2017/5/24.
  */
@@ -24,6 +26,10 @@ public class App extends BaseApplication {
         NetServer.Settings.getSetting().setDataConvert(new OtherDataConvert());
         NetServer.Settings.getSetting().setRequestPreproccess(new OtherRequestPreproccess());
 //        NetServer.Settings.getSetting().setShowLog(false);
+
+
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
     }
 
 }

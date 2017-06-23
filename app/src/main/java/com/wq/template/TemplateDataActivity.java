@@ -11,6 +11,7 @@ import com.sunrun.sunrunframwork.uiutils.UIUtils;
 import com.wq.base.LBaseActivity;
 import com.wq.common.model.TemplateDataObj;
 import com.wq.common.quest.BaseQuestStart;
+import com.wq.common.util.ShareHelper;
 import com.wq.common.widget.TitleBar;
 import com.wq.project01.R;
 import com.wq.template.adapters.TemplateDataAdapter;
@@ -40,6 +41,7 @@ public class TemplateDataActivity extends LBaseActivity {
     TextView templatedataSharedTv;
 
 
+    ShareHelper shareHelper=new ShareHelper(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.ui_activity_templatedata);
@@ -89,18 +91,20 @@ public class TemplateDataActivity extends LBaseActivity {
             case QUEST_GET_TEMPLATE_DATA_CODE:
                 if (bean.status == CODE_OK) {
 
-                    TemplateDataObj obj = bean.Data();//获取数据内容
+                    final TemplateDataObj obj = bean.Data();//获取数据内容
 
                     titlebar.setTitle("我的模板-" + obj.getTemplate_name());
                     templatedataTv.setText("" + obj.getTemplate_content());
                     TemplateDataAdapter adapter = new TemplateDataAdapter(TemplateDataActivity.this, obj.getImgList());
                     templatedataGv.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
+                    shareHelper.saveShareImage(obj,false);
 
                     templatedataSharedTv.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            ToastUtils.shortToast("分享");
+                        //    ToastUtils.shortToast("分享");
+                            shareHelper.saveShareImage(obj,true);
                         }
                     });
 
