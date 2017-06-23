@@ -271,7 +271,7 @@
         <!-- 渠道统计报表位于控制台页面的 “统计”-“用户统计”-“渠道分布” 中-->
         <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>
         <!-- Required. AppKey copied from Portal -->
-        <meta-data android:name="JPUSH_APPKEY" android:value="您应用的Appkey"/>
+        <meta-data android:name="JPUSH_APPKEY" android:value="7553c8ffdb2a03a70a2477a8"/>
     </application>
 
 </manifest>

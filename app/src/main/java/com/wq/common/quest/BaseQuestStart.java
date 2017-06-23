@@ -14,6 +14,7 @@ import com.wq.common.model.MyTemplateBean;
 import com.wq.common.model.ShopHotTemplateBean;
 import com.wq.common.model.TeamTemplateListObj;
 import com.wq.common.model.TemplateDataObj;
+import com.wq.common.model.TemplateStatisticsObj;
 import com.wq.common.model.UseHistoryListBean;
 import com.wq.login.RegisterActivity;
 import com.wq.template.mode.PeopleEntity;
@@ -749,6 +750,41 @@ public class BaseQuestStart extends BaseQuestConfig {
                 .setRequestCode(BaseQuestConfig.QUEST_EDIT_USER_AVATAR_CODE));
     }
 
+
+
+
+
+
+    /**
+     * 模板市场设置模板定时闹钟
+     * API参数传入方式: POST
+     * 传入JSON格式: {"template_id":"1","remind_time":"2017-06-11 12:00:00"}
+     * 返回JSON格式: {"meta":{"code":200,"message":"success"}}
+     * API_URL_本地: http://localhost:81/api.php/Cube/setTemplateRemind
+     * API_URL_服务器: http://wxyx.lyfz.net/api.php/Cube/setTemplateRemind
+     * @param template_id 模板ID
+     * @param remind_time 提醒时间
+     * @return code->200 成功 3001->模板不存在 3002->插入数据失败 3003->用户未设置设备id
+     */
+    public static void setTemplateRemind(NetRequestHandler netRequestHandler, String template_id,String remind_time) {
+        netRequestHandler.requestAsynPost(new NAction()
+                .setUrl(BaseQuestConfig.SET_TEMPLATE_REMIND_URL)
+                .put("template_id", template_id)
+                .put("remind_time", remind_time)
+                .setRequestCode(BaseQuestConfig.QUEST_SET_TEMPLATE_REMIND_CODE));
+    }
+
+
+
+
+    public static void getTemplateStatistics(NetRequestHandler netRequestHandler, String template_id,String remind_time) {
+        netRequestHandler.requestAsynPost(new NAction()
+                .setUrl(BaseQuestConfig.GET_TEMPLATE_STATISTICS_URL)
+                .put("template_id", template_id)
+                .put("remind_time", remind_time)
+                .setTypeToken(TemplateStatisticcsObj.class)//指定解析类型,该程序里面对应body 里面的json内容
+                .setRequestCode(BaseQuestConfig.QUEST_GET_TEMPLATE_STATISTICS_CODE));
+    }
 
 
 

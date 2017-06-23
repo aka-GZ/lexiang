@@ -152,6 +152,14 @@ public class BaseQuestConfig implements NetQuestConfig {
     public static String GET_MEMBER_URL = HTTP_API + "/api.php/Cube/getMember";
     public static final int QUEST_GET_MEMBER_CODE = 0X033;
 
+    //模板市场设置模板定时闹钟
+    public static String SET_TEMPLATE_REMIND_URL = HTTP_API + "/api.php/Cube/setTemplateRemind";
+    public static final int QUEST_SET_TEMPLATE_REMIND_CODE = 0X034;
+
+    //获取模板转发统计信息
+    public static String GET_TEMPLATE_STATISTICS_URL = HTTP_API + "/api.php/Cube/getTemplateStatistics";
+    public static final int QUEST_GET_TEMPLATE_STATISTICS_CODE = 0X035;
+
 }
 
 

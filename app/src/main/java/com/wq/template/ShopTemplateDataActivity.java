@@ -114,6 +114,21 @@ public class ShopTemplateDataActivity extends LBaseActivity {
                         }
                     });
 
+
+                    templatedataRemindTv.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                        }
+                    });
+                    templatedataInformTv.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                        }
+                    });
+
+
                 } else if (bean.status == 3003) {
                     UIUtils.shortM(bean.msg);
                     finish();
