@@ -781,7 +781,6 @@ public class BaseQuestStart extends BaseQuestConfig {
         netRequestHandler.requestAsynPost(new NAction()
                 .setUrl(BaseQuestConfig.GET_TEMPLATE_STATISTICS_URL)
                 .put("template_id", template_id)
-                .put("remind_time", remind_time)
                 .setTypeToken(TemplateStatisticsObj.class)//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_GET_TEMPLATE_STATISTICS_CODE));
     }
