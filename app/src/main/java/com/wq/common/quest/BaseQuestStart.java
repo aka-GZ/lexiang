@@ -777,7 +777,7 @@ public class BaseQuestStart extends BaseQuestConfig {
 
 
 
-    public static void getTemplateStatistics(NetRequestHandler netRequestHandler, String template_id,String remind_time) {
+    public static void getTemplateStatistics(NetRequestHandler netRequestHandler, String template_id) {
         netRequestHandler.requestAsynPost(new NAction()
                 .setUrl(BaseQuestConfig.GET_TEMPLATE_STATISTICS_URL)
                 .put("template_id", template_id)

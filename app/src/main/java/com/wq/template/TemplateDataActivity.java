@@ -6,7 +6,6 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.sunrun.sunrunframwork.bean.BaseBean;
-import com.sunrun.sunrunframwork.uiutils.ToastUtils;
 import com.sunrun.sunrunframwork.uiutils.UIUtils;
 import com.wq.base.LBaseActivity;
 import com.wq.common.model.TemplateDataObj;
@@ -20,7 +19,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.wq.common.model.Const.CODE_OK;
-import static com.wq.common.quest.BaseQuestConfig.QUEST_GET_SHOP_TEMPLATE_DATA_CODE;
 import static com.wq.common.quest.BaseQuestConfig.QUEST_GET_TEMPLATE_DATA_CODE;
 
 /**
@@ -41,7 +39,12 @@ public class TemplateDataActivity extends LBaseActivity {
     TextView templatedataSharedTv;
 
 
-    ShareHelper shareHelper=new ShareHelper(this);
+    ShareHelper shareHelper = new ShareHelper(this);
+    @BindView(R.id.templatedata_remind_tv)
+    TextView templatedataRemindTv;
+    @BindView(R.id.templatedata_inform_tv)
+    TextView templatedataInformTv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.ui_activity_templatedata);
@@ -56,6 +59,8 @@ public class TemplateDataActivity extends LBaseActivity {
 
     private void init() {
         titlebar.setTitle("素材市场");
+        templatedataRemindTv.setVisibility(View.GONE);
+        templatedataInformTv.setVisibility(View.GONE);
     }
 
     private void getdata() {
@@ -98,13 +103,13 @@ public class TemplateDataActivity extends LBaseActivity {
                     TemplateDataAdapter adapter = new TemplateDataAdapter(TemplateDataActivity.this, obj.getImgList());
                     templatedataGv.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
-                    shareHelper.saveShareImage(obj,false);
+                    shareHelper.saveShareImage(obj, false);
 
                     templatedataSharedTv.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                        //    ToastUtils.shortToast("分享");
-                            shareHelper.saveShareImage(obj,true);
+                            //    ToastUtils.shortToast("分享");
+                            shareHelper.saveShareImage(obj, true);
                         }
                     });
 

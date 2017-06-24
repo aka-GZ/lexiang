@@ -1,27 +1,36 @@
 package com.wq.template;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import com.aigestudio.wheelpicker.widgets.WheelDatePicker;
 import com.sunrun.sunrunframwork.bean.BaseBean;
-import com.sunrun.sunrunframwork.uiutils.ToastUtils;
 import com.sunrun.sunrunframwork.uiutils.UIUtils;
 import com.wq.base.LBaseActivity;
 import com.wq.common.model.TemplateDataObj;
+import com.wq.common.model.TemplateStatisticsObj;
 import com.wq.common.quest.BaseQuestStart;
+import com.wq.common.util.ChooserHelper;
 import com.wq.common.util.ShareHelper;
 import com.wq.common.widget.TitleBar;
 import com.wq.project01.R;
 import com.wq.template.adapters.TemplateDataAdapter;
+
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.wq.common.model.Const.CODE_OK;
 import static com.wq.common.quest.BaseQuestConfig.QUEST_GET_TEAM_TEMPLATE_VIEW_CODE;
-import static com.wq.common.quest.BaseQuestConfig.QUEST_GET_TEMPLATE_DATA_CODE;
+import static com.wq.common.quest.BaseQuestConfig.QUEST_GET_TEMPLATE_STATISTICS_CODE;
+import static com.wq.common.quest.BaseQuestConfig.QUEST_SET_TEMPLATE_REMIND_CODE;
 
 /**
  * Created by Zheng on 2017/6/11.
@@ -40,7 +49,11 @@ public class TeamTemplateDataActivity extends LBaseActivity {
     @BindView(R.id.templatedata_shared_tv)
     TextView templatedataSharedTv;
 
-    ShareHelper shareHelper=new ShareHelper(this);
+    ShareHelper shareHelper = new ShareHelper(this);
+    @BindView(R.id.templatedata_remind_tv)
+    TextView templatedataRemindTv;
+    @BindView(R.id.templatedata_inform_tv)
+    TextView templatedataInformTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +93,7 @@ public class TeamTemplateDataActivity extends LBaseActivity {
          * @return template_add_time->模板添加时间
          * @return imgList->九宫格模板图片路径list
          */
-        BaseQuestStart.getTeamTemplateView(this, getSession().getString("group_id") ,template_id);
+        BaseQuestStart.getTeamTemplateView(this, getSession().getString("group_id"), template_id);
     }
 
     @Override
@@ -98,13 +111,38 @@ public class TeamTemplateDataActivity extends LBaseActivity {
                     templatedataGv.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
 
-                    shareHelper.saveShareImage(obj,false);
+                    shareHelper.saveShareImage(obj, false);
                     templatedataSharedTv.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                          //  ToastUtils.shortToast("分享");
+                            //  ToastUtils.shortToast("分享");
 
-                            shareHelper.saveShareImage(obj,true);
+                            shareHelper.saveShareImage(obj, true);
+                        }
+                    });
+
+
+                    templatedataRemindTv.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            new ChooserHelper().showDateChooser(TeamTemplateDataActivity.this, templatedataRemindTv, new WheelDatePicker.OnDateSelectedListener() {
+                                @Override
+                                public void onDateSelected(WheelDatePicker picker, Date date) {
+                                    String remind_time = templatedataRemindTv.getText().toString();
+                                    Log.e("remind_time = " , ""+ remind_time);
+                                    BaseQuestStart.setTemplateRemind(TeamTemplateDataActivity.this, template_id , remind_time);
+                                }
+                            });
+
+                        }
+                    });
+                    templatedataInformTv.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            BaseQuestStart.getTemplateStatistics(TeamTemplateDataActivity.this, template_id);
+
                         }
                     });
 
@@ -121,6 +159,37 @@ public class TeamTemplateDataActivity extends LBaseActivity {
 
                 break;
 
+            case QUEST_SET_TEMPLATE_REMIND_CODE:
+                if (bean.status == CODE_OK) {
+
+                    UIUtils.shortM(bean.msg);
+
+                } else {
+                    UIUtils.shortM(bean.msg);
+                }
+
+                break;
+
+            case QUEST_GET_TEMPLATE_STATISTICS_CODE:
+                if (bean.status == CODE_OK) {
+
+                    TemplateStatisticsObj obj = bean.Data();//获取数据内容
+                    new AlertDialog.Builder(TeamTemplateDataActivity.this)
+                            .setMessage("使用次数:  " + obj.getUse_num() + "\n转发次数:  " + obj.getForwarding_times())
+                            .setPositiveButton("确定" , new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            })
+                            .setCancelable(true)
+                            .create().show();
+
+                } else {
+                    UIUtils.shortM(bean.msg);
+                }
+
+                break;
         }
     }
 }

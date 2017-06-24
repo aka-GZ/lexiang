@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/titlebar_height"
         app:title="素材市场" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -49,13 +50,13 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        android:padding="5dp">
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/templatedata_remind_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:background="@drawable/shap_button_bg"
@@ -68,7 +69,8 @@
             android:id="@+id/templatedata_shared_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:background="@drawable/shap_button_bg"
             android:gravity="center"
@@ -81,6 +83,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:background="@drawable/shap_button_bg"
             android:gravity="center"

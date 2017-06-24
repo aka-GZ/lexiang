@@ -1,23 +1,32 @@
 package com.wq.template;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import com.aigestudio.wheelpicker.widgets.WheelDatePicker;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.FutureTarget;
 import com.sunrun.sunrunframwork.bean.BaseBean;
+import com.sunrun.sunrunframwork.uiutils.ToastUtils;
 import com.sunrun.sunrunframwork.uiutils.UIUtils;
 import com.wq.base.LBaseActivity;
 import com.wq.common.model.TemplateDataObj;
+import com.wq.common.model.TemplateStatisticsObj;
 import com.wq.common.quest.BaseQuestStart;
+import com.wq.common.util.AlertDialogUtil;
+import com.wq.common.util.ChooserHelper;
 import com.wq.common.util.ShareHelper;
 import com.wq.common.widget.TitleBar;
 import com.wq.project01.R;
 import com.wq.template.adapters.TemplateDataAdapter;
 
 import java.io.File;
+import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
@@ -25,6 +34,8 @@ import butterknife.ButterKnife;
 
 import static com.wq.common.model.Const.CODE_OK;
 import static com.wq.common.quest.BaseQuestConfig.QUEST_GET_SHOP_TEMPLATE_DATA_CODE;
+import static com.wq.common.quest.BaseQuestConfig.QUEST_GET_TEMPLATE_STATISTICS_CODE;
+import static com.wq.common.quest.BaseQuestConfig.QUEST_SET_TEMPLATE_REMIND_CODE;
 
 /**
  * Created by Zheng on 2017/6/11.
@@ -118,12 +129,22 @@ public class ShopTemplateDataActivity extends LBaseActivity {
                     templatedataRemindTv.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            new ChooserHelper().showDateChooser(ShopTemplateDataActivity.this, templatedataRemindTv, new WheelDatePicker.OnDateSelectedListener() {
+                                @Override
+                                public void onDateSelected(WheelDatePicker picker, Date date) {
+                                    String remind_time = templatedataRemindTv.getText().toString();
+                                    Log.e("remind_time = " , ""+ remind_time);
+                                    BaseQuestStart.setTemplateRemind(ShopTemplateDataActivity.this, template_id , remind_time);
+                                }
+                            });
 
                         }
                     });
                     templatedataInformTv.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+
+                            BaseQuestStart.getTemplateStatistics(ShopTemplateDataActivity.this, template_id);
 
                         }
                     });
@@ -139,6 +160,37 @@ public class ShopTemplateDataActivity extends LBaseActivity {
 
                 break;
 
+            case QUEST_SET_TEMPLATE_REMIND_CODE:
+                if (bean.status == CODE_OK) {
+
+                    UIUtils.shortM(bean.msg);
+
+                } else {
+                    UIUtils.shortM(bean.msg);
+                }
+
+                break;
+
+            case QUEST_GET_TEMPLATE_STATISTICS_CODE:
+                if (bean.status == CODE_OK) {
+
+                    TemplateStatisticsObj obj = bean.Data();//获取数据内容
+                    new AlertDialog.Builder(ShopTemplateDataActivity.this)
+                            .setMessage("使用次数:  " + obj.getUse_num() + "\n转发次数:  " + obj.getForwarding_times())
+                            .setPositiveButton("确定" , new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            })
+                            .setCancelable(true)
+                            .create().show();
+
+                } else {
+                    UIUtils.shortM(bean.msg);
+                }
+
+                break;
         }
     }
 
