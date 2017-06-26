@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black_lucency_33"
+    android:id="@+id/out"
+    android:layout_height="match_parent">
+
+
+    <TextView
+
+        android:id="@+id/submit"
+        android:text="完成"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|right"
+        android:background="@color/white"
+        android:padding="8dp"
+        android:layout_above="@+id/wheel_date"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <cn.qqtheme.framework.widget.WheelView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="100dp"
+            />
+        <cn.qqtheme.framework.picker.TimePicker
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            />
+
+        <TimePicker
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+    <com.wq.common.widget.CustomWheelDatePicker
+        android:id="@+id/wheel_date"
+        android:clickable="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg"
+        android:layout_alignParentBottom="true"
+        app:wheel_atmospheric="true"
+        app:wheel_curved="false"
+        app:wheel_cyclic="true"
+        app:wheel_item_align="center"
+        app:wheel_indicator="true"
+        app:wheel_indicator_color="@color/limit_line1"
+        app:wheel_indicator_size="1dp"
+        app:wheel_visible_item_count="4"
+        app:wheel_item_text_color="@color/text4"
+        app:wheel_item_text_size="16sp"
+        app:wheel_selected_item_text_color="@color/text2" />
+</RelativeLayout>

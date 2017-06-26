@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 
@@ -12,6 +13,7 @@ import com.aigestudio.wheelpicker.widgets.WheelDatePicker;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.FutureTarget;
 import com.sunrun.sunrunframwork.bean.BaseBean;
+import com.sunrun.sunrunframwork.uiutils.PictureShow;
 import com.sunrun.sunrunframwork.uiutils.ToastUtils;
 import com.sunrun.sunrunframwork.uiutils.UIUtils;
 import com.wq.base.LBaseActivity;
@@ -26,11 +28,13 @@ import com.wq.project01.R;
 import com.wq.template.adapters.TemplateDataAdapter;
 
 import java.io.File;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.qqtheme.framework.picker.DateTimePicker;
 
 import static com.wq.common.model.Const.CODE_OK;
 import static com.wq.common.quest.BaseQuestConfig.QUEST_GET_SHOP_TEMPLATE_DATA_CODE;
@@ -125,18 +129,18 @@ public class ShopTemplateDataActivity extends LBaseActivity {
                         }
                     });
 
-
+                    templatedataGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                            PictureShow pictureShow=new PictureShow(that);
+                            pictureShow.setArgment(obj.getImgList(),i);
+                            pictureShow.show();
+                        }
+                    });
                     templatedataRemindTv.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            new ChooserHelper().showDateChooser(ShopTemplateDataActivity.this, templatedataRemindTv, new WheelDatePicker.OnDateSelectedListener() {
-                                @Override
-                                public void onDateSelected(WheelDatePicker picker, Date date) {
-                                    String remind_time = templatedataRemindTv.getText().toString();
-                                    Log.e("remind_time = " , ""+ remind_time);
-                                    BaseQuestStart.setTemplateRemind(ShopTemplateDataActivity.this, template_id , remind_time);
-                                }
-                            });
+                            onYearMonthDayTimePicker();
 
                         }
                     });
@@ -194,6 +198,33 @@ public class ShopTemplateDataActivity extends LBaseActivity {
         }
     }
 
+    public void onYearMonthDayTimePicker() {
+
+        DateTimePicker picker = new DateTimePicker(this, DateTimePicker.HOUR_24);
+        Calendar calendar=Calendar.getInstance();
+        picker.setDateRangeStart(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH)+1, calendar.get(Calendar.DAY_OF_MONTH));
+
+        picker.setDateRangeEnd(2025, 11, 11);
+        picker.setTimeRangeStart(calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE)+1 );
+//        接收到推送消息 :{"type":1,"template_id":"13"}
+        picker.setOnDateTimePickListener(new DateTimePicker.OnYearMonthDayTimePickListener() {
+
+            @Override
+
+            public void onDateTimePicked(String year, String month, String day, String hour, String minute) {
+                templatedataRemindTv.setText(String.format("%s-%s-%s %s:%s:%s",year,month,day,hour,minute,"00"));
+                String remind_time = templatedataRemindTv.getText().toString();
+//                                    Log.e("remind_time = " , ""+ remind_time);
+                                    BaseQuestStart.setTemplateRemind(ShopTemplateDataActivity.this, template_id , remind_time);
+              //  showToast(year + "-" + month + "-" + day + " " + hour + ":" + minute);
+
+            }
+
+        });
+
+        picker.show();
+
+    }
 
     private String getlmgPathFromCache(String url) {
         FutureTarget<File> future = Glide.with(this)

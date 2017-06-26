@@ -19,6 +19,9 @@
         app:title="个人中心" />
 
     <!--app:rightIcon="@drawable/back_h"-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,21 +47,42 @@
             android:textColor="@color/text2"
             android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/tv_open_qiye"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="开通企业版"
-            android:textColor="@color/yellow_color"
-            android:textSize="14sp" />
 
     </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/tv_open_qiye"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="开通企业版"
+                android:textColor="@color/yellow_color"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_vipInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:visibility="gone"
+                android:layout_marginTop="5dp"
+                android:text="100人团队\n有效期:2017-08-19 15:32:16"
+                android:textColor="@color/yellow_color"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </RelativeLayout>
     <View
         style="@style/limit_line"
         android:layout_marginLeft="10dp"
-        android:visibility="gone"
-        android:layout_marginRight="10dp" />
+        android:layout_marginRight="10dp"
+        android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -66,8 +90,8 @@
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:visibility="gone"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:visibility="gone">
 
 
         <LinearLayout

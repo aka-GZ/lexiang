@@ -2,10 +2,12 @@ package com.wq.template;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 
 import com.sunrun.sunrunframwork.bean.BaseBean;
+import com.sunrun.sunrunframwork.uiutils.PictureShow;
 import com.sunrun.sunrunframwork.uiutils.UIUtils;
 import com.wq.base.LBaseActivity;
 import com.wq.common.model.TemplateDataObj;
@@ -104,7 +106,14 @@ public class TemplateDataActivity extends LBaseActivity {
                     templatedataGv.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                     shareHelper.saveShareImage(obj, false);
-
+                    templatedataGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                            PictureShow pictureShow=new PictureShow(that);
+                            pictureShow.setArgment(obj.getImgList(),i);
+                            pictureShow.show();
+                        }
+                    });
                     templatedataSharedTv.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {

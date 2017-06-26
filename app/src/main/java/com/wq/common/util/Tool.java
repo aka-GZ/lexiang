@@ -1,9 +1,11 @@
 package com.wq.common.util;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 
+import com.sunrun.sunrunframwork.uiutils.PictureShow;
 import com.sunrun.sunrunframwork.uiutils.UIUtils;
 import com.sunrun.sunrunframwork.utils.Utils;
 
@@ -15,6 +17,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 
 /**
  * Created by weiquan on 2017/6/8.
@@ -142,7 +145,11 @@ public class Tool {
 
 
 
-
+    public void showPicture(Context mContext, List imgList, int index){
+        PictureShow pictureShow=new PictureShow(mContext);
+        pictureShow.setArgment(imgList,index);
+        pictureShow.show();
+    }
 
 
 

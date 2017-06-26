@@ -11,17 +11,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sunrun.sunrunframwork.bean.BaseBean;
 import com.sunrun.sunrunframwork.uiutils.ToastUtils;
 import com.sunrun.sunrunframwork.utils.AppUtils;
 import com.wq.base.LBaseActivity;
 import com.wq.base.LBaseFragment;
 import com.wq.common.boxing.GlideMediaLoader;
+import com.wq.common.quest.BaseQuestStart;
 import com.wq.common.quest.Config;
 import com.wq.common.util.AlertDialogUtil;
 import com.wq.common.util.IntentUtil;
 import com.wq.common.util.LoginUtil;
 import com.wq.common.util.popwindow.MenuWindow;
 import com.wq.common.widget.TitleBar;
+import com.wq.mine.mode.VipInfo;
 import com.wq.project01.R;
 import com.wq.template.BuyVipActivity;
 import com.wq.template.MyTemplateListActivity;
@@ -34,6 +37,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static com.wq.common.model.Const.CODE_OK;
+import static com.wq.common.quest.BaseQuestConfig.QUEST_GET_MEMBER_CODE;
 
 /**
  * Created by weiquan on 2017/6/2.
@@ -66,6 +72,9 @@ public class MineFragment extends LBaseFragment {
     TextView itemTeamTemplate;
     @BindView(R.id.item_use_history)
     TextView itemUseHistory;
+    @BindView(R.id.tv_vipInfo)
+    TextView tv_vipInfo;
+
     @BindView(R.id.activity_main)
     LinearLayout activityMain;
 
@@ -88,6 +97,7 @@ public class MineFragment extends LBaseFragment {
     @Override
     public void onResume() {
         setData2Page();
+        BaseQuestStart.getMember(this);
         super.onResume();
     }
 
@@ -96,6 +106,19 @@ public class MineFragment extends LBaseFragment {
         GlideMediaLoader.loadHead(this,imgHead,Config.getLoginInfo().avatar_url);
     }
 
+    @Override
+    public void nofityUpdate(int requestCode, BaseBean bean) {
+        switch (requestCode){
+            case QUEST_GET_MEMBER_CODE:
+                if(bean.status==CODE_OK){
+                    VipInfo vipInfo=bean.Data();
+                    tv_vipInfo.setText(String.format("%s人团队\n有效期: %s",vipInfo.group_num,vipInfo.expiration_time));
+                    tv_vipInfo.setVisibility(View.VISIBLE);
+                }
+                break;
+        }
+        super.nofityUpdate(requestCode, bean);
+    }
 
     @OnClick({R.id.lay_attention,R.id.tv_nickname,R.id.img_head, R.id.lay_fens,R.id.tv_open_qiye, R.id.item_mine_template, R.id.item_team_template, R.id.item_use_history,R.id.item_use_exit})
     public void onViewClicked(View view) {

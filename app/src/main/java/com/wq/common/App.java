@@ -1,14 +1,21 @@
 package com.wq.common;
 
+import android.support.annotation.NonNull;
+import android.widget.ImageView;
+
 import com.bilibili.boxing.BoxingCrop;
 import com.bilibili.boxing.BoxingMediaLoader;
 import com.bilibili.boxing.loader.IBoxingMediaLoader;
 import com.sunrun.sunrunframwork.app.BaseApplication;
+import com.sunrun.sunrunframwork.common.DefaultMediaLoader;
+import com.sunrun.sunrunframwork.common.IMediaLoader;
 import com.sunrun.sunrunframwork.http.NetServer;
 import com.wq.common.boxing.BoxingGlideLoader;
 import com.wq.common.boxing.BoxingUcrop;
+import com.wq.common.boxing.FixDefaultMediaLoader;
 import com.wq.common.util.OtherDataConvert;
 import com.wq.common.util.OtherRequestPreproccess;
+import com.wq.common.util.PushHelper;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -25,11 +32,11 @@ public class App extends BaseApplication {
         BoxingCrop.getInstance().init(new BoxingUcrop());
         NetServer.Settings.getSetting().setDataConvert(new OtherDataConvert());
         NetServer.Settings.getSetting().setRequestPreproccess(new OtherRequestPreproccess());
+        ((DefaultMediaLoader)DefaultMediaLoader.getInstance()).init(new FixDefaultMediaLoader());
+        PushHelper.initPush(this);
 //        NetServer.Settings.getSetting().setShowLog(false);
-
-
-        JPushInterface.setDebugMode(true);
-        JPushInterface.init(this);
+//        JPushInterface.setDebugMode(true);
+//        JPushInterface.init(this);
     }
 
 }

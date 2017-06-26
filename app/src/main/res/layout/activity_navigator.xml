@@ -18,7 +18,7 @@
         android:id="@+id/navTabView"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        app:bnbActiveColor="#222"
+        app:bnbActiveColor="@color/yellow_color"
         app:bnbBackgroundStyle="background_style_static"
         app:bnbElevation="1dp"
         app:bnbInactiveColor="#777"

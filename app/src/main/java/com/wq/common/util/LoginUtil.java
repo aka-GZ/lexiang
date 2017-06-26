@@ -1,6 +1,5 @@
 package com.wq.common.util;
 
-import android.app.Activity;
 import android.content.Context;
 
 import com.sunrun.sunrunframwork.http.cache.ACache;
@@ -22,6 +21,7 @@ public class LoginUtil {
         Config.putLoginInfo(null);
 //        Config.putConfigInfo(context, LoginConfig.PWD, null);
         App.getInstance().closeAllActivity();
+        PushHelper.stopPush(context);
         IntentUtil.startLogin( context, isOrtherLogin);
         ACache.get(context).clear();
     }

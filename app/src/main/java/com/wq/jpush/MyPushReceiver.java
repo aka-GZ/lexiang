@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+
+import com.sunrun.sunrunframwork.utils.log.Logger;
+
 import cn.jpush.android.api.JPushInterface;
 
 
@@ -20,6 +23,9 @@ public class MyPushReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
+		if (intent != null && intent.getAction() != null) {
+			new DealPushAction(context, intent);
+		}
 		Bundle bundle = intent.getExtras();
 		Log.e("MyPushReceiver", "intent.getAction() - " + intent.getAction());
 

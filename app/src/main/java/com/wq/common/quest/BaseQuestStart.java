@@ -17,6 +17,7 @@ import com.wq.common.model.TemplateDataObj;
 import com.wq.common.model.TemplateStatisticsObj;
 import com.wq.common.model.UseHistoryListBean;
 import com.wq.login.RegisterActivity;
+import com.wq.mine.mode.VipInfo;
 import com.wq.template.mode.PeopleEntity;
 import com.wq.vip.mode.RechargeOption;
 
@@ -40,13 +41,13 @@ public class BaseQuestStart extends BaseQuestConfig {
      * @return code 200成功 3001账号或密码错误
      * 18316315572  12345678
      */
-    public static void login(NetRequestHandler netRequestHandler, String phone_no, String password) {
+    public static void login(NetRequestHandler netRequestHandler, String phone_no, String password,String registration_id) {
 
         netRequestHandler.requestAsynPost(new NAction()
                 .setUrl(BaseQuestConfig.LOGIN_URL)
                 .put("phone_no", phone_no)
                 .put("password", Utils.getMD5(password) )
-//                .put("password", (password) )
+                .put("registration_id", (registration_id) )
                 .setTypeToken(LoginInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_LOGIN_CODE));
     }
@@ -683,7 +684,8 @@ public class BaseQuestStart extends BaseQuestConfig {
 
         netRequestHandler.requestAsynGet(new NAction()
                 .setUrl(BaseQuestConfig.GET_MEMBER_URL)
-            //    .setTypeToken(MemberDataObj.class)//指定解析类型,该程序里面对应body 里面的json内容
+                .setTypeToken(VipInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
+                .cachePriority(true)
                 .setRequestCode(BaseQuestConfig.QUEST_GET_MEMBER_CODE));
     }
 

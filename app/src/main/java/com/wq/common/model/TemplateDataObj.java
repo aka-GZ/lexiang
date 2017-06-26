@@ -137,5 +137,10 @@ public class TemplateDataObj {
         public void setImg_order(String img_order) {
             this.img_order = img_order;
         }
+
+        @Override
+        public String toString() {
+            return String.valueOf(img_url);
+        }
     }
 }

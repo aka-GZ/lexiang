@@ -13,16 +13,13 @@ public class PushMessage {
      * template_id : 16
      */
 
-    private int type;
+    private String type;
     private String template_id;
 
-    public int getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(int type) {
-        this.type = type;
-    }
 
     public String getTemplate_id() {
         return template_id;

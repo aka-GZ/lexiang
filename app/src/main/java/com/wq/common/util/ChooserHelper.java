@@ -19,6 +19,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import cn.qqtheme.framework.picker.DatePicker;
+import cn.qqtheme.framework.picker.TimePicker;
+
 import static com.sunrun.sunrunframwork.utils.EmptyDeal.empty;
 
 /**
@@ -91,6 +94,8 @@ public class ChooserHelper {
         if (dialog == null) {
             final View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_date_wheel, null);
             dialog = UIUtils.createDialog(context, dialogView, true);
+            if(true)
+            return dialog;
             final CustomWheelDatePicker wheelPicker = (CustomWheelDatePicker) dialogView.findViewById(R.id.wheel_date);
             Date tmpDate = (Date) textView.getTag();
             if(tmpDate!=null){
@@ -140,6 +145,60 @@ public class ChooserHelper {
         return dialog;
     }
 
+
+    Dialog bulidDateTimeDialog(Context context, final TextView textView, final WheelDatePicker.OnDateSelectedListener listener) {
+        if (dialog == null) {
+
+            final View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_date_time_wheel, null);
+            dialog = UIUtils.createDialog(context, dialogView, true);
+            final CustomWheelDatePicker wheelPicker = (CustomWheelDatePicker) dialogView.findViewById(R.id.wheel_date);
+            Date tmpDate = (Date) textView.getTag();
+            if(tmpDate!=null){
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(tmpDate);
+                wheelPicker.setYearAndMonth(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1);
+                wheelPicker.setSelectedDay(calendar.get(Calendar.DAY_OF_MONTH));
+            }
+            wheelPicker.setVisibleItemCount(5);
+            wheelPicker.setItemTextColor(context.getResources().getColor(R.color.text4));
+            wheelPicker.setSelectedItemTextColor(context.getResources().getColor(R.color.text2));
+            wheelPicker.setIndicator(true);
+            wheelPicker.setOnDateSelectedListener(new WheelDatePicker.OnDateSelectedListener() {
+                @Override
+                public void onDateSelected(WheelDatePicker picker, Date date) {
+                }
+            });
+            // wheelPicker.setData(data);
+
+        } else {
+            if (!empty(textView.getTag())) {
+                final WheelDatePicker wheelPicker = (WheelDatePicker) dialog.findViewById(R.id.wheel_date);
+                Date tmpDate = (Date) textView.getTag();
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(tmpDate);
+                wheelPicker.setYearAndMonth(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1);
+                wheelPicker.setSelectedDay(calendar.get(Calendar.DAY_OF_MONTH));
+            }
+        }
+        final WheelDatePicker wheelPicker = (WheelDatePicker) dialog.findViewById(R.id.wheel_date);
+        dialog.findViewById(R.id.submit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                datePicker = wheelPicker;
+                Date tmpDate = wheelPicker.getCurrentDate();
+                String birthday = DateUtil.getStringByFormat(tmpDate, "yyyy-MM-dd");
+                textView.setText(birthday);
+                listener.onDateSelected(wheelPicker, tmpDate);
+                textView.setTag(tmpDate);
+                wheelPicker.setTag(tmpDate);
+                dialog.dismiss();
+            }
+        });
+        if (!dialog.isShowing()) {
+            dialog.show();
+        }
+        return dialog;
+    }
 
 
 
