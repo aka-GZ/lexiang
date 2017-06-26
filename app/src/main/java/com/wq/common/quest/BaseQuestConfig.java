@@ -160,6 +160,10 @@ public class BaseQuestConfig implements NetQuestConfig {
     public static String GET_TEMPLATE_STATISTICS_URL = HTTP_API + "/api.php/Cube/getTemplateStatistics";
     public static final int QUEST_GET_TEMPLATE_STATISTICS_CODE = 0X035;
 
+//    //获取我的模板转发提醒
+//    public static String GET_FORWARD_TEMPLATE_REMIND_URL = HTTP_API + "/api.php/Cube/getForwardTemplateRemind";
+//    public static final int QUEST_GET_FORWARD_TEMPLATE_REMIND_CODE = 0X036;
+
 }
 
 

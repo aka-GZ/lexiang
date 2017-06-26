@@ -200,6 +200,18 @@
             android:layout_marginLeft="10dp" />
 
         <TextView
+            android:id="@+id/item_use_forwarded"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/selec_itemview"
+            android:gravity="center"
+            android:text="待转发模板" />
+
+        <View
+            style="@style/limit_line"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
             android:id="@+id/item_use_exit"
             android:layout_width="match_parent"
             android:layout_height="45dp"
