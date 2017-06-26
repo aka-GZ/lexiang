@@ -8,6 +8,7 @@ package com.wq.common.model;
 public class PushMessage {
 
     /**
+     * type 1 调到市场模板详情  type2跳到团队模板详情
      * type : 1
      * template_id : 16
      */
