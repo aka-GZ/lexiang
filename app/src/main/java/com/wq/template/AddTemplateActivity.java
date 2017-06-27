@@ -107,6 +107,8 @@ public class AddTemplateActivity extends LBaseActivity {
 //                String title = tvTitle.getText().toString().trim();
 //                String content = editContent.getText().toString().trim();
 
+                UIUtils.showLoadDialog(AddTemplateActivity.this);
+
                 new Thread(run).start();
 
 
@@ -183,6 +185,7 @@ public class AddTemplateActivity extends LBaseActivity {
             case BaseQuestConfig.QUEST_ADD_TEMPLATE_CODE:
                 //log 设置 tag为NetServer 可以查看请求情况
                 if (bean.status == 200) {
+                    UIUtils.cancelLoadDialog();
                     ToastUtils.shortToast("保存成功");
                     finish();
                 } else {

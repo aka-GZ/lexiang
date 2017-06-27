@@ -35,6 +35,7 @@ import static com.wq.common.model.Const.CODE_OK;
 import static com.wq.common.quest.BaseQuestConfig.QUEST_GET_TEAM_TEMPLATE_VIEW_CODE;
 import static com.wq.common.quest.BaseQuestConfig.QUEST_GET_TEMPLATE_STATISTICS_CODE;
 import static com.wq.common.quest.BaseQuestConfig.QUEST_SET_TEMPLATE_REMIND_CODE;
+import static com.wq.common.quest.BaseQuestConfig.QUEST_TEMPLATE_FORWARD_RECORD_CODE;
 
 /**
  * Created by Zheng on 2017/6/11.
@@ -129,6 +130,8 @@ public class TeamTemplateDataActivity extends LBaseActivity {
                             //  ToastUtils.shortToast("分享");
 
                             shareHelper.saveShareImage(obj, true);
+
+                            BaseQuestStart.templateForwardRecord(TeamTemplateDataActivity.this, template_id);
                         }
                     });
 
@@ -164,6 +167,17 @@ public class TeamTemplateDataActivity extends LBaseActivity {
 
                     UIUtils.shortM(bean.msg);
                     finish();
+
+                } else {
+                    UIUtils.shortM(bean.msg);
+                }
+
+                break;
+
+            case QUEST_TEMPLATE_FORWARD_RECORD_CODE:
+                if (bean.status == CODE_OK) {
+                    UIUtils.shortM(bean.msg);
+                    //  finish();
 
                 } else {
                     UIUtils.shortM(bean.msg);

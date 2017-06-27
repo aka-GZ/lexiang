@@ -40,6 +40,7 @@ import static com.wq.common.model.Const.CODE_OK;
 import static com.wq.common.quest.BaseQuestConfig.QUEST_GET_SHOP_TEMPLATE_DATA_CODE;
 import static com.wq.common.quest.BaseQuestConfig.QUEST_GET_TEMPLATE_STATISTICS_CODE;
 import static com.wq.common.quest.BaseQuestConfig.QUEST_SET_TEMPLATE_REMIND_CODE;
+import static com.wq.common.quest.BaseQuestConfig.QUEST_TEMPLATE_FORWARD_RECORD_CODE;
 
 /**
  * Created by Zheng on 2017/6/11.
@@ -126,6 +127,8 @@ public class ShopTemplateDataActivity extends LBaseActivity {
                         @Override
                         public void onClick(View v) {
                             shareHelper.saveShareImage(obj, true);
+
+                            BaseQuestStart.templateForwardRecord(ShopTemplateDataActivity.this, template_id);
                         }
                     });
 
@@ -157,6 +160,17 @@ public class ShopTemplateDataActivity extends LBaseActivity {
                 } else if (bean.status == 3003) {
                     UIUtils.shortM(bean.msg);
                     finish();
+
+                } else {
+                    UIUtils.shortM(bean.msg);
+                }
+
+                break;
+
+            case QUEST_TEMPLATE_FORWARD_RECORD_CODE:
+                if (bean.status == CODE_OK) {
+                    UIUtils.shortM(bean.msg);
+                    //  finish();
 
                 } else {
                     UIUtils.shortM(bean.msg);

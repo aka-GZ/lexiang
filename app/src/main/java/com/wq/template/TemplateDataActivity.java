@@ -22,6 +22,7 @@ import butterknife.ButterKnife;
 
 import static com.wq.common.model.Const.CODE_OK;
 import static com.wq.common.quest.BaseQuestConfig.QUEST_GET_TEMPLATE_DATA_CODE;
+import static com.wq.common.quest.BaseQuestConfig.QUEST_TEMPLATE_FORWARD_RECORD_CODE;
 
 /**
  * Created by Zheng on 2017/6/11.
@@ -109,8 +110,8 @@ public class TemplateDataActivity extends LBaseActivity {
                     templatedataGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                            PictureShow pictureShow=new PictureShow(that);
-                            pictureShow.setArgment(obj.getImgList(),i);
+                            PictureShow pictureShow = new PictureShow(that);
+                            pictureShow.setArgment(obj.getImgList(), i);
                             pictureShow.show();
                         }
                     });
@@ -119,6 +120,8 @@ public class TemplateDataActivity extends LBaseActivity {
                         public void onClick(View v) {
                             //    ToastUtils.shortToast("分享");
                             shareHelper.saveShareImage(obj, true);
+                            BaseQuestStart.templateForwardRecord(TemplateDataActivity.this, template_id);
+
                         }
                     });
 
@@ -135,6 +138,16 @@ public class TemplateDataActivity extends LBaseActivity {
 
                 break;
 
+            case QUEST_TEMPLATE_FORWARD_RECORD_CODE:
+                if (bean.status == CODE_OK) {
+                    UIUtils.shortM(bean.msg);
+                  //  finish();
+
+                } else {
+                    UIUtils.shortM(bean.msg);
+                }
+
+                break;
         }
     }
 }

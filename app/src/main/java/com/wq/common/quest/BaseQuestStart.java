@@ -793,24 +793,22 @@ public class BaseQuestStart extends BaseQuestConfig {
     }
 
 
-    /**
-     * 获取我的模板转发提醒
-     * API参数传入方式: GET
-     * 传入JSON格式: 无
-     * 返回JSON格式: {"meta":{"code":200,"message":"success"}}
-     * API_URL_本地: http://localhost:81/api.php/Cube/getForwardTemplateRemind
-     * API_URL_服务器: http://wxyx.lyfz.net/api.php/Cube/getForwardTemplateRemind
-     * @return code 200->成功
-     * @return remind_id->消息提醒ID
-     * @return template_id->模板ID
-     * @return add_time->消息发出时间
-     * @return template_name->模板名称
-     */
-//    public static void getForwardTemplateRemind(NetRequestHandler netRequestHandler) {
-//        netRequestHandler.requestAsynPost(new NAction()
-//                .setUrl(BaseQuestConfig.GET_FORWARD_TEMPLATE_REMIND_URL)
-//                .setRequestCode(BaseQuestConfig.QUEST_GET_FORWARD_TEMPLATE_REMIND_CODE));
-//    }
+/**
+ * 模板转发次数记录
+ * API参数传入方式: POSt
+ * 传入JSON格式: {"template_id":"3"}
+ * 返回JSON格式: {"meta":{"code":200,"message":"success"}}
+ * API_URL_本地: http://localhost:81/api.php/Cube/templateForwardRecord
+ * API_URL_服务器: http://fx.lyfz.net/wxyx/api.php/Cube/templateForwardRecord
+ * @param template_id->模板ID
+ * @return code 200->成功
+ */
+    public static void templateForwardRecord(NetRequestHandler netRequestHandler,String template_id) {
+        netRequestHandler.requestAsynPost(new NAction()
+                .setUrl(BaseQuestConfig.TEMPLATE_FORWARD_RECORD_URL)
+                .put("template_id", template_id)
+                .setRequestCode(BaseQuestConfig.QUEST_TEMPLATE_FORWARD_RECORD_CODE));
+    }
 
 
 

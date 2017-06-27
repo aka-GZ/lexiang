@@ -52,10 +52,11 @@ public class BaseQuestConfig implements NetQuestConfig {
     //获取九宫格市场模板列表
     public static String GET_SHOP_TEMPLATE_LIST_URL = HTTP_API + "/api.php/Cube/getShopTemplateList";
     public static final int QUEST_GET_SHOP_TEMPLATE_LIST_CODE = 0X010;
-	
-	
-	
-    //获取我的模板转发提醒
+
+
+
+
+    //x获取我的模板转发提醒
     public static String GET_FORWARD_TEMPLATE_REMIND_URL = HTTP_API + "/api.php/Cube/getForwardTemplateRemind";
     public static final int QUEST_GET_FORWARD_TEMPLATE_REMIND_CODE = 0X011;
 
@@ -163,6 +164,12 @@ public class BaseQuestConfig implements NetQuestConfig {
 //    //获取我的模板转发提醒
 //    public static String GET_FORWARD_TEMPLATE_REMIND_URL = HTTP_API + "/api.php/Cube/getForwardTemplateRemind";
 //    public static final int QUEST_GET_FORWARD_TEMPLATE_REMIND_CODE = 0X036;
+
+
+    //记录模板转发次数
+    public static String TEMPLATE_FORWARD_RECORD_URL = HTTP_API + "/api.php/Cube/templateForwardRecord";
+    public static final int QUEST_TEMPLATE_FORWARD_RECORD_CODE = 0X036;
+
 
 }
 
