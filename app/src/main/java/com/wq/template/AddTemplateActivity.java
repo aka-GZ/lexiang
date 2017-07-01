@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -305,7 +306,8 @@ public class AddTemplateActivity extends LBaseActivity {
         int W = 500;
         Bitmap aimBit = Bitmap.createBitmap(W, W, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(aimBit);
-        canvas.drawARGB(255, 255, 255, 255);//绘制底色
+        canvas.drawARGB(255, 221, 221, 221);//绘制底色
+//        canvas.drawColor(getResources().getColor(R.color.limit_line1), PorterDuff.Mode.CLEAR);
         int smallW = W / 3;
         Paint paint = new Paint();
         paint.setARGB(255, 255, 255, 255);
