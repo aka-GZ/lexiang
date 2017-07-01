@@ -24,6 +24,7 @@ import com.wq.mine.mode.VipInfo;
 import com.wq.project01.R;
 import com.wq.template.MyTemplateListActivity;
 import com.wq.template.TeamTemplateListActivity;
+import com.wq.template.ToBeForwardedActivity;
 import com.wq.template.UseHistoryListActivity;
 import com.wq.vip.BuyVipActivity_2;
 
@@ -140,8 +141,8 @@ public class MineFragment extends LBaseFragment {
                 IntentUtil.startActivity(that, UseHistoryListActivity.class);
                 break;
             case R.id.item_use_forwarded:
-                //IntentUtil.startActivity(that, ToBeForwardedActivity.class);
-                ToastUtils.shortToast("待转发模板");
+                IntentUtil.startActivity(that, ToBeForwardedActivity.class);
+//                ToastUtils.shortToast("待转发模板");
                 break;
             case R.id.item_use_exit:
                 AlertDialogUtil.showConfimDialog(that, "是否退出登录?", R.drawable.ic_dialog_tuichu, new View.OnClickListener() {
