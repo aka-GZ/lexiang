@@ -112,6 +112,14 @@
 
             <View style="@style/limit_line" />
 
+            <com.sunrun.sunrunframwork.view.ItemView
+                android:id="@+id/item_remind_time"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+
+                app:leftTVText="选择提醒时间" />
+
+            <View style="@style/limit_line" />
 
         </LinearLayout>
     </ScrollView>

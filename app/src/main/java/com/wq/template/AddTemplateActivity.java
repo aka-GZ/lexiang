@@ -16,7 +16,6 @@ import com.bilibili.boxing.model.entity.BaseMedia;
 import com.bilibili.boxing_impl.ui.BoxingActivity;
 import com.google.gson.reflect.TypeToken;
 import com.sunrun.sunrunframwork.bean.BaseBean;
-import com.sunrun.sunrunframwork.pay.alipay.AlipayUtils;
 import com.sunrun.sunrunframwork.uiutils.BitmapUtils;
 import com.sunrun.sunrunframwork.uiutils.PictureShow;
 import com.sunrun.sunrunframwork.uiutils.ToastUtils;
@@ -29,6 +28,7 @@ import com.sunrun.sunrunframwork.weight.switchbtn.SlideSwitch;
 import com.wq.base.LBaseActivity;
 import com.wq.common.quest.BaseQuestConfig;
 import com.wq.common.quest.BaseQuestStart;
+import com.wq.common.util.ChooserHelper;
 import com.wq.common.util.IntentUtil;
 import com.wq.common.util.Tool;
 import com.wq.common.widget.TitleBar;
@@ -36,10 +36,13 @@ import com.wq.project01.R;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.qqtheme.framework.picker.DateTimePicker;
 
 import static com.sunrun.sunrunframwork.utils.formVerify.VerifyUtil.verify;
 
@@ -65,6 +68,8 @@ public class AddTemplateActivity extends LBaseActivity {
     @BindView(R.id.activity_main)
     LinearLayout activityMain;
     int IMG_REQUEST_CODE = 0x010;
+    @BindView(R.id.item_remind_time)
+    ItemView itemRemindTime;
 
 
     private List<String> list;
@@ -75,6 +80,7 @@ public class AddTemplateActivity extends LBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_template);
+        ButterKnife.bind(this);
         new ToastUtils();
         cbGongkai.setState(true);
 
@@ -108,14 +114,20 @@ public class AddTemplateActivity extends LBaseActivity {
 //                String content = editContent.getText().toString().trim();
 
                 UIUtils.showLoadDialog(AddTemplateActivity.this);
-
-                new Thread(run).start();
+                if (isSelect) {
+                    isSelect = false;
+                    new Thread(run).start();
+                } else {
+                    ToastUtils.shortToast("模板正在操作，请稍后");
+                }
 
 
             }
         });
 
     }
+
+    Boolean isSelect = true;
 
     Runnable run = new Runnable() {
         @Override
@@ -130,6 +142,13 @@ public class AddTemplateActivity extends LBaseActivity {
         if (list == null && name == null) {
             list = new ArrayList<String>();
             name = " ";
+        }else{
+            if ("".equals(itemRemindTime.getTvItemRightText().toString())){
+
+                ToastUtils.shortToast("提醒时间不能为空");
+                return;
+            }
+
         }
         is_open = cbGongkai.isSelected() ? "1" : "-1";
         for (File file : multiImage.getFiles()) {
@@ -141,6 +160,7 @@ public class AddTemplateActivity extends LBaseActivity {
             verify(editContent, new VerifyerSet.EmptyVerifyer("请输入分享内容"));
         } catch (FormatException e) {
             e.printStackTrace();
+            UIUtils.cancelLoadDialog();
             ToastUtils.shortToast(e.getLocalizedMessage());
             return;
         }
@@ -150,11 +170,12 @@ public class AddTemplateActivity extends LBaseActivity {
             bit4 = createGridBitmap(bitmaps);
         } else {
             ToastUtils.shortToast("分享模板图片为空");
+            UIUtils.cancelLoadDialog();
             return;
         }
         bitmaps_3.clear();
         for (File file : multiImage.getFiles()) {
-             bitmaps_3.add(Tool.image2String(file));
+            bitmaps_3.add(Tool.image2String(file));
         }
         /**
          * 用户添加模板
@@ -166,6 +187,8 @@ public class AddTemplateActivity extends LBaseActivity {
          * @param template_content->模板内容
          * @param template_cover_img->模板封面图片base64格式
          * @param img_list->图片list                   最少1张 最多9张 数据为base64格式
+         * @param forward_expiration_date 转发截止时间 (有指定提醒人时此参数必传)
+         * @param group_id 团队id (可选传有指定提醒团队成员的时候必传)
          * @param remind_id_list->提醒指定团队成员id         list
          * @param is_open->模板是否公开                    -1不公开 1公开 (可选传)
          * @return code 200->成功 3001->template_name参数为空 3002->template_content参数为空 3005->template_cover_img参数为空  3003->img_list图片至少1张最多9张 3004->img_list包含不合法文件 3006->template_cover_img包含不合法文件 3007->数据插入失败
@@ -173,7 +196,7 @@ public class AddTemplateActivity extends LBaseActivity {
         this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                BaseQuestStart.addTemplate(AddTemplateActivity.this, tvTitle, editContent, Tool.image2String(Tool.saveBitmapFile(bit4)), bitmaps_3, list, is_open);
+                BaseQuestStart.addTemplate(AddTemplateActivity.this, tvTitle, editContent, Tool.image2String(Tool.saveBitmapFile(bit4)), bitmaps_3,itemRemindTime.getTvItemRightText().toString(), getSession().getString("group_id") , list, is_open);
             }
         });
     }
@@ -221,7 +244,7 @@ public class AddTemplateActivity extends LBaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    @OnClick({R.id.item_gongkai, R.id.item_remind})
+    @OnClick({R.id.item_gongkai, R.id.item_remind, R.id.item_remind_time})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.item_gongkai:
@@ -233,13 +256,49 @@ public class AddTemplateActivity extends LBaseActivity {
 
 
                 break;
+            case R.id.item_remind_time:
+
+
+
+                break;
             case R.id.titleBar:
                 break;
         }
     }
 
-    int Width = 0;
 
+    public void onYearMonthDayTimePicker() {
+
+        DateTimePicker picker = new DateTimePicker(this, DateTimePicker.HOUR_24);
+        Calendar calendar=Calendar.getInstance();
+        picker.setDateRangeStart(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH)+1, calendar.get(Calendar.DAY_OF_MONTH));
+
+        picker.setDateRangeEnd(2025, 11, 11);
+        picker.setTimeRangeStart(calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE)+1 );
+//        接收到推送消息 :{"type":1,"template_id":"13"}
+        picker.setOnDateTimePickListener(new DateTimePicker.OnYearMonthDayTimePickListener() {
+
+            @Override
+
+            public void onDateTimePicked(String year, String month, String day, String hour, String minute) {
+                itemRemindTime.setRightText(String.format("%s-%s-%s %s:%s:%s",year,month,day,hour,minute,"00"));
+//                String remind_time = itemRemindTime.getTvItemRightText().toString();
+////                                    Log.e("remind_time = " , ""+ remind_time);
+//                BaseQuestStart.setTemplateRemind(ShopTemplateDataActivity.this, template_id , remind_time);
+//                //  showToast(year + "-" + month + "-" + day + " " + hour + ":" + minute);
+
+            }
+
+        });
+
+        picker.show();
+
+    }
+
+
+
+
+    int Width = 0;
 
 
     public Bitmap createGridBitmap(List<Bitmap> bits) {
@@ -248,19 +307,19 @@ public class AddTemplateActivity extends LBaseActivity {
         Canvas canvas = new Canvas(aimBit);
         canvas.drawARGB(255, 255, 255, 255);//绘制底色
         int smallW = W / 3;
-        Paint paint=new Paint();
-        paint.setARGB(255,255,255,255);
+        Paint paint = new Paint();
+        paint.setARGB(255, 255, 255, 255);
         paint.setStrokeWidth(5);
         paint.setAntiAlias(true);
         for (int i = 0; i < 9; i++) {
             int row = i / 3;
             int nol = i % 3;
             if (i < bits.size()) {
-                Bitmap scalBit=BitmapUtils.zoomBitmap(bits.get(i),smallW,smallW);
-                canvas.drawBitmap(scalBit, nol * smallW,row * smallW, null);
+                Bitmap scalBit = BitmapUtils.zoomBitmap(bits.get(i), smallW, smallW);
+                canvas.drawBitmap(scalBit, nol * smallW, row * smallW, null);
             }
-            canvas.drawLine(0,row*smallW,500,row*smallW,paint); //横线
-            canvas.drawLine(nol*smallW,0,nol*smallW,500,paint);//竖线
+            canvas.drawLine(0, row * smallW, 500, row * smallW, paint); //横线
+            canvas.drawLine(nol * smallW, 0, nol * smallW, 500, paint);//竖线
         }
         return aimBit;
     }

@@ -62,11 +62,13 @@ public class BaseQuestStart extends BaseQuestConfig {
      * @param template_content->模板内容
      * @param template_cover_img->模板封面图片base64格式
      * @param img_list->图片list                   最少1张 最多9张 数据为base64格式
+     * @param forward_expiration_date 转发截止时间 (有指定提醒人时此参数必传)
+     * @param group_id 团队id (可选传有指定提醒团队成员的时候必传)
      * @param remind_id_list->提醒指定团队成员id         list
      * @param is_open->模板是否公开                    -1不公开 1公开 (可选传)
      * @return code 200->成功 3001->template_name参数为空 3002->template_content参数为空 3005->template_cover_img参数为空  3003->img_list图片至少1张最多9张 3004->img_list包含不合法文件 3006->template_cover_img包含不合法文件 3007->数据插入失败
      */
-    public static void addTemplate(NetRequestHandler netRequestHandler, Object template_name, Object template_content, String template_cover_img, List<String> img_list, List<String> remind_id_list, String is_open) {
+    public static void addTemplate(NetRequestHandler netRequestHandler, Object template_name, Object template_content, String template_cover_img, List<String> img_list,String forward_expiration_date,String group_id, List<String> remind_id_list, String is_open) {
 
         netRequestHandler.requestAsynPost(new NAction()
                 .setUrl(BaseQuestConfig.ADD_TEMPLATE_URL)
@@ -76,6 +78,8 @@ public class BaseQuestStart extends BaseQuestConfig {
                 .put("template_cover_img", template_cover_img)
 //                .put("template_cover_img", "11")
                 .put("img_list", img_list)
+                .put("forward_expiration_date", forward_expiration_date)
+                .put("group_id", group_id)
                 .put("remind_id_list", remind_id_list)
                 .put("is_open", is_open)
                 // .setTypeToken(LoginInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
