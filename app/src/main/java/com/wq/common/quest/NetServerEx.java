@@ -41,7 +41,7 @@ public class NetServerEx extends NetServer {
            RequestHandle handler = null;
            TextHttpResponseHandler responseHandler = new TextHttpResponseHandler() {
                public void onSuccess(int arg0, Header[] arg1, String json) {
-                  Logger.D((arg0 == -2147483648?"CACHE: ":"") + (action.requestType == 2321?"GET: ":"POST: ") + action.url + "?"  + "\n请求成功: " + json);
+                  Logger.D((arg0 == -2147483648?"CACHE: ":"") + (action.requestType == 2321?"GET: ":"POST: ") + action.url  + "?" + action + "\n请求成功: " + json);
                    BaseBean bean = (BaseBean)NetServer.Settings.getSetting().getDataConvert().convert(action, json);
                    if(arg0 != -2147483648) {
                        if(uiUpdateHandler.getSession() != null && !bean.isEmpty()) {

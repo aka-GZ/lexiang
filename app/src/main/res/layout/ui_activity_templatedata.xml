@@ -54,7 +54,7 @@
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/templatedata_remind_tv"
+            android:id="@+id/templatedata_inform_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -63,7 +63,7 @@
             android:background="@drawable/shap_button_bg"
             android:gravity="center"
             android:padding="8dp"
-            android:text="提醒转发"
+            android:text="转发统计"
             android:textSize="16sp" />
 
         <TextView
@@ -80,7 +80,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/templatedata_inform_tv"
+            android:id="@+id/templatedata_remind_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -89,7 +89,7 @@
             android:background="@drawable/shap_button_bg"
             android:gravity="center"
             android:padding="8dp"
-            android:text="转发通知"
+            android:text="提醒转发"
             android:textSize="16sp" />
 
 
