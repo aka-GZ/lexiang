@@ -10,7 +10,7 @@ import com.wq.common.quest.BaseQuestConfig.QUEST_JOIN_TEAM_CODE
 import com.wq.common.quest.BaseQuestStart
 import com.wq.common.util.isOk
 import com.wq.project01.R
-import kotlinx.android.synthetic.main.dialog_add_people.*
+import kotlinx.android.synthetic.main.dialog_addteam_people.*
 import org.jetbrains.anko.support.v4.toast
 
 /**
@@ -19,32 +19,29 @@ import org.jetbrains.anko.support.v4.toast
  */
 
 class AddTeamDialogFragment : UIBindDialogFragment() {
-    var teamCode:String?=null;
     override fun getLayoutId(): Int {
         return R.layout.dialog_addteam_people
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        teamCode=tv_content.text.toString();
         submit.setOnClickListener {
-            UIUtils.showLoadDialog(that,"请求中..")
-            BaseQuestStart.joinTeam(this,teamCode)
+            UIUtils.showLoadDialog(that, "请求中..")
+            BaseQuestStart.joinTeam(this, edit_content.text.toString())
 //            dismiss()
         }
         cancel.setOnClickListener { dismiss() }
     }
 
     override fun nofityUpdate(requestCode: Int, bean: BaseBean) {
-        when(requestCode){
-            QUEST_JOIN_TEAM_CODE->{
-                if(bean.isOk()){
+        when (requestCode) {
+            QUEST_JOIN_TEAM_CODE -> {
+                toast(bean.msg)
+                if (bean.isOk()) {
                     dismiss()
                 }
-                toast(bean.msg)
             }
         }
-        super.nofityUpdate(requestCode, bean)
     }
 
 }
