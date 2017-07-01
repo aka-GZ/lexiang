@@ -270,7 +270,7 @@ public class BaseQuestStart extends BaseQuestConfig {
                 .setUrl(BaseQuestConfig.GET_TEAM_MEMBER_LIST_URL)
                 .put("group_id", group_id)
                 .put("firstRow", firstRow)
-                .put("listRows", PAGE_COUNT)
+                .put("listRows", 1000)
                  .setTypeToken(new TypeToken<List<PeopleEntity>>(){})//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_GET_TEAM_MEMBER_LIST_CODE));
     }
