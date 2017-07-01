@@ -259,7 +259,7 @@ public class AddTemplateActivity extends LBaseActivity {
                 break;
             case R.id.item_remind_time:
 
-
+                onYearMonthDayTimePicker();
 
                 break;
             case R.id.titleBar:
