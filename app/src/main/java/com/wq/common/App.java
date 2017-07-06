@@ -47,6 +47,7 @@ public class App extends BaseApplication {
         }
 
 
+
        // CrashReport.initCrashReport(getApplicationContext(), "5808d7e434", false);
 //        NetServer.Settings.getSetting().setShowLog(false);
 //        JPushInterface.setDebugMode(true);

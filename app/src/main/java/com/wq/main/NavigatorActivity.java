@@ -34,7 +34,7 @@ public class NavigatorActivity extends LBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if(savedInstanceState!=null)finish();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigator);
         initNavTabView();

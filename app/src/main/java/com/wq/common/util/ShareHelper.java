@@ -63,7 +63,7 @@ public class ShareHelper {
      */
     Dialog dialog;
     public void saveShareImage(final TemplateDataObj obj,boolean locaNeedShare) {
-
+        AHandler.cancel(task);
 //        if(!needShare) {
 //            needShare = locaNeedShare;
 //        }
@@ -125,19 +125,15 @@ public class ShareHelper {
             dialog.cancel();
         }
     }
+    AHandler.Task task;
     private Runnable cancelDialog() {
-
+        AHandler.cancel(task);
         return new Runnable() {
             @Override
             public void run() {
-                AHandler.runTask(new AHandler.Task() {
+                AHandler.runTask(task=new AHandler.Task() {
                     @Override
                     public void task() {
-                        try {
-                            Thread.sleep(5000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
                         super.task();
                     }
 
@@ -147,7 +143,7 @@ public class ShareHelper {
                             dialog.cancel();
                         }
                     }
-                });
+                },20000);
             }
         };
     }

@@ -18,6 +18,7 @@ public class LBaseActivity extends TranslucentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if(savedInstanceState!=null)finish();
         mNServer=new NetServerEx(this,this);
         super.onCreate(savedInstanceState);
     }
