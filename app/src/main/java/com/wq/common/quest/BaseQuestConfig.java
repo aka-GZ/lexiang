@@ -6,8 +6,8 @@ package com.wq.common.quest;
  */
 public class BaseQuestConfig implements NetQuestConfig {
     public static final int PAGE_COUNT=10;
-	public static final String HTTP_API = "http://wxyx.hbgeek.com";
-	
+	//public static final String HTTP_API = "http://wxyx.hbgeek.com";
+    public static final String HTTP_API = "http://wxyx.lyfz.net";
 	
     //登录
     public static String LOGIN_URL = HTTP_API + "/api.php/Auth/login";

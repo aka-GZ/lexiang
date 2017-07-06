@@ -272,10 +272,10 @@ public class AddTemplateActivity extends LBaseActivity {
 
         DateTimePicker picker = new DateTimePicker(this, DateTimePicker.HOUR_24);
         Calendar calendar=Calendar.getInstance();
-        picker.setDateRangeStart(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH)+1, calendar.get(Calendar.DAY_OF_MONTH));
-
         picker.setDateRangeEnd(2025, 11, 11);
-        picker.setTimeRangeStart(calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE)+1 );
+        calendar.add(Calendar.MINUTE,1);
+        picker.setDateRangeStart(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH)+1, calendar.get(Calendar.DAY_OF_MONTH));
+        picker.setTimeRangeStart(calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE) );
 //        接收到推送消息 :{"type":1,"template_id":"13"}
         picker.setOnDateTimePickListener(new DateTimePicker.OnYearMonthDayTimePickListener() {
 
