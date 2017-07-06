@@ -1,6 +1,7 @@
 package com.wq.common.util;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
@@ -8,6 +9,7 @@ import android.util.Log;
 
 import com.sunrun.sunrunframwork.pay.PayUtils;
 import com.sunrun.sunrunframwork.uiutils.ToastUtils;
+import com.sunrun.sunrunframwork.uiutils.UIAlertDialogUtil;
 import com.sunrun.sunrunframwork.uiutils.UIUtils;
 import com.sunrun.sunrunframwork.utils.AHandler;
 import com.sunrun.sunrunframwork.utils.AppUtils;
@@ -33,7 +35,7 @@ public class ShareHelper {
     }
     public   boolean needShare;
     public void shareToWx(TemplateDataObj obj) {
-        ToastUtils.shortToast("分享");
+//        ToastUtils.shortToast("分享");
         Intent weChatIntent = new Intent();
         weChatIntent.setComponent(new ComponentName("com.tencent.mm", "com.tencent.mm.ui.tools.ShareToTimeLineUI"));
 
@@ -56,6 +58,7 @@ public class ShareHelper {
      * @param obj
      * @param locaNeedShare 是否需要即可分享,传false 只做预下载
      */
+    Dialog dialog;
     public void saveShareImage(final TemplateDataObj obj,boolean locaNeedShare) {
 
 //        if(!needShare) {
@@ -66,7 +69,10 @@ public class ShareHelper {
                 ToastUtils.shortToast("请安装微信后再次尝试");
                 return;
             }
-            UIUtils.showLoadDialog(activity);
+//            UIUtils.showLoadDialog(activity);
+            dialog=  AlertDialogUtil.showLoadDialog(activity,"正在打开微信客户端");
+            dialog.setCancelable(false);
+            dialog.setCanceledOnTouchOutside(false);
         }else {
             imageList.clear();
             return;
@@ -111,7 +117,11 @@ public class ShareHelper {
             }
         }).start();
     }
-
+    public void cancelDialogShot(){
+        if(dialog!=null && dialog.isShowing()){
+            dialog.cancel();
+        }
+    }
     private Runnable cancelDialog() {
 
         return new Runnable() {
@@ -130,7 +140,9 @@ public class ShareHelper {
 
                     @Override
                     public void update() {
-                        UIUtils.cancelLoadDialog();
+                        if(dialog!=null && dialog.isShowing()){
+                            dialog.cancel();
+                        }
                     }
                 });
             }

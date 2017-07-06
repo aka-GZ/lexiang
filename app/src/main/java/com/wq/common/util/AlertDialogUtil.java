@@ -2,7 +2,9 @@ package com.wq.common.util;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,14 +37,14 @@ public final class AlertDialogUtil {
     }
 
 
-
     /**
      * 确认对话框
+     *
      * @param context
      * @param content
      * @return
      */
-    public static Dialog showConfimDialog(final Context context, CharSequence content, int iconId, final View.OnClickListener onConfimListener,final View.OnClickListener onCancelListener) {
+    public static Dialog showConfimDialog(final Context context, CharSequence content, int iconId, final View.OnClickListener onConfimListener, final View.OnClickListener onCancelListener) {
         final Dialog dialog = new Dialog(context, R.style.NoTitleDialog);
         View dialogView = View.inflate(context, R.layout.dialog_delete_confim, null);
         dialog.setContentView(dialogView);
@@ -64,7 +66,7 @@ public final class AlertDialogUtil {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                if(onCancelListener!=null){
+                if (onCancelListener != null) {
                     onCancelListener.onClick(v);
                 }
             }
@@ -90,5 +92,15 @@ public final class AlertDialogUtil {
         cancel.setText(cancelStr);
     }
 
-
+    public static Dialog showLoadDialog(Context context, String msg) {
+        Dialog LoadDialog;
+        View rootView = LayoutInflater.from(context).inflate(R.layout.dialog_loading, (ViewGroup) null);
+        TextView msgText = (TextView) rootView.findViewById(R.id.msg);
+        msgText.setText(msg);
+        LoadDialog = new Dialog(context, com.sunrun.sunrunframwork.R.style.CustomDialog);
+        LoadDialog.setCanceledOnTouchOutside(false);
+        LoadDialog.setContentView(rootView);
+        LoadDialog.show();
+        return LoadDialog;
+    }
 }

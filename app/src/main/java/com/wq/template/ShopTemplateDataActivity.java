@@ -169,7 +169,7 @@ public class ShopTemplateDataActivity extends LBaseActivity {
 
             case QUEST_TEMPLATE_FORWARD_RECORD_CODE:
                 if (bean.status == CODE_OK) {
-                    UIUtils.shortM(bean.msg);
+                   // UIUtils.shortM(bean.msg);
                     //  finish();
 
                 } else {
@@ -210,6 +210,12 @@ public class ShopTemplateDataActivity extends LBaseActivity {
 
                 break;
         }
+    }
+
+    @Override
+    protected void onResume() {
+        shareHelper.cancelDialogShot();
+        super.onResume();
     }
 
     public void onYearMonthDayTimePicker() {

@@ -219,6 +219,12 @@ public class TeamTemplateDataActivity extends LBaseActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        shareHelper.cancelDialogShot();
+        super.onResume();
+    }
+
     public void onYearMonthDayTimePicker() {
 
         DateTimePicker picker = new DateTimePicker(this, DateTimePicker.HOUR_24);
