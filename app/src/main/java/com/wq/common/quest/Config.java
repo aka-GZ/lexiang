@@ -1,9 +1,14 @@
 package com.wq.common.quest;
 
+import android.content.Context;
+import android.text.TextUtils;
+
 import com.google.gson.reflect.TypeToken;
 import com.sunrun.sunrunframwork.http.BaseConfig;
 import com.sunrun.sunrunframwork.http.NAction;
 import com.wq.common.model.LoginInfo;
+
+import cn.jpush.android.api.JPushInterface;
 
 
 /**
@@ -29,6 +34,14 @@ public class Config extends BaseConfig {
 
     public static NAction  UAction(){
         return new NAction().put("token",getLoginInfo().getToken());
+    }
+
+    public static String getRegistrationID(Context context){
+        String RegistrationID= JPushInterface.getRegistrationID(context);
+        if(TextUtils.isEmpty(RegistrationID)){
+            RegistrationID=getConfigInfo(context, JPushInterface.EXTRA_REGISTRATION_ID, JPushInterface.getRegistrationID(context));
+        }
+        return RegistrationID;
     }
 
 }

@@ -156,7 +156,7 @@ public class LoginActivity extends LBaseActivity implements TextWatcher, LoginCo
         if (check()) {
             UIUtils.showLoadDialog(this, "登录中..");
             getIntent().putExtra("is_other", false);
-            BaseQuestStart.login(this, accountStr, pwdStr, JPushInterface.getRegistrationID(this));
+            BaseQuestStart.login(this, accountStr, pwdStr, Config.getRegistrationID(this));
             // 保存账户信息
             Config.putConfigInfo(this, ACCOUNT, accountStr);
         }

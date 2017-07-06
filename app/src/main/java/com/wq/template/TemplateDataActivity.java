@@ -155,4 +155,10 @@ public class TemplateDataActivity extends LBaseActivity {
                 break;
         }
     }
+
+    @Override
+    protected void onResume() {
+        shareHelper.cancelDialogShot();
+        super.onResume();
+    }
 }

@@ -36,6 +36,7 @@ public class DealPushAction {
             case "cn.jpush.android.intent.REGISTRATION":// 注册成功
                 String device_token = intent.getExtras().getString(
                         JPushInterface.EXTRA_REGISTRATION_ID);
+                Config.putConfigInfo(context, JPushInterface.EXTRA_REGISTRATION_ID,device_token);
                 Logger.D("REGISTRATION_ID  "+device_token);
                 Config.putConfigInfo(context, "device_token", device_token);// 保存设备号
                 break;
