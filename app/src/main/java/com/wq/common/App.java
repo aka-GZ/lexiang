@@ -1,7 +1,8 @@
 package com.wq.common;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import android.os.Build;
+import android.os.StrictMode;
 import android.support.multidex.MultiDex;
 import android.widget.ImageView;
 
@@ -39,6 +40,13 @@ public class App extends BaseApplication {
         NetServer.Settings.getSetting().setRequestPreproccess(new OtherRequestPreproccess());
         ((DefaultMediaLoader)DefaultMediaLoader.getInstance()).init(new FixDefaultMediaLoader());
         PushHelper.initPush(this);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+            StrictMode.setVmPolicy(builder.build());
+            builder.detectFileUriExposure();
+        }
+
+
        // CrashReport.initCrashReport(getApplicationContext(), "5808d7e434", false);
 //        NetServer.Settings.getSetting().setShowLog(false);
 //        JPushInterface.setDebugMode(true);
