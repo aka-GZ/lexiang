@@ -123,6 +123,10 @@
             android:windowSoftInputMode="stateHidden|adjustPan"
             />
 
+        <activity android:name="com.wq.template.ToBeForwardedActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            />
         <activity android:name="com.wq.mine.UserInfoEditActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan"

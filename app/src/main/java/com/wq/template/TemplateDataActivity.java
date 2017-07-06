@@ -8,7 +8,9 @@ import android.widget.TextView;
 
 import com.sunrun.sunrunframwork.bean.BaseBean;
 import com.sunrun.sunrunframwork.uiutils.PictureShow;
+import com.sunrun.sunrunframwork.uiutils.ToastUtils;
 import com.sunrun.sunrunframwork.uiutils.UIUtils;
+import com.sunrun.sunrunframwork.utils.AppUtils;
 import com.wq.base.LBaseActivity;
 import com.wq.common.model.TemplateDataObj;
 import com.wq.common.quest.BaseQuestStart;
@@ -120,7 +122,10 @@ public class TemplateDataActivity extends LBaseActivity {
                         public void onClick(View v) {
                             //    ToastUtils.shortToast("分享");
                             shareHelper.saveShareImage(obj, true);
-                            BaseQuestStart.templateForwardRecord(TemplateDataActivity.this, template_id);
+                            if(AppUtils.checkPackage(that,"com.tencent.mm")){
+                                BaseQuestStart.templateForwardRecord(TemplateDataActivity.this, template_id);
+                            }
+
 
                         }
                     });

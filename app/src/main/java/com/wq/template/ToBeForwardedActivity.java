@@ -65,6 +65,8 @@ public class ToBeForwardedActivity extends LPageActivity {
     }
 
     public void nofityUpdate(int requestCode, BaseBean bean) {
+
+        titleBar.setTitle("待转发模板");
         switch (requestCode) {
             case BaseQuestConfig.QUEST_GET_FORWARD_TEMPLATE_REMIND_CODE:
                 //log 设置 tag为NetServer 可以查看请求情况

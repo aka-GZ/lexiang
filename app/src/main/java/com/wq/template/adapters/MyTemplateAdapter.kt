@@ -26,7 +26,7 @@ class MyTemplateAdapter(context: Context, data: List<MyTemplateBean>, layoutId: 
                     GlideMediaLoader.load(mContext, holder.getView<View>(R.id.img_icon), template_cover_img_url)
                     holder.setText(R.id.tv_title, template_name)
                     holder.setText(R.id.tv_time, DateUtil.getTimeText(template_add_time))
-                    holder.setText(R.id.tv_zhuanf_number, "已转发${use_num}次")
+                    holder.setText(R.id.tv_zhuanf_number, "已转发${forwarding_times}次")
                     holder.setText(R.id.tv_descript, "$template_content")
                 }
 

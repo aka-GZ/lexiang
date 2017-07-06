@@ -16,6 +16,7 @@ import com.sunrun.sunrunframwork.bean.BaseBean;
 import com.sunrun.sunrunframwork.uiutils.PictureShow;
 import com.sunrun.sunrunframwork.uiutils.ToastUtils;
 import com.sunrun.sunrunframwork.uiutils.UIUtils;
+import com.sunrun.sunrunframwork.utils.AppUtils;
 import com.wq.base.LBaseActivity;
 import com.wq.common.model.TemplateDataObj;
 import com.wq.common.model.TemplateStatisticsObj;
@@ -128,7 +129,8 @@ public class ShopTemplateDataActivity extends LBaseActivity {
                         public void onClick(View v) {
                             shareHelper.saveShareImage(obj, true);
 
-                            BaseQuestStart.templateForwardRecord(ShopTemplateDataActivity.this, template_id);
+                            if(AppUtils.checkPackage(that,"com.tencent.mm")){
+                            BaseQuestStart.templateForwardRecord(ShopTemplateDataActivity.this, template_id);}
                         }
                     });
 

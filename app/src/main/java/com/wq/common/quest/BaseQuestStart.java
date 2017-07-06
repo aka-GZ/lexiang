@@ -15,6 +15,7 @@ import com.wq.common.model.ShopHotTemplateBean;
 import com.wq.common.model.TeamTemplateListObj;
 import com.wq.common.model.TemplateDataObj;
 import com.wq.common.model.TemplateStatisticsObj;
+import com.wq.common.model.ToBeForwardedObj;
 import com.wq.common.model.UseHistoryListBean;
 import com.wq.login.RegisterActivity;
 import com.wq.mine.mode.VipInfo;
@@ -211,7 +212,7 @@ public class BaseQuestStart extends BaseQuestConfig {
 
         netRequestHandler.requestAsynPost(new NAction()
                 .setUrl(BaseQuestConfig.GET_FORWARD_TEMPLATE_REMIND_URL)
-                // .setTypeToken(LoginInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
+                .setTypeToken(new TypeToken<List<ToBeForwardedObj>>(){})//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_GET_FORWARD_TEMPLATE_REMIND_CODE));
     }
 

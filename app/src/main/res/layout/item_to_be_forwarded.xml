@@ -26,4 +26,6 @@
         android:textSize="16sp"
         android:textColor="@color/text4" />
 
+    <View style="@style/limit_line" />
+
 </LinearLayout>

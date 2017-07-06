@@ -16,7 +16,9 @@ import com.sunrun.sunrunframwork.utils.AppUtils;
 import com.sunrun.sunrunframwork.utils.shareutils.SharedUtil;
 import com.wq.common.App;
 import com.wq.common.model.TemplateDataObj;
+import com.wq.common.quest.BaseQuestStart;
 import com.wq.template.ShopTemplateDataActivity;
+import com.wq.template.TemplateDataActivity;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -50,6 +52,7 @@ public class ShareHelper {
         weChatIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         weChatIntent.putExtra("Kdescription", "" + obj.getTemplate_content()); //分享描述
         activity.startActivity(weChatIntent);
+
         activity.runOnUiThread(cancelDialog());
     }
 

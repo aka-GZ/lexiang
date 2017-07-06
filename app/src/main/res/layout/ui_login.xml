@@ -93,7 +93,7 @@
                                     android:background="@null"
                                     android:hint="请输入11位手机号或邮箱"
                                     android:inputType="phone"
-                                    android:text="18316315572"
+                                    android:text=""
                                     android:textSize="15sp"
                                     android:singleLine="true"
                                     android:textColorHint="#dfdfdf" />
