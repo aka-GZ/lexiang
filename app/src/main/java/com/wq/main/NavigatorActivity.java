@@ -34,6 +34,7 @@ public class NavigatorActivity extends LBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if(savedInstanceState!=null)finish();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigator);
         initNavTabView();
@@ -43,6 +44,7 @@ public class NavigatorActivity extends LBaseActivity {
         fragments[1] = new MineFragment();
         switchPanel(fragments[0]);
         requestDelegate.doRequest();//请求数据
+
     }
 
     private Fragment currentActiveFragment;

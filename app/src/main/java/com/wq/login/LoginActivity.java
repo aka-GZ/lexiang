@@ -2,6 +2,7 @@ package com.wq.login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -24,7 +25,9 @@ import com.wq.common.model.LoginInfo;
 import com.wq.common.quest.BaseQuestStart;
 import com.wq.common.quest.Config;
 import com.wq.common.util.IntentUtil;
+import com.wq.common.util.PushHelper;
 import com.wq.common.widget.TitleBar;
+import com.wq.jpush.MyPushReceiver;
 import com.wq.login.other.LoginConfig;
 import com.wq.project01.R;
 
@@ -62,8 +65,23 @@ public class LoginActivity extends LBaseActivity implements TextWatcher, LoginCo
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.ui_login);
         super.onCreate(savedInstanceState);
-    }
+//        registerMessageReceiver();
 
+        titlebar.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                PushHelper.initPush(that);
+            }
+        },500);
+    }
+    public void registerMessageReceiver() {
+        MyPushReceiver       mMessageReceiver = new MyPushReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
+        filter.addAction("cn.jpush.android.intent.REGISTRATION");
+        filter.addAction(JPushInterface.ACTION_REGISTRATION_ID);
+        registerReceiver(mMessageReceiver, filter);
+    }
     /**
      * 判断是否登录
      *

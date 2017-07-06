@@ -103,7 +103,7 @@ public class PushHelper {
 	}
 
 	public static void initPush(Context context) {
-		if (!Config.getLoginInfo().isValid()) { return; }
+		//if (!Config.getLoginInfo().isValid()) { return; }
 
 		if (JPushInterface.isPushStopped(context)) {
 			JPushInterface.resumePush(context);
