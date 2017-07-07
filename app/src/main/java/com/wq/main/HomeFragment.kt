@@ -2,6 +2,7 @@ package com.wq.main
 
 import android.os.Bundle
 import android.view.View
+import com.google.gson.reflect.TypeToken
 import com.sunrun.sunrunframwork.adapter.ViewHodler
 import com.sunrun.sunrunframwork.adapter.ViewHolderAdapter
 import com.sunrun.sunrunframwork.bean.BaseBean
@@ -16,6 +17,7 @@ import com.wq.common.quest.BaseQuestConfig.*
 import com.wq.common.quest.BaseQuestStart
 import com.wq.common.quest.Config
 import com.wq.common.util.IntentUtil
+import com.wq.common.util.SESSION
 import com.wq.main.adapter.HotTemplateAdapter
 import com.wq.main.adapter.SearchHistoryAdapter
 import com.wq.project01.R
@@ -63,11 +65,11 @@ class HomeFragment : LBaseFragment() {
             }
         //顶部分类.搜索历史
             QUEST_GET_CLASS_TEMPLATE_CODE -> {
-                val info = bean.Data<List<ClassTemplateBean>>()//获取数据内容
-                typeGrid.adapter = SearchHistoryAdapter(that, info, R.layout.item_tag_text);
-                typeGrid.setOnItemClickListener { adapterView, view, i, l ->
-                    IntentUtil.startTemplateListActivity(that, null,info[i].class_name,null)
-                }
+                //val info = bean.Data<List<ClassTemplateBean>>()//获取数据内容
+//                typeGrid.adapter = SearchHistoryAdapter(that, info, R.layout.item_tag_text);
+//                typeGrid.setOnItemClickListener { adapterView, view, i, l ->
+//                    IntentUtil.startTemplateListActivity(that, null,info[i].class_name,null)
+//                }
             }
         //热门模板
             QUEST_SHOP_HOT_TEMPLATE_LIST_CODE -> {
@@ -80,6 +82,26 @@ class HomeFragment : LBaseFragment() {
 
         }
         super.nofityUpdate(requestCode, bean)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getHistorys();
+    }
+
+    /**
+     * 搜索历史
+     */
+
+    fun getHistorys() {
+        val info=session.getBean("search_history",object : TypeToken<List<ClassTemplateBean>?>() {})
+//        val info: List<ClassTemplateBean>? = SESSION("search_history")//获取数据内容
+        typeGrid.adapter = SearchHistoryAdapter(that, info, R.layout.item_tag_text);
+        typeGrid.setOnItemClickListener { adapterView, view, i, l ->
+            info?.let {
+                IntentUtil.startTemplateListActivity(that, null, info[i].class_name, null)
+            }
+        }
     }
 
     override fun getLayoutRes(): Int {
