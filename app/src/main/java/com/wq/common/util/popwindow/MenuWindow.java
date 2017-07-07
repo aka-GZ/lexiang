@@ -31,11 +31,14 @@ public class MenuWindow {
      * @param anchor
      */
     public static void showHomePopDialog(final LBaseActivity context, View anchor) {
-        final PopupWindow popupWindow = new FixedPopupWindow(-1, WindowManager.LayoutParams.WRAP_CONTENT);
+        final PopupWindow popupWindow = new FixedPopupWindow(-1, WindowManager.LayoutParams.MATCH_PARENT);
         popupWindow.setContentView(View.inflate(context, R.layout.pop_more_handle_view, null));
         popupWindow.setOutsideTouchable(true);
         popupWindow.setAnimationStyle(R.style.popAnim);
-//        popupWindow.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(R.color.black_lucency_88)));
+        popupWindow.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(R.color.black_lucency_88)));
+        // 需要设置一下此参数，点击外边可消失
+        // 设置点击窗口外边窗口消失
+        popupWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         View layoutView = popupWindow.getContentView();
         layoutView.setOnClickListener(new View.OnClickListener() {
             @Override
