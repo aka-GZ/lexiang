@@ -94,8 +94,8 @@ public class ChooserHelper {
         if (dialog == null) {
             final View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_date_wheel, null);
             dialog = UIUtils.createDialog(context, dialogView, true);
-            if(true)
-            return dialog;
+//            if(true)
+//            return dialog;
             final CustomWheelDatePicker wheelPicker = (CustomWheelDatePicker) dialogView.findViewById(R.id.wheel_date);
             Date tmpDate = (Date) textView.getTag();
             if(tmpDate!=null){
