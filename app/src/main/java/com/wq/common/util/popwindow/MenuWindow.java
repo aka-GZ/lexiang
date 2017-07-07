@@ -3,6 +3,7 @@ package com.wq.common.util.popwindow;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.PopupWindow;
 
 import com.sunrun.sunrunframwork.uiutils.UIUtils;
@@ -30,11 +31,11 @@ public class MenuWindow {
      * @param anchor
      */
     public static void showHomePopDialog(final LBaseActivity context, View anchor) {
-        final PopupWindow popupWindow = new FixedPopupWindow(-1, -1);
+        final PopupWindow popupWindow = new FixedPopupWindow(-1, WindowManager.LayoutParams.WRAP_CONTENT);
         popupWindow.setContentView(View.inflate(context, R.layout.pop_more_handle_view, null));
         popupWindow.setOutsideTouchable(true);
         popupWindow.setAnimationStyle(R.style.popAnim);
-        popupWindow.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(R.color.black_lucency_88)));
+//        popupWindow.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(R.color.black_lucency_88)));
         View layoutView = popupWindow.getContentView();
         layoutView.setOnClickListener(new View.OnClickListener() {
             @Override
