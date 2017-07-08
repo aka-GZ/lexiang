@@ -62,6 +62,7 @@ class HomeFragment : LBaseFragment() {
                 recommendGridView.setOnItemClickListener { adapterView, view, index, l ->
                     IntentUtil.startTemplateDataActivity(that, data[index].template_name, data[index].template_id)
                 }
+                scrollView.smoothScrollTo(0,0)
             }
         //顶部分类.搜索历史
             QUEST_GET_CLASS_TEMPLATE_CODE -> {
@@ -78,6 +79,7 @@ class HomeFragment : LBaseFragment() {
                 hotGridView.setOnItemClickListener { adapterView, view, index, l ->
                     IntentUtil.startTemplateDataActivity(that, data[index].template_name, data[index].template_id)
                 }
+                scrollView.smoothScrollTo(0,0)
             }
 
         }

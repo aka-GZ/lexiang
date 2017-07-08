@@ -13,6 +13,7 @@ import com.wq.common.boxing.GlideMediaLoader
 import com.wq.common.model.MyTemplateBean
 import com.wq.common.quest.BaseQuestConfig.QUEST_GET_TEMPLATE_LIST_CODE
 import com.wq.common.quest.BaseQuestStart
+import com.wq.common.util.GetEmptyViewUtils
 import com.wq.common.util.IntentUtil
 import com.wq.common.util.itemClick
 import com.wq.project01.R
@@ -31,6 +32,7 @@ class MyTemplateListActivity : LPageActivity<MyTemplateBean>() {
         setContentView(R.layout.activity_team_template_list)
         setPullListener(refresh_layout)
         titleBar.setTitle("我的模板")
+        GetEmptyViewUtils.bindEmptyView(refresh_layout,0,"尚未发布模板",true);
     }
 
     private var page = 1

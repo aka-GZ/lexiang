@@ -80,7 +80,7 @@ public class FixedPopupWindow extends PopupWindow {
 
     @Override
     public void showAsDropDown(View anchor, int xoff, int yoff, int gravity) {
-        if (Build.VERSION.SDK_INT < 24) {
+        if (Build.VERSION.SDK_INT!=24) {
             super.showAsDropDown(anchor, xoff, yoff, gravity);
         } else {
             // 适配 android 7.0

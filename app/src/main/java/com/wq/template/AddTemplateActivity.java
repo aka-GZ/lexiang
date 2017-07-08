@@ -253,7 +253,7 @@ public class AddTemplateActivity extends LBaseActivity {
                 break;
             case R.id.item_remind:
 
-                IntentUtil.startSlectPeopleActivity(AddTemplateActivity.this, 123);
+                IntentUtil.startSlectPeopleActivity2(AddTemplateActivity.this, 123);
 
 
                 break;

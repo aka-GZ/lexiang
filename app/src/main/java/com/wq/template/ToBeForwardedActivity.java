@@ -21,6 +21,7 @@ import com.wq.common.model.TeamTemplateListObj;
 import com.wq.common.model.ToBeForwardedObj;
 import com.wq.common.quest.BaseQuestConfig;
 import com.wq.common.quest.BaseQuestStart;
+import com.wq.common.util.GetEmptyViewUtils;
 import com.wq.common.util.IntentUtil;
 import com.wq.common.widget.TitleBar;
 import com.wq.project01.R;
@@ -49,6 +50,7 @@ public class ToBeForwardedActivity extends LPageActivity {
         setContentView(R.layout.activity_team_template_list);
         ButterKnife.bind(this);
         setPullListener(refreshLayout);
+        GetEmptyViewUtils.bindEmptyView(refreshLayout,0,"暂无待转发模板",true);
 //        refreshLayout.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(AdapterView<?> adapterView, View view, int index, long l) {
@@ -76,7 +78,7 @@ public class ToBeForwardedActivity extends LPageActivity {
                     if (list != null && !list.isEmpty() && list.get(0) != null) {
                         setDataToView(list,refreshLayout.getRefreshableView());
                     } else {
-                        ToastUtils.shortToast("暂无团队信息");
+                        ToastUtils.shortToast("暂无待转发模板");
                     }
                 }
                 break;

@@ -11,6 +11,7 @@ import com.wq.login.LoginActivity;
 import com.wq.login.RegisterActivity;
 import com.wq.main.NavigatorActivity;
 import com.wq.main.TemplateListActivity;
+import com.wq.template.MyTeamListActivity;
 import com.wq.template.SelectPeopleActivity;
 import com.wq.template.ShopTemplateDataActivity;
 import com.wq.template.TemplateDataActivity;
@@ -72,7 +73,20 @@ public class IntentUtil extends BaseStartIntent {
      * getSession().getString("names");
      */
     public static void startSlectPeopleActivity(Activity context,int requestCode){
-        Intent intent=new Intent(context, SelectPeopleActivity.class);
+        Intent intent=new Intent(context, SelectPeopleActivity.class);//先跳转到选团队
+        context.startActivityForResult(intent,requestCode);
+    }
+//    /**
+//     *
+//     * 选择提醒谁看
+//     * @param context
+//     * @param requestCode
+//     * 取值getSession().getBean("ids",new TypeToken<List<String>(){})
+//     * getSession().getString("names");
+//     */
+    public static void startSlectPeopleActivity2(Activity context,int requestCode){
+        Intent intent=new Intent(context, MyTeamListActivity.class);
+        intent.putExtra("isSelectMode",true);
         context.startActivityForResult(intent,requestCode);
     }
 

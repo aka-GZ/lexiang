@@ -1,5 +1,6 @@
 package com.wq.mine;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ import com.wq.common.util.popwindow.MenuWindow;
 import com.wq.common.widget.TitleBar;
 import com.wq.mine.mode.VipInfo;
 import com.wq.project01.R;
+import com.wq.template.MyTeamListActivity;
 import com.wq.template.MyTemplateListActivity;
 import com.wq.template.TeamTemplateListActivity;
 import com.wq.template.ToBeForwardedActivity;
@@ -135,7 +137,11 @@ public class MineFragment extends LBaseFragment {
                 IntentUtil.startActivity(that, MyTemplateListActivity.class);
                 break;
             case R.id.item_team_template:
-                IntentUtil.startActivity(that, TeamTemplateListActivity.class);
+//                IntentUtil.startActivity(that, TeamTemplateListActivity.class);//团队模板
+                Intent intent=new Intent(that,MyTeamListActivity.class);//团队模板,先选团队
+                intent.putExtra("isTeamTemplate",true);
+                startActivity(intent);
+
                 break;
             case R.id.item_use_history:
                 IntentUtil.startActivity(that, UseHistoryListActivity.class);

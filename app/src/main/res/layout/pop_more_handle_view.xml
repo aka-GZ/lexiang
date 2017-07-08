@@ -62,6 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:id="@+id/item_5"
+            android:visibility="gone"
             app:RightImgShow="false"
             app:leftTVText="删除团队"
             app:SetLeftTextColor="@color/text3"

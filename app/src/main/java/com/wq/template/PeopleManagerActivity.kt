@@ -41,6 +41,7 @@ class PeopleManagerActivity : LBaseActivity() {
         setContentView(R.layout.ui_activity_manager_friends)
         ButterKnife.bind(this)
         sidrbar.setTextView(tv_dialog)
+        titleBar.setTitle("团队成员列表")
         //获取已选ids和名字
 //        ids = SESSION("ids")
 //        names = SESSION("names")

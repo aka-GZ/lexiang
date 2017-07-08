@@ -79,6 +79,7 @@ class UseHistoryListActivity : LPageActivity<UseHistoryListBean>() {
 
     fun setDateAndRefresh():Boolean{
         if(DateUtil.getDateByFormat(startTime.text.toString(),DateUtil.dateFormatYMD).time>DateUtil.getDateByFormat(endTime.text.toString(),DateUtil.dateFormatYMD).time){
+            toast("请选择正确的起止日期")
             return  false;
         }
         reshPage()

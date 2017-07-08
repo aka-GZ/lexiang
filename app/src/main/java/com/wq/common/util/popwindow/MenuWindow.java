@@ -16,6 +16,7 @@ import com.wq.project01.R;
 import com.wq.template.AddTeamDialogFragment;
 import com.wq.template.AddTemplateActivity;
 import com.wq.template.CreateTeamDialogFragment;
+import com.wq.template.MyTeamListActivity;
 import com.wq.template.PeopleManagerActivity;
 
 /**
@@ -31,7 +32,7 @@ public class MenuWindow {
      * @param anchor
      */
     public static void showHomePopDialog(final LBaseActivity context, View anchor) {
-        final PopupWindow popupWindow = new FixedPopupWindow(-1, WindowManager.LayoutParams.MATCH_PARENT);
+        final PopupWindow popupWindow = new FixedPopupWindow(-1, -1);
         popupWindow.setContentView(View.inflate(context, R.layout.pop_more_handle_view, null));
         popupWindow.setOutsideTouchable(true);
         popupWindow.setAnimationStyle(R.style.popAnim);
@@ -58,7 +59,8 @@ public class MenuWindow {
             @Override
             public void onClick(View v) {
                 //团队成员
-                IntentUtil.startActivity(context, PeopleManagerActivity.class);
+//                IntentUtil.startActivity(context, PeopleManagerActivity.class);
+                IntentUtil.startActivity(context, MyTeamListActivity.class);
                 popupWindow.dismiss();
             }
         });

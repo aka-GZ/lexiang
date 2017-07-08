@@ -6,8 +6,16 @@ package com.wq.common.model;
 
 public class GroupListObj {
 
-    private String group_name;
-    private String group_id;
+    /**
+     * is_main : -1
+     * group_number : 82257905
+     */
+
+    public String is_main;
+    public String group_number;
+    public String group_name;
+    public String group_id;
+
 
     public String getGroup_name() {
         return group_name;

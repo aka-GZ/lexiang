@@ -22,6 +22,7 @@ import com.wq.common.model.LoginInfo;
 import com.wq.common.model.TeamTemplateListObj;
 import com.wq.common.quest.BaseQuestConfig;
 import com.wq.common.quest.BaseQuestStart;
+import com.wq.common.util.GetEmptyViewUtils;
 import com.wq.common.util.IntentUtil;
 import com.wq.common.widget.TitleBar;
 import com.wq.project01.R;
@@ -38,6 +39,7 @@ import static com.wq.common.quest.BaseQuestConfig.QUEST_LOGIN_CODE;
 import static com.wq.project01.R.id.img_icon;
 
 /**
+ * 团队模板
  * Created by weiquan on 2017/6/2.0
  */
 
@@ -55,6 +57,7 @@ public class TeamTemplateListActivity extends LPageActivity<TeamTemplateListObj>
         super.onCreate(arg0);
         setContentView(R.layout.activity_team_template_list);
         setPullListener(refreshLayout);
+        GetEmptyViewUtils.bindEmptyView(refreshLayout,0,"暂无团队模板",true);
         refreshLayout.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int index, long l) {
@@ -73,11 +76,12 @@ public class TeamTemplateListActivity extends LPageActivity<TeamTemplateListObj>
 //        setDataToView(list,refreshLayout.getRefreshableView());
         page = i;
         //firstRow 开始记录数   , listRows 每页显示数量
-        String firstRow = "0";//默认第0组
+//        String firstRow = "0";//默认第0组
+//        String listRows = "10";
+//        BaseQuestStart.getGroupList(this, firstRow, listRows);
+        String firstRow = page + "";
         String listRows = "10";
-        BaseQuestStart.getGroupList(this, firstRow, listRows);
-
-
+        BaseQuestStart.getTeamTemplateList(this, getSession().getString("group_id"), firstRow, listRows);
     }
 
 
