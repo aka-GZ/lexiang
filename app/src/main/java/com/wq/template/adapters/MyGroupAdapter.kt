@@ -29,16 +29,29 @@ class MyGroupAdapter(var context: BaseActivity, data: List<GroupListObj>, layout
         with(mItem) {
             holder.setText(R.id.tv_title, group_name)
             holder.setText(R.id.tv_descript, "团队码：$group_number")
+            if ("-1"==is_main){
+                holder.setText(R.id.btn_delete,"退出")
+            }else{
+                holder.setText(R.id.btn_delete,"解散")
+            }
+
             holder.setClickListener(R.id.btn_delete){
                 //删除
 //                if (!context.getSession().hasValue("group_id")) {
 //                    UIUtils.shortM("尚未加入团队")
 //                    return
 //                }
-                AlertDialogUtil.showConfimDialog(mContext, null, 0, View.OnClickListener {
-                    UIUtils.showLoadDialog(mContext, "操作中..")
-                    BaseQuestStart.SignOutTeam(context, null,group_id)
-                }, null)
+                if("1" == is_main){//团队创建者，解散团队
+                    AlertDialogUtil.showConfimDialog(mContext, "该操作无法撤销，是否确认解散该团队？", 0, View.OnClickListener {
+                        UIUtils.showLoadDialog(mContext, "操作中..")
+                        BaseQuestStart.delGroup(context,  group_id)
+                    }, null)
+                }else {
+                    AlertDialogUtil.showConfimDialog(mContext, "该操作无法撤销，是否确认退出该团队？", 0, View.OnClickListener {
+                        UIUtils.showLoadDialog(mContext, "操作中..")
+                        BaseQuestStart.SignOutTeam(context, null, group_id)
+                    }, null)
+                }
             }
 
         }

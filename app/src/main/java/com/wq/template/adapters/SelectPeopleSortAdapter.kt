@@ -20,6 +20,7 @@ import com.wq.project01.R.mipmap.icon_select_unselected
 class SelectPeopleSortAdapter
 (mAct: Activity, datas: List<PeopleEntity>) : BaseSortAdapter<PeopleEntity>(mAct, datas, R.layout.item_select_friends) {
 
+    var isEditMode=true;
     override fun fillView(holder: ViewHodler, sortModel: PeopleEntity, position: Int) {
         val tvName = holder.getView<TextView>(R.id.tv_name)
         val tvLetter = holder.getView<TextView>(R.id.catalog)
@@ -29,7 +30,7 @@ class SelectPeopleSortAdapter
         //        NetImageUtil.LodeHeadImageView(sortModel.getIcon(),imageView);
         //根据position获取分类的首字母的Char ascii值
         val section = getSectionForPosition(position)
-
+        holder.setVisibility(R.id.iv_select,isEditMode);
         //如果当前位置等于该分类首字母的Char的位置 ，则认为是第一次出现
         if (position == getPositionForSection(section)) {
             tvLetter.visibility = View.VISIBLE

@@ -2,6 +2,7 @@ package com.wq.template
 
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.View.GONE
 import butterknife.ButterKnife
 import com.sunrun.sunrunframwork.adapter.SelectableAdapter.MULTISELECT
 import com.sunrun.sunrunframwork.bean.BaseBean
@@ -23,6 +24,7 @@ import com.wq.template.mode.PeopleEntity
 import kotlinx.android.synthetic.main.ui_activity_manager_friends.*
 import org.jetbrains.anko.toast
 import java.util.*
+import kotlin.properties.Delegates
 
 /**
  * 团队成员
@@ -36,6 +38,7 @@ class PeopleManagerActivity : LBaseActivity() {
     var ids: List<String>? = null                           //已选id
     var names: String? = null
     var group_id:String?=null;
+    var is_main:String?=null;
     override fun onCreate(arg0: Bundle?) {
         super.onCreate(arg0)
         setContentView(R.layout.ui_activity_manager_friends)
@@ -45,6 +48,7 @@ class PeopleManagerActivity : LBaseActivity() {
         //获取已选ids和名字
 //        ids = SESSION("ids")
 //        names = SESSION("names")
+        is_main=SESSION("is_main");
         refreshLayout.mode = PullToRefreshBase.Mode.DISABLED
         initListener()
         refreshLayout.setAdapter(selectPeopleSortAdapter)
@@ -52,6 +56,10 @@ class PeopleManagerActivity : LBaseActivity() {
         group_id=SESSION("group_id");
         getTeamMemberList();
         GetEmptyViewUtils.bindEmptyView(refreshLayout,0,"暂无团队成员",true)
+        if(is_main!="1"){
+            lay_bottom.visibility=GONE;
+            selectPeopleSortAdapter.isEditMode=false
+        }
     }
 
      fun getTeamMemberList(){

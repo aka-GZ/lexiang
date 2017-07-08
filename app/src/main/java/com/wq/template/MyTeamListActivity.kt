@@ -8,8 +8,7 @@ import android.widget.BaseAdapter
 import com.sunrun.sunrunframwork.bean.BaseBean
 import com.wq.base.LPageActivity
 import com.wq.common.model.GroupListObj
-import com.wq.common.quest.BaseQuestConfig.QUEST_GET_GROUP_LIST_CODE
-import com.wq.common.quest.BaseQuestConfig.QUEST_SIGNOUT_TEAM_CODE
+import com.wq.common.quest.BaseQuestConfig.*
 import com.wq.common.quest.BaseQuestStart
 import com.wq.common.util.*
 import com.wq.project01.R
@@ -39,8 +38,6 @@ class MyTeamListActivity : LPageActivity<GroupListObj>() {
 
     private var page2 = 1
     override fun loadData(page: Int) {
-//        var str="哈哈"+page+"balala";
-        var str="哈哈哈$page2哈哈哈"
         //firstRow 开始记录数   , listRows 每页显示数量
         BaseQuestStart.getGroupList(this, "$page","20");
 //        setDataToView(arrayListOf(MyTemplateBean(),MyTemplateBean()),refresh_layout.refreshableView)
@@ -57,6 +54,7 @@ class MyTeamListActivity : LPageActivity<GroupListObj>() {
                    // var position=index-refresh_layout.refreshableView.headerViewsCount;
                     SESSION("group_name", list[index].group_name)
                     SESSION("group_id", list[index].group_id)
+                    SESSION("is_main", list[index].is_main)
                     if(isTeamTemplate){
                         startActivity<TeamTemplateListActivity>()
                     }else
@@ -81,7 +79,8 @@ class MyTeamListActivity : LPageActivity<GroupListObj>() {
                     true
                 }
             }
-           QUEST_SIGNOUT_TEAM_CODE ->{
+
+            QUEST_DEL_GROUP_CODE,QUEST_SIGNOUT_TEAM_CODE ->{
                 that.toast(bean.msg)
                 if(bean.isOk()){
                     reshPage()

@@ -32,7 +32,7 @@ class CreateTeamDialogFragment : UIBindDialogFragment() {
         tv_content.text="创建团队"
         submit.setOnClickListener {
             UIUtils.showLoadDialog(that,"请求中..")
-            BaseQuestStart.addTeam(this,teamCode)
+            BaseQuestStart.addTeam(this,edit_content.text.toString())
         }
         cancel.setOnClickListener { dismiss() }
     }
