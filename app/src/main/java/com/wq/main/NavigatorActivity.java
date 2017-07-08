@@ -9,6 +9,8 @@ import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.sunrun.sunrunframwork.bean.BaseBean;
 import com.wq.base.LBaseActivity;
+import com.wq.common.quest.Config;
+import com.wq.common.util.IntentUtil;
 import com.wq.mine.MineFragment;
 import com.wq.project01.R;
 
@@ -37,6 +39,7 @@ public class NavigatorActivity extends LBaseActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigator);
+
         initNavTabView();
         //设置页面加载的Fragment
         fragments[0] =new HomeFragment();

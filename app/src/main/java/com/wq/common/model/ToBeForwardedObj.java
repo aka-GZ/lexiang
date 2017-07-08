@@ -51,5 +51,4 @@ public class ToBeForwardedObj {
     public void setAdd_time(String add_time) {
         this.add_time = add_time;
     }
-
 }

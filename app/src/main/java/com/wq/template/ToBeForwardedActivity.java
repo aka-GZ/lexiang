@@ -90,7 +90,7 @@ public class ToBeForwardedActivity extends LPageActivity {
 
             public void fillView(ViewHodler viewHodler, final ToBeForwardedObj o, int i) {
                 viewHodler.setText(R.id.tv_name, o.getTemplate_name());
-                viewHodler.setText(R.id.tv_time, DateUtil.getTimeText(o.getAdd_time()));
+                viewHodler.setText(R.id.tv_time, o.getAdd_time());
                 viewHodler.setClickListener(R.id.ll_forward, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

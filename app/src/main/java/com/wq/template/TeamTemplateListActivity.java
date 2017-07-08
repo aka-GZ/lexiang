@@ -118,7 +118,7 @@ public class TeamTemplateListActivity extends LPageActivity<TeamTemplateListObj>
             public void fillView(ViewHodler viewHodler,final TeamTemplateListObj o, int i) {
                 GlideMediaLoader.load(mContext, viewHodler.getView(R.id.img_icon), o.getTemplate_cover_img_url());
                 viewHodler.setText(R.id.tv_titlle, o.getTemplate_name());
-                viewHodler.setText(R.id.tv_time, DateUtil.getTimeText(o.getForward_expiration_date()));
+                viewHodler.setText(R.id.tv_time, o.getTemplate_content());
                 int Forwarded = o.getForwarded().size();
                 int Not_Forward = o.getNot_forward().size();
                 int totle = Forwarded + Not_Forward;

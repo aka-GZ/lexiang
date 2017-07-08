@@ -59,7 +59,7 @@ class TemplateListActivity : LPageActivity<HomeTemplateBean>() {
         var history=ClassTemplateBean();
         history.class_name=edit_search.text.toString();
         if(TextUtils.isEmpty(history.class_name))return;
-        if(historys.size>8){
+        if(historys.size>=8){
             historys.removeAt(historys.size-1);
         }
         historys.add(0,history);

@@ -319,7 +319,7 @@ public class BaseQuestStart extends BaseQuestConfig {
                 .setUrl(BaseQuestConfig.GET_TEAM_TEMPLATE_VIEW_URL)
                 .put("group_id", group_id)
                 .put("template_id", template_id)
-                // .setTypeToken(LoginInfo.class)//指定解析类型,该程序里面对应body 里面的json内容
+                 .setTypeToken(TemplateDataObj.class)//指定解析类型,该程序里面对应body 里面的json内容
                 .setRequestCode(BaseQuestConfig.QUEST_GET_TEAM_TEMPLATE_VIEW_CODE));
     }
 

@@ -31,7 +31,7 @@ import butterknife.OnClick;
  */
 public class SplashActivity extends LBaseActivity {
     int startNum = 0;
-    long time = 3000,time2 = 2000;
+    long time = 0,time2 = 2000;
     static SplashActivity act;
     AHandler.Task task,task2;
     @BindView(R.id.view_pager)
